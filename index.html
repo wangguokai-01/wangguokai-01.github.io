@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>作品集展示平台 - 专业版</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- 使用更可靠的Supabase库版本 -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.7/dist/umd/supabase.min.js"></script>
     <style>
         :root {
             --primary-color: #6c5ce7;
@@ -1025,9 +1026,50 @@
         .category-path .group-name {
             font-size: 1em;
         }
+        
+        /* 新增：初始化加载状态 */
+        .init-loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        
+        .init-loading.hidden {
+            display: none;
+        }
+        
+        .init-error {
+            text-align: center;
+            max-width: 500px;
+            padding: 30px;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin: 100px auto;
+        }
+        
+        .init-error i {
+            color: var(--danger-color);
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
+    <!-- 初始化加载状态 -->
+    <div class="init-loading" id="initLoading">
+        <div class="loading-spinner"></div>
+        <p style="margin-top: 20px; color: var(--primary-color); font-weight: 600;">正在初始化应用...</p>
+    </div>
+
     <!-- 登录模态框 -->
     <div class="login-modal" id="loginModal">
         <div class="login-content">
@@ -1253,13 +1295,70 @@
     </div>
 
     <script>
+        // 添加Supabase库加载检查
+        function checkSupabaseLoaded() {
+            if (typeof supabase === 'undefined') {
+                console.error('Supabase库未加载，请检查网络连接或CDN链接');
+                // 隐藏初始化加载
+                document.getElementById('initLoading').innerHTML = `
+                    <div class="init-error">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>无法加载数据库连接库</h3>
+                        <p>请检查网络连接并刷新页面重试</p>
+                        <button onclick="location.reload()" class="btn btn-primary" style="margin-top: 15px;">
+                            <i class="fas fa-redo"></i> 刷新页面
+                        </button>
+                    </div>
+                `;
+                return false;
+            }
+            return true;
+        }
+        
         // 初始化Supabase客户端
         const SUPABASE_URL = 'https://ehfknkwirdqpsruljlxe.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVoZmtua3dpcmRxcHNydWxqbHhlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMyNzkwNTMsImV4cCI6MjA1ODg1NTA1M30.HItwVgvwWq9P4dSUu5DpQcywVUJw5K7wzU_o6n_moJA';
         
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        let supabaseClient;
         
-        document.addEventListener('DOMContentLoaded', function() {
+        // 初始化应用
+        function initApp() {
+            // 检查Supabase是否加载
+            if (!checkSupabaseLoaded()) {
+                return;
+            }
+            
+            try {
+                // 创建Supabase客户端
+                supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                console.log('Supabase客户端创建成功');
+                
+                // 隐藏初始化加载
+                document.getElementById('initLoading').classList.add('hidden');
+                
+                // 初始化其他代码
+                initialize();
+            } catch (error) {
+                console.error('创建Supabase客户端失败:', error);
+                document.getElementById('initLoading').innerHTML = `
+                    <div class="init-error">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>初始化失败</h3>
+                        <p>无法连接数据库，请检查网络连接或稍后再试</p>
+                        <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">错误信息: ${error.message}</p>
+                        <button onclick="location.reload()" class="btn btn-primary" style="margin-top: 15px;">
+                            <i class="fas fa-redo"></i> 刷新页面
+                        </button>
+                    </div>
+                `;
+            }
+        }
+        
+        // 在页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', initApp);
+        
+        // 主初始化函数
+        function initialize() {
             // 初始化变量
             let currentUser = null;
             let currentUserRole = null;
@@ -1381,26 +1480,31 @@
                 checkLoginStatus();
                 
                 // 加载初始数据
-                await Promise.all([
-                    loadCategories(),
-                    loadAdmins()
-                ]);
-                
-                // 如果当前有选中的分类，显示对应的组
-                if (currentCategoryId) {
-                    await loadGroupsByCategory(currentCategoryId);
-                } else {
-                    await loadAllGroups();
+                try {
+                    await Promise.all([
+                        loadCategories(),
+                        loadAdmins()
+                    ]);
+                    
+                    // 如果当前有选中的分类，显示对应的组
+                    if (currentCategoryId) {
+                        await loadGroupsByCategory(currentCategoryId);
+                    } else {
+                        await loadAllGroups();
+                    }
+                    
+                    // 设置事件监听器
+                    setupEventListeners();
+                } catch (error) {
+                    console.error('初始化失败:', error);
+                    showNotification('初始化失败，请刷新页面重试');
                 }
-                
-                // 设置事件监听器
-                setupEventListeners();
             }
             
             // 加载分类
             async function loadCategories() {
                 try {
-                    const { data, error } = await supabase
+                    const { data, error } = await supabaseClient
                         .from('categories')
                         .select('*')
                         .order('created_at', { ascending: false });
@@ -1418,7 +1522,7 @@
             // 加载所有组
             async function loadAllGroups() {
                 try {
-                    const { data, error } = await supabase
+                    const { data, error } = await supabaseClient
                         .from('groups')
                         .select('*')
                         .order('created_at', { ascending: false });
@@ -1436,7 +1540,7 @@
             // 按分类加载组
             async function loadGroupsByCategory(categoryId) {
                 try {
-                    const { data, error } = await supabase
+                    const { data, error } = await supabaseClient
                         .from('groups')
                         .select('*')
                         .eq('category_id', categoryId)
@@ -1455,7 +1559,7 @@
             // 加载图片
             async function loadImagesByGroup(groupId) {
                 try {
-                    const { data, error } = await supabase
+                    const { data, error } = await supabaseClient
                         .from('images')
                         .select('*')
                         .eq('group_id', groupId)
@@ -1474,7 +1578,7 @@
             // 加载管理员
             async function loadAdmins() {
                 try {
-                    const { data, error } = await supabase
+                    const { data, error } = await supabaseClient
                         .from('admins')
                         .select('*')
                         .order('created_at', { ascending: true });
@@ -1496,14 +1600,14 @@
                     const fileExt = fileName.split('.').pop();
                     const uniqueFileName = `${Date.now()}_${Math.random().toString(36).substring(2)}.${fileExt}`;
                     
-                    const { data, error } = await supabase.storage
+                    const { data, error } = await supabaseClient.storage
                         .from('portfolio-images')
                         .upload(uniqueFileName, file);
                     
                     if (error) throw error;
                     
                     // 获取公开URL
-                    const { data: urlData } = supabase.storage
+                    const { data: urlData } = supabaseClient.storage
                         .from('portfolio-images')
                         .getPublicUrl(uniqueFileName);
                     
@@ -1763,7 +1867,7 @@
                 
                 try {
                     // 查询管理员
-                    const { data, error } = await supabase
+                    const { data, error } = await supabaseClient
                         .from('admins')
                         .select('*')
                         .eq('username', username)
@@ -1843,7 +1947,7 @@
                 
                 try {
                     // 验证原密码
-                    const { data: adminData, error: adminError } = await supabase
+                    const { data: adminData, error: adminError } = await supabaseClient
                         .from('admins')
                         .select('*')
                         .eq('username', currentUser)
@@ -1857,7 +1961,7 @@
                     }
                     
                     // 更新密码
-                    const { error: updateError } = await supabase
+                    const { error: updateError } = await supabaseClient
                         .from('admins')
                         .update({ password_hash: newPassword })
                         .eq('username', currentUser);
@@ -2501,7 +2605,7 @@
                     }
                     
                     try {
-                        const { data, error } = await supabase
+                        const { data, error } = await supabaseClient
                             .from('categories')
                             .insert([
                                 { name, color }
@@ -2536,7 +2640,7 @@
                     }
                     
                     try {
-                        const { data, error } = await supabase
+                        const { data, error } = await supabaseClient
                             .from('groups')
                             .insert([
                                 { 
@@ -2586,7 +2690,7 @@
                             const file = uploadFiles[i];
                             const imageUrl = await uploadImageToStorage(file.file, file.name);
                             
-                            const { data, error } = await supabase
+                            const { data, error } = await supabaseClient
                                 .from('images')
                                 .insert([
                                     { 
@@ -2634,7 +2738,7 @@
                     
                     try {
                         // 检查账号是否已存在
-                        const { data: existingAdmin, error: checkError } = await supabase
+                        const { data: existingAdmin, error: checkError } = await supabaseClient
                             .from('admins')
                             .select('*')
                             .eq('username', username)
@@ -2645,7 +2749,7 @@
                             return;
                         }
                         
-                        const { data, error } = await supabase
+                        const { data, error } = await supabaseClient
                             .from('admins')
                             .insert([
                                 { 
@@ -2683,7 +2787,7 @@
                     }
                     
                     try {
-                        const { error } = await supabase
+                        const { error } = await supabaseClient
                             .from('categories')
                             .update({ name, color })
                             .eq('id', manageId);
@@ -2721,7 +2825,7 @@
                     }
                     
                     try {
-                        const { error } = await supabase
+                        const { error } = await supabaseClient
                             .from('groups')
                             .update({ 
                                 name, 
@@ -2767,7 +2871,7 @@
                             updateData.image_url = imageUrl;
                         }
                         
-                        const { error } = await supabase
+                        const { error } = await supabaseClient
                             .from('images')
                             .update(updateData)
                             .eq('id', manageId);
@@ -2810,7 +2914,7 @@
                             updateData.role = role;
                         }
                         
-                        const { error } = await supabase
+                        const { error } = await supabaseClient
                             .from('admins')
                             .update(updateData)
                             .eq('id', manageId);
@@ -2843,7 +2947,7 @@
                 if (manageType === 'category' && manageId) {
                     try {
                         // 检查是否有组使用此分类
-                        const { data: groupsUsingCategory, error: checkError } = await supabase
+                        const { data: groupsUsingCategory, error: checkError } = await supabaseClient
                             .from('groups')
                             .select('id')
                             .eq('category_id', manageId)
@@ -2856,7 +2960,7 @@
                             return;
                         }
                         
-                        const { error } = await supabase
+                        const { error } = await supabaseClient
                             .from('categories')
                             .delete()
                             .eq('id', manageId);
@@ -2874,7 +2978,7 @@
                     
                 } else if (manageType === 'group' && manageId) {
                     try {
-                        const { error } = await supabase
+                        const { error } = await supabaseClient
                             .from('groups')
                             .delete()
                             .eq('id', manageId);
@@ -2899,7 +3003,7 @@
                     
                 } else if (manageType === 'image' && manageId) {
                     try {
-                        const { error } = await supabase
+                        const { error } = await supabaseClient
                             .from('images')
                             .delete()
                             .eq('id', manageId);
@@ -2934,7 +3038,7 @@
                             return;
                         }
                         
-                        const { error } = await supabase
+                        const { error } = await supabaseClient
                             .from('admins')
                             .delete()
                             .eq('id', manageId);
@@ -2973,7 +3077,7 @@
                 }
                 
                 try {
-                    const { error } = await supabase
+                    const { error } = await supabaseClient
                         .from('admins')
                         .delete()
                         .eq('id', adminId);
@@ -3021,7 +3125,7 @@
             
             // 初始化应用
             init();
-        });
+        }
     </script>
 </body>
 </html>
