@@ -2938,198 +2938,159 @@
                 }
             }
             
-            // 处理删除
-            async function handleDelete() {
-                if (!confirm('确定要删除吗？此操作不可撤销！')) {
-                    return;
-                }
-                
-                if (manageType === 'category' && manageId) {
-                    try {
-                        // 检查是否有组使用此分类
-                        const { data: groupsUsingCategory, error: checkError } = await supabaseClient
-                            .from('groups')
-                            .select('id')
-                            .eq('category_id', manageId)
-                            .limit(1);
-                        
-                        if (checkError) throw checkError;
-                        
-                        if (groupsUsingCategory && groupsUsingCategory.length > 0) {
-                            alert('该分类下还有作品组，无法删除！');
-                            return;
-                        }
-                        
-                        const { error } = await supabaseClient
-                            .from('categories')
-                            .delete()
-                            .eq('id', manageId);
-                        
-                        if (error) throw error;
-                        
-                        categories = categories.filter(c => c.id !== manageId);
-                        renderCategories();
-                        manageModal.classList.remove('active');
-                        showNotification('分类删除成功！');
-                    } catch (error) {
-                        console.error('删除分类失败:', error);
-                        alert('删除分类失败，请重试');
-                    }
-                    
-                } else if (manageType === 'group' && manageId) {
-                    try {
-                        const { error } = await supabaseClient
-                            .from('groups')
-                            .delete()
-                            .eq('id', manageId);
-                        
-                        if (error) throw error;
-                        
-                        groups = groups.filter(g => g.id !== manageId);
-                        
-                        if (currentGroupId === manageId) {
-                            imagesSection.classList.add('hidden');
-                            groupsSection.classList.remove('hidden');
-                            currentGroupId = null;
-                        }
-                        
-                        renderGroups(groups);
-                        manageModal.classList.remove('active');
-                        showNotification('作品组删除成功！');
-                    } catch (error) {
-                        console.error('删除作品组失败:', error);
-                        alert('删除作品组失败，请重试');
-                    }
-                    
-             } else if (manageType === 'image' && manageId) {
-    try {
-        // 先获取要删除的图片信息
-        const imageToDelete = images.find(img => img.id === manageId);
-        if (!imageToDelete) {
-            alert('找不到要删除的图片');
-            return;
-        }
-        
-        // 从图片URL中提取文件名（用于删除存储桶中的文件）
-        const imageUrl = imageToDelete.image_url;
-        let fileName = '';
-        
-        // 解析URL获取文件名
-        if (imageUrl.includes('/storage/v1/object/public/portfolio-images/')) {
-            const parts = imageUrl.split('/storage/v1/object/public/portfolio-images/');
-            if (parts.length > 1) {
-                fileName = parts[1].split('?')[0]; // 移除可能的查询参数
-            }
-        }
-        
-        // 1. 从数据库中删除记录
-        const { error: deleteError } = await supabaseClient
-            .from('images')
-            .delete()
-            .eq('id', manageId);
-        
-        if (deleteError) throw deleteError;
-        
-        // 2. 从存储桶中删除图片文件
-        if (fileName) {
-            const { error: storageError } = await supabaseClient.storage
-                .from('portfolio-images')
-                .remove([fileName]);
+        // 处理删除
+async function handleDelete() {
+    if (!confirm('确定要删除吗？此操作不可撤销！')) {
+        return;
+    }
+    
+    if (manageType === 'category' && manageId) {
+        try {
+            // 检查是否有组使用此分类
+            const { data: groupsUsingCategory, error: checkError } = await supabaseClient
+                .from('groups')
+                .select('id')
+                .eq('category_id', manageId)
+                .limit(1);
             
-            if (storageError) {
-                console.warn('存储桶文件删除失败（可能已被手动删除）:', storageError);
-                // 继续执行，至少数据库记录已删除
+            if (checkError) throw checkError;
+            
+            if (groupsUsingCategory && groupsUsingCategory.length > 0) {
+                alert('该分类下还有作品组，无法删除！');
+                return;
             }
+            
+            const { error } = await supabaseClient
+                .from('categories')
+                .delete()
+                .eq('id', manageId);
+            
+            if (error) throw error;
+            
+            categories = categories.filter(c => c.id !== manageId);
+            renderCategories();
+            manageModal.classList.remove('active');
+            showNotification('分类删除成功！');
+        } catch (error) {
+            console.error('删除分类失败:', error);
+            alert('删除分类失败，请重试');
         }
         
-        // 3. 更新本地数据并重新渲染（比重新加载更快）
-        images = images.filter(img => img.id !== manageId);
-        renderImages(images);
+    } else if (manageType === 'group' && manageId) {
+        try {
+            const { error } = await supabaseClient
+                .from('groups')
+                .delete()
+                .eq('id', manageId);
+            
+            if (error) throw error;
+            
+            groups = groups.filter(g => g.id !== manageId);
+            
+            if (currentGroupId === manageId) {
+                imagesSection.classList.add('hidden');
+                groupsSection.classList.remove('hidden');
+                currentGroupId = null;
+            }
+            
+            renderGroups(groups);
+            manageModal.classList.remove('active');
+            showNotification('作品组删除成功！');
+        } catch (error) {
+            console.error('删除作品组失败:', error);
+            alert('删除作品组失败，请重试');
+        }
         
-        manageModal.classList.remove('active');
-        showNotification('图片删除成功！');
+    } else if (manageType === 'image' && manageId) {
+        try {
+            // 先获取要删除的图片信息
+            const imageToDelete = images.find(img => img.id === manageId);
+            if (!imageToDelete) {
+                alert('找不到要删除的图片');
+                return;
+            }
+            
+            // 从图片URL中提取文件名（用于删除存储桶中的文件）
+            const imageUrl = imageToDelete.image_url;
+            let fileName = '';
+            
+            // 解析URL获取文件名
+            if (imageUrl.includes('/storage/v1/object/public/portfolio-images/')) {
+                const parts = imageUrl.split('/storage/v1/object/public/portfolio-images/');
+                if (parts.length > 1) {
+                    fileName = parts[1].split('?')[0]; // 移除可能的查询参数
+                }
+            }
+            
+            // 1. 从数据库中删除记录
+            const { error: deleteError } = await supabaseClient
+                .from('images')
+                .delete()
+                .eq('id', manageId);
+            
+            if (deleteError) throw deleteError;
+            
+            // 2. 从存储桶中删除图片文件
+            if (fileName) {
+                const { error: storageError } = await supabaseClient.storage
+                    .from('portfolio-images')
+                    .remove([fileName]);
+                
+                if (storageError) {
+                    console.warn('存储桶文件删除失败（可能已被手动删除）:', storageError);
+                    // 继续执行，至少数据库记录已删除
+                }
+            }
+            
+            // 3. 更新本地数据并重新渲染（比重新加载更快）
+            images = images.filter(img => img.id !== manageId);
+            renderImages(images);
+            
+            manageModal.classList.remove('active');
+            showNotification('图片删除成功！');
+            
+        } catch (error) {
+            console.error('删除图片失败:', error);
+            alert('删除图片失败，请重试');
+        }
         
-    } catch (error) {
-        console.error('删除图片失败:', error);
-        alert('删除图片失败，请重试');
+    } else if (manageType === 'admin' && manageId) {
+        try {
+            // 找到要删除的管理员
+            const adminIndex = admins.findIndex(a => a.id === manageId);
+            if (adminIndex === -1) return;
+            
+            const admin = admins[adminIndex];
+            
+            // 不能删除自己
+            if (admin.username === currentUser) {
+                alert('不能删除当前登录的管理员！');
+                return;
+            }
+            
+            // 不能删除主管理员（除非是主管理员自己）
+            if (admin.role === 'master' && currentUserRole !== 'master') {
+                alert('只有主管理员可以删除主管理员！');
+                return;
+            }
+            
+            const { error } = await supabaseClient
+                .from('admins')
+                .delete()
+                .eq('id', manageId);
+            
+            if (error) throw error;
+            
+            admins.splice(adminIndex, 1);
+            renderAdmins();
+            manageModal.classList.remove('active');
+            showNotification('管理员删除成功！');
+        } catch (error) {
+            console.error('删除管理员失败:', error);
+            alert('删除管理员失败，请重试');
+        }
     }
 }
-                    
-                } else if (manageType === 'admin' && manageId) {
-                    try {
-                        // 找到要删除的管理员
-                        const adminIndex = admins.findIndex(a => a.id === manageId);
-                        if (adminIndex === -1) return;
-                        
-                        const admin = admins[adminIndex];
-                        
-                        // 不能删除自己
-                        if (admin.username === currentUser) {
-                            alert('不能删除当前登录的管理员！');
-                            return;
-                        }
-                        
-                        // 不能删除主管理员（除非是主管理员自己）
-                        if (admin.role === 'master' && currentUserRole !== 'master') {
-                            alert('只有主管理员可以删除主管理员！');
-                            return;
-                        }
-                        
-                        const { error } = await supabaseClient
-                            .from('admins')
-                            .delete()
-                            .eq('id', manageId);
-                        
-                        if (error) throw error;
-                        
-                        admins.splice(adminIndex, 1);
-                        renderAdmins();
-                        manageModal.classList.remove('active');
-                        showNotification('管理员删除成功！');
-                    } catch (error) {
-                        console.error('删除管理员失败:', error);
-                        alert('删除管理员失败，请重试');
-                    }
-                }
-            }
-            
-            // 删除管理员
-            async function deleteAdmin(adminId) {
-                // 找到要删除的管理员
-                const adminIndex = admins.findIndex(a => a.id === adminId);
-                if (adminIndex === -1) return;
-                
-                const admin = admins[adminIndex];
-                
-                // 不能删除自己
-                if (admin.username === currentUser) {
-                    alert('不能删除当前登录的管理员！');
-                    return;
-                }
-                
-                // 不能删除主管理员（除非是主管理员自己）
-                if (admin.role === 'master' && currentUserRole !== 'master') {
-                    alert('只有主管理员可以删除主管理员！');
-                    return;
-                }
-                
-                try {
-                    const { error } = await supabaseClient
-                        .from('admins')
-                        .delete()
-                        .eq('id', adminId);
-                    
-                    if (error) throw error;
-                    
-                    admins.splice(adminIndex, 1);
-                    renderAdmins();
-                    showNotification('管理员删除成功！');
-                } catch (error) {
-                    console.error('删除管理员失败:', error);
-                    alert('删除管理员失败，请重试');
-                }
-            }
-            
             // 显示通知
             function showNotification(message) {
                 const notification = document.createElement('div');
