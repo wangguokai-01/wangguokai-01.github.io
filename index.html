@@ -3003,86 +3003,38 @@ async function handleDelete() {
         
     } else if (manageType === 'image' && manageId) {
         try {
-            console.log('开始删除图片，ID:', manageId);
+            console.log('删除图片 ID:', manageId);
             
-            // 先获取要删除的图片信息
-            const imageToDelete = images.find(img => img.id === manageId);
-            if (!imageToDelete) {
-                alert('找不到要删除的图片');
-                return;
+            // 方法1：直接使用fetch API确保删除
+            const deleteResult = await deleteImageDirectly(manageId);
+            
+            if (!deleteResult.success) {
+                throw new Error(deleteResult.error || '删除失败');
             }
             
-            console.log('要删除的图片:', imageToDelete);
-            
-            // 直接从数据库删除记录
-            console.log('正在从数据库删除记录...');
-            const { error: deleteError } = await supabaseClient
-                .from('images')
-                .delete()
-                .eq('id', manageId);
-            
-            if (deleteError) {
-                console.error('数据库删除失败:', deleteError);
-                throw new Error('数据库删除失败: ' + deleteError.message);
-            }
-            
-            console.log('数据库删除成功');
-            
-            // 尝试从存储桶删除文件（可选，异步不阻塞）
-            try {
-                const imageUrl = imageToDelete.image_url;
-                if (imageUrl && imageUrl.includes('supabase.co')) {
-                    // 解析文件名
-                    const urlParts = imageUrl.split('/');
-                    const fileName = urlParts[urlParts.length - 1];
-                    
-                    if (fileName && fileName.includes('.')) {
-                        console.log('尝试删除存储桶文件:', fileName);
-                        
-                        // 异步删除，不等待结果
-                        setTimeout(async () => {
-                            try {
-                                const { error: storageError } = await supabaseClient.storage
-                                    .from('portfolio-images')
-                                    .remove([fileName]);
-                                
-                                if (storageError) {
-                                    console.warn('存储桶删除失败（不影响主流程）:', storageError);
-                                } else {
-                                    console.log('存储桶文件删除成功');
-                                }
-                            } catch (storageError) {
-                                console.warn('存储桶删除异常:', storageError);
-                            }
-                        }, 0);
-                    }
-                }
-            } catch (storageErr) {
-                console.warn('存储桶删除过程出错，但不影响主流程:', storageErr);
-            }
-            
-            // 更新本地数据并重新渲染
+            // 更新本地数据
             images = images.filter(img => img.id !== manageId);
             renderImages(images);
             
-            // 强制重新从数据库加载一次，确保同步
-            setTimeout(async () => {
-                await loadImagesByGroup(currentGroupId);
-            }, 300);
-            
+            // 关闭模态框
             manageModal.classList.remove('active');
+            
+            // 显示成功消息但不自动刷新
             showNotification('图片删除成功！');
+            
+            // 方法2：手动验证删除是否真的成功
+            setTimeout(async () => {
+                await verifyDeletion(manageId);
+            }, 1000);
             
         } catch (error) {
             console.error('删除图片失败:', error);
-            alert('删除图片失败: ' + (error.message || '请刷新页面后重试'));
+            alert('删除图片失败: ' + (error.message || '未知错误'));
             
-            // 尝试重新加载数据
-            try {
+            // 重新加载数据以显示真实状态
+            setTimeout(async () => {
                 await loadImagesByGroup(currentGroupId);
-            } catch (reloadError) {
-                console.error('重新加载数据失败:', reloadError);
-            }
+            }, 500);
         }
         
     } else if (manageType === 'admin' && manageId) {
@@ -3122,7 +3074,104 @@ async function handleDelete() {
         }
     }
 }
-           // 显示通知
+
+// 直接使用fetch API删除图片
+async function deleteImageDirectly(imageId) {
+    try {
+        // 使用fetch直接调用Supabase REST API
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/images?id=eq.${imageId}`, {
+            method: 'DELETE',
+            headers: {
+                'apikey': SUPABASE_ANON_KEY,
+                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                'Content-Type': 'application/json',
+                'Prefer': 'return=minimal'
+            }
+        });
+        
+        console.log('删除响应状态:', response.status);
+        
+        if (response.status === 204) {
+            return { success: true };
+        } else {
+            const errorText = await response.text();
+            return { 
+                success: false, 
+                error: `HTTP ${response.status}: ${errorText}` 
+            };
+        }
+    } catch (error) {
+        console.error('直接删除失败:', error);
+        return { 
+            success: false, 
+            error: error.message 
+        };
+    }
+}
+
+// 验证删除是否成功
+async function verifyDeletion(imageId) {
+    try {
+        const { data, error } = await supabaseClient
+            .from('images')
+            .select('id')
+            .eq('id', imageId)
+            .maybeSingle(); // 使用maybeSingle而不是single，避免未找到时抛出错误
+        
+        if (error) {
+            console.error('验证删除时查询错误:', error);
+            return false;
+        }
+        
+        if (data) {
+            console.warn('图片仍然存在于数据库中!', data);
+            alert('警告：图片删除可能未成功，请刷新页面检查');
+            return false;
+        } else {
+            console.log('验证成功：图片已从数据库中删除');
+            return true;
+        }
+    } catch (error) {
+        console.error('验证删除失败:', error);
+        return false;
+    }
+}
+
+// 修改loadImagesByGroup函数，添加调试信息
+async function loadImagesByGroup(groupId) {
+    try {
+        console.log('加载组图片，组ID:', groupId);
+        
+        const { data, error } = await supabaseClient
+            .from('images')
+            .select('*')
+            .eq('group_id', groupId)
+            .order('created_at', { ascending: false });
+        
+        if (error) {
+            console.error('加载图片失败:', error);
+            throw error;
+        }
+        
+        console.log('加载到的图片数量:', data?.length || 0);
+        
+        images = data || [];
+        
+        // 检查是否有已删除但仍返回的图片
+        const deletedIds = []; // 这里可以添加之前删除的ID用于检查
+        
+        images.forEach(img => {
+            if (deletedIds.includes(img.id)) {
+                console.warn('发现已删除的图片:', img.id, img.title);
+            }
+        });
+        
+        renderImages(images);
+    } catch (error) {
+        console.error('加载图片失败:', error);
+        showNotification('加载图片失败，请刷新页面重试');
+    }
+}           // 显示通知
             function showNotification(message) {
                 const notification = document.createElement('div');
                 notification.textContent = message;
