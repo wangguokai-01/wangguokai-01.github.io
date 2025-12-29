@@ -3003,6 +3003,8 @@ async function handleDelete() {
         
     } else if (manageType === 'image' && manageId) {
         try {
+            console.log('开始删除图片，ID:', manageId);
+            
             // 先获取要删除的图片信息
             const imageToDelete = images.find(img => img.id === manageId);
             if (!imageToDelete) {
@@ -3010,48 +3012,77 @@ async function handleDelete() {
                 return;
             }
             
-            // 从图片URL中提取文件名（用于删除存储桶中的文件）
-            const imageUrl = imageToDelete.image_url;
-            let fileName = '';
+            console.log('要删除的图片:', imageToDelete);
             
-            // 解析URL获取文件名
-            if (imageUrl.includes('/storage/v1/object/public/portfolio-images/')) {
-                const parts = imageUrl.split('/storage/v1/object/public/portfolio-images/');
-                if (parts.length > 1) {
-                    fileName = parts[1].split('?')[0]; // 移除可能的查询参数
-                }
-            }
-            
-            // 1. 从数据库中删除记录
+            // 直接从数据库删除记录
+            console.log('正在从数据库删除记录...');
             const { error: deleteError } = await supabaseClient
                 .from('images')
                 .delete()
                 .eq('id', manageId);
             
-            if (deleteError) throw deleteError;
-            
-            // 2. 从存储桶中删除图片文件
-            if (fileName) {
-                const { error: storageError } = await supabaseClient.storage
-                    .from('portfolio-images')
-                    .remove([fileName]);
-                
-                if (storageError) {
-                    console.warn('存储桶文件删除失败（可能已被手动删除）:', storageError);
-                    // 继续执行，至少数据库记录已删除
-                }
+            if (deleteError) {
+                console.error('数据库删除失败:', deleteError);
+                throw new Error('数据库删除失败: ' + deleteError.message);
             }
             
-            // 3. 更新本地数据并重新渲染（比重新加载更快）
+            console.log('数据库删除成功');
+            
+            // 尝试从存储桶删除文件（可选，异步不阻塞）
+            try {
+                const imageUrl = imageToDelete.image_url;
+                if (imageUrl && imageUrl.includes('supabase.co')) {
+                    // 解析文件名
+                    const urlParts = imageUrl.split('/');
+                    const fileName = urlParts[urlParts.length - 1];
+                    
+                    if (fileName && fileName.includes('.')) {
+                        console.log('尝试删除存储桶文件:', fileName);
+                        
+                        // 异步删除，不等待结果
+                        setTimeout(async () => {
+                            try {
+                                const { error: storageError } = await supabaseClient.storage
+                                    .from('portfolio-images')
+                                    .remove([fileName]);
+                                
+                                if (storageError) {
+                                    console.warn('存储桶删除失败（不影响主流程）:', storageError);
+                                } else {
+                                    console.log('存储桶文件删除成功');
+                                }
+                            } catch (storageError) {
+                                console.warn('存储桶删除异常:', storageError);
+                            }
+                        }, 0);
+                    }
+                }
+            } catch (storageErr) {
+                console.warn('存储桶删除过程出错，但不影响主流程:', storageErr);
+            }
+            
+            // 更新本地数据并重新渲染
             images = images.filter(img => img.id !== manageId);
             renderImages(images);
+            
+            // 强制重新从数据库加载一次，确保同步
+            setTimeout(async () => {
+                await loadImagesByGroup(currentGroupId);
+            }, 300);
             
             manageModal.classList.remove('active');
             showNotification('图片删除成功！');
             
         } catch (error) {
             console.error('删除图片失败:', error);
-            alert('删除图片失败，请重试');
+            alert('删除图片失败: ' + (error.message || '请刷新页面后重试'));
+            
+            // 尝试重新加载数据
+            try {
+                await loadImagesByGroup(currentGroupId);
+            } catch (reloadError) {
+                console.error('重新加载数据失败:', reloadError);
+            }
         }
         
     } else if (manageType === 'admin' && manageId) {
@@ -3090,7 +3121,8 @@ async function handleDelete() {
             alert('删除管理员失败，请重试');
         }
     }
-}            // 显示通知
+}
+           // 显示通知
             function showNotification(message) {
                 const notification = document.createElement('div');
                 notification.textContent = message;
