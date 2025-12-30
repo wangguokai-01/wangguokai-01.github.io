@@ -21,26 +21,26 @@
             --border-radius: 12px;
             --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
         }
-        
+
         body {
             background-color: #f8f9fa;
             color: var(--dark-color);
             line-height: 1.6;
         }
-        
+
         .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 20px;
         }
-        
+
         /* 登录模态框 */
         .login-modal {
             display: none;
@@ -54,11 +54,11 @@
             justify-content: center;
             align-items: center;
         }
-        
+
         .login-modal.active {
             display: flex;
         }
-        
+
         .login-content {
             background: white;
             border-radius: var(--border-radius);
@@ -69,7 +69,7 @@
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
             position: relative;
         }
-        
+
         .login-close {
             position: absolute;
             top: 15px;
@@ -80,19 +80,19 @@
             color: #636e72;
             cursor: pointer;
         }
-        
+
         .login-title {
             font-size: 1.8rem;
             color: var(--primary-color);
             margin-bottom: 30px;
         }
-        
+
         .login-form {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
-        
+
         .login-input {
             padding: 15px;
             border: 2px solid var(--gray-color);
@@ -100,12 +100,12 @@
             font-size: 1rem;
             transition: all 0.3s ease;
         }
-        
+
         .login-input:focus {
             border-color: var(--primary-color);
             outline: none;
         }
-        
+
         .login-btn {
             padding: 15px;
             background: var(--primary-color);
@@ -117,18 +117,18 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        
+
         .login-btn:hover {
             background: #5a4bd1;
         }
-        
+
         .login-error {
             color: var(--danger-color);
             font-size: 0.9rem;
             margin-top: 10px;
             display: none;
         }
-        
+
         /* 头部样式 */
         header {
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
@@ -139,51 +139,51 @@
             top: 0;
             z-index: 1000;
         }
-        
+
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .logo {
             display: flex;
             align-items: center;
             gap: 12px;
         }
-        
+
         .logo i {
             font-size: 2rem;
         }
-        
+
         .logo h1 {
             font-size: 1.5rem;
             font-weight: 700;
         }
-        
+
         .logo span {
             color: var(--accent-color);
         }
-        
+
         .header-actions {
             display: flex;
             gap: 12px;
             align-items: center;
         }
-        
+
         /* 用户信息 - 调整为一排 */
         .user-info-container {
             display: flex;
             align-items: center;
             gap: 15px;
         }
-        
+
         .user-info {
             display: flex;
             align-items: center;
             gap: 8px;
         }
-        
+
         .user-avatar {
             width: 36px;
             height: 36px;
@@ -195,11 +195,11 @@
             color: white;
             font-weight: 600;
         }
-        
+
         .user-name {
             font-size: 0.95rem;
         }
-        
+
         .logout-btn, .settings-btn {
             background: rgba(255, 255, 255, 0.2);
             color: white;
@@ -213,11 +213,11 @@
             align-items: center;
             gap: 5px;
         }
-        
+
         .logout-btn:hover, .settings-btn:hover {
             background: rgba(255, 255, 255, 0.3);
         }
-        
+
         /* 设置模态框 */
         .settings-modal {
             display: none;
@@ -231,11 +231,11 @@
             justify-content: center;
             align-items: center;
         }
-        
+
         .settings-modal.active {
             display: flex;
         }
-        
+
         .settings-content {
             background: white;
             border-radius: var(--border-radius);
@@ -246,7 +246,7 @@
             overflow-y: auto;
             position: relative;
         }
-        
+
         .settings-close {
             position: absolute;
             top: 15px;
@@ -257,18 +257,18 @@
             color: #636e72;
             cursor: pointer;
         }
-        
+
         .settings-title {
             font-size: 1.5rem;
             color: var(--primary-color);
             margin-bottom: 25px;
             text-align: center;
         }
-        
+
         .settings-section {
             margin-bottom: 30px;
         }
-        
+
         .settings-section h3 {
             font-size: 1.2rem;
             color: var(--dark-color);
@@ -276,7 +276,7 @@
             padding-bottom: 10px;
             border-bottom: 2px solid #f1f2f6;
         }
-        
+
         /* 按钮样式 */
         .btn {
             padding: 10px 20px;
@@ -291,39 +291,39 @@
             gap: 8px;
             font-size: 0.9rem;
         }
-        
+
         .btn-primary {
             background-color: var(--accent-color);
             color: white;
         }
-        
+
         .btn-primary:hover {
             background-color: #00b5ad;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 206, 201, 0.3);
         }
-        
+
         .btn-secondary {
             background-color: white;
             color: var(--primary-color);
             border: 2px solid var(--primary-color);
         }
-        
+
         .btn-secondary:hover {
             background-color: rgba(255, 255, 255, 0.9);
             transform: translateY(-2px);
         }
-        
+
         .btn-small {
             padding: 6px 12px;
             font-size: 0.85rem;
         }
-        
+
         /* 主内容区域 */
         main {
             padding: 30px 0;
         }
-        
+
         /* 分类导航 - 手机端优化 */
         .categories-nav {
             background: white;
@@ -332,25 +332,25 @@
             margin-bottom: 25px;
             box-shadow: var(--box-shadow);
         }
-        
+
         .categories-title {
             display: flex;
             align-items: center;
             justify-content: space-between;
             margin-bottom: 15px;
         }
-        
+
         .categories-title h2 {
             font-size: 1.3rem;
             color: var(--dark-color);
         }
-        
+
         .categories-list {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
         }
-        
+
         .category-tag {
             padding: 8px 16px;
             background-color: var(--gray-color);
@@ -360,21 +360,21 @@
             font-weight: 500;
             font-size: 0.9rem;
         }
-        
+
         .category-tag:hover {
             background-color: var(--secondary-color);
             color: white;
         }
-        
+
         .category-tag.active {
             background-color: var(--primary-color);
             color: white;
         }
-        
+
         .category-tag i {
             margin-right: 6px;
         }
-        
+
         /* 组展示网格 - 手机端一行两个 */
         .groups-grid {
             display: grid;
@@ -382,13 +382,13 @@
             gap: 20px;
             margin-bottom: 40px;
         }
-        
+
         @media (min-width: 768px) {
             .groups-grid {
                 grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             }
         }
-        
+
         /* 组卡片 */
         .group-card {
             background: white;
@@ -399,23 +399,23 @@
             position: relative;
             cursor: pointer;
         }
-        
+
         .group-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
-        
+
         .group-card-img {
             width: 100%;
             height: 140px;
             object-fit: cover;
             display: block;
         }
-        
+
         .group-card-info {
             padding: 15px;
         }
-        
+
         .group-card-title {
             font-size: 1rem;
             font-weight: 600;
@@ -429,7 +429,7 @@
             text-overflow: ellipsis;
             max-height: 4.5em;
         }
-        
+
         .group-card-category {
             display: inline-block;
             padding: 4px 10px;
@@ -440,7 +440,7 @@
             font-weight: 500;
             margin-bottom: 10px;
         }
-        
+
         .group-card-desc {
             color: #636e72;
             font-size: 0.85rem;
@@ -452,7 +452,7 @@
             text-overflow: ellipsis;
             max-height: 4.2em;
         }
-        
+
         .group-card-actions {
             display: flex;
             justify-content: space-between;
@@ -461,12 +461,12 @@
             padding-top: 10px;
             border-top: 1px solid #f1f2f6;
         }
-        
+
         .group-card-date {
             font-size: 0.75rem;
             color: #b2bec3;
         }
-        
+
         /* 图片全屏预览 - 改进版 */
         .fullscreen-modal {
             display: none;
@@ -481,11 +481,11 @@
             align-items: center;
             overflow: hidden;
         }
-        
+
         .fullscreen-modal.active {
             display: flex;
         }
-        
+
         .fullscreen-container {
             position: relative;
             width: 100%;
@@ -495,7 +495,7 @@
             align-items: center;
             overflow: hidden;
         }
-        
+
         .fullscreen-image-wrapper {
             position: relative;
             max-width: 100%;
@@ -503,11 +503,11 @@
             transition: transform 0.3s ease;
             cursor: grab;
         }
-        
+
         .fullscreen-image-wrapper.grabbing {
             cursor: grabbing;
         }
-        
+
         .fullscreen-image {
             max-width: 100%;
             max-height: 100%;
@@ -516,7 +516,7 @@
             user-select: none;
             -webkit-user-drag: none;
         }
-        
+
         .fullscreen-controls {
             position: absolute;
             top: 20px;
@@ -525,7 +525,7 @@
             gap: 15px;
             z-index: 10;
         }
-        
+
         .fullscreen-control-btn {
             background: rgba(255, 255, 255, 0.2);
             color: white;
@@ -541,12 +541,12 @@
             border: none;
             transition: all 0.3s ease;
         }
-        
+
         .fullscreen-control-btn:hover {
             background: rgba(255, 255, 255, 0.3);
             transform: scale(1.1);
         }
-        
+
         .fullscreen-nav {
             position: absolute;
             top: 50%;
@@ -557,7 +557,7 @@
             padding: 0 30px;
             z-index: 10;
         }
-        
+
         .fullscreen-nav-btn {
             background: rgba(255, 255, 255, 0.2);
             color: white;
@@ -573,12 +573,12 @@
             border: none;
             transition: all 0.3s ease;
         }
-        
+
         .fullscreen-nav-btn:hover {
             background: rgba(255, 255, 255, 0.3);
             transform: scale(1.1);
         }
-        
+
         .fullscreen-info {
             position: absolute;
             bottom: 20px;
@@ -592,19 +592,19 @@
             padding-top: 40px;
             padding-bottom: 20px;
         }
-        
+
         .fullscreen-title {
             font-size: 1.2rem;
             margin-bottom: 5px;
         }
-        
+
         .fullscreen-desc {
             font-size: 0.9rem;
             opacity: 0.9;
             max-width: 600px;
             margin: 0 auto;
         }
-        
+
         .zoom-info {
             position: absolute;
             bottom: 100px;
@@ -619,7 +619,7 @@
             align-items: center;
             gap: 8px;
         }
-        
+
         /* 管理操作按钮 */
         .manage-btn {
             background: none;
@@ -630,11 +630,11 @@
             transition: all 0.3s ease;
             padding: 5px;
         }
-        
+
         .manage-btn:hover {
             color: var(--primary-color);
         }
-        
+
         /* 分类/组/图片管理模态框 */
         .manage-modal {
             display: none;
@@ -648,11 +648,11 @@
             justify-content: center;
             align-items: center;
         }
-        
+
         .manage-modal.active {
             display: flex;
         }
-        
+
         .manage-content {
             background: white;
             border-radius: var(--border-radius);
@@ -663,7 +663,7 @@
             overflow-y: auto;
             position: relative;
         }
-        
+
         .manage-close {
             position: absolute;
             top: 15px;
@@ -674,30 +674,30 @@
             color: #636e72;
             cursor: pointer;
         }
-        
+
         .manage-title {
             font-size: 1.5rem;
             color: var(--primary-color);
             margin-bottom: 20px;
         }
-        
+
         .manage-form {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
-        
+
         .form-group {
             display: flex;
             flex-direction: column;
         }
-        
+
         .form-group label {
             margin-bottom: 8px;
             font-weight: 600;
             color: var(--dark-color);
         }
-        
+
         .form-group input, .form-group select, .form-group textarea {
             padding: 12px 15px;
             border: 2px solid var(--gray-color);
@@ -705,23 +705,23 @@
             font-size: 1rem;
             transition: all 0.3s ease;
         }
-        
+
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
             border-color: var(--primary-color);
             outline: none;
         }
-        
+
         .form-group textarea {
             resize: vertical;
             min-height: 100px;
         }
-        
+
         .manage-actions {
             display: flex;
             gap: 10px;
             margin-top: 20px;
         }
-        
+
         /* 文件上传区域 */
         .upload-area {
             border: 2px dashed var(--gray-color);
@@ -732,30 +732,30 @@
             transition: all 0.3s ease;
             margin-bottom: 20px;
         }
-        
+
         .upload-area:hover, .upload-area.dragover {
             border-color: var(--primary-color);
             background-color: rgba(108, 92, 231, 0.05);
         }
-        
+
         .upload-area i {
             font-size: 2.5rem;
             color: var(--primary-color);
             margin-bottom: 15px;
         }
-        
+
         .upload-area h3 {
             font-size: 1.2rem;
             margin-bottom: 10px;
             color: var(--dark-color);
         }
-        
+
         .upload-area p {
             color: #636e72;
             margin-bottom: 15px;
             font-size: 0.9rem;
         }
-        
+
         .upload-preview {
             display: flex;
             flex-wrap: wrap;
@@ -763,7 +763,7 @@
             margin-top: 20px;
             margin-bottom: 20px;
         }
-        
+
         .preview-item {
             width: 100px;
             height: 100px;
@@ -771,13 +771,13 @@
             overflow: hidden;
             position: relative;
         }
-        
+
         .preview-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        
+
         .preview-item-remove {
             position: absolute;
             top: 5px;
@@ -793,7 +793,7 @@
             cursor: pointer;
             font-size: 0.8rem;
         }
-        
+
         /* 管理员列表 */
         .admin-list {
             display: flex;
@@ -801,7 +801,7 @@
             gap: 15px;
             margin-bottom: 20px;
         }
-        
+
         .admin-item {
             display: flex;
             justify-content: space-between;
@@ -811,26 +811,26 @@
             border-radius: 8px;
             border-left: 4px solid var(--primary-color);
         }
-        
+
         .admin-info {
             display: flex;
             flex-direction: column;
             gap: 5px;
         }
-        
+
         .admin-name {
             font-weight: 600;
         }
-        
+
         .admin-role {
             font-size: 0.85rem;
             color: #636e72;
         }
-        
+
         .admin-actions button {
             margin-left: 10px;
         }
-        
+
         /* 图片展示网格 */
         .images-grid {
             display: grid;
@@ -838,7 +838,7 @@
             gap: 15px;
             margin-bottom: 40px;
         }
-        
+
         .image-item {
             background: white;
             border-radius: var(--border-radius);
@@ -847,23 +847,23 @@
             transition: all 0.3s ease;
             cursor: pointer;
         }
-        
+
         .image-item:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
-        
+
         .image-item-img {
             width: 100%;
             height: 150px;
             object-fit: cover;
             display: block;
         }
-        
+
         .image-item-info {
             padding: 12px;
         }
-        
+
         .image-item-title {
             font-size: 0.9rem;
             font-weight: 600;
@@ -873,102 +873,102 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
-        
+
         /* 空状态 */
         .empty-state {
             text-align: center;
             padding: 60px 20px;
             grid-column: 1 / -1;
         }
-        
+
         .empty-state i {
             font-size: 3rem;
             color: var(--gray-color);
             margin-bottom: 15px;
         }
-        
+
         .empty-state h3 {
             font-size: 1.3rem;
             margin-bottom: 10px;
             color: var(--dark-color);
         }
-        
+
         .empty-state p {
             color: #636e72;
             max-width: 500px;
             margin: 0 auto 20px;
         }
-        
+
         /* 响应式调整 */
         @media (max-width: 768px) {
             .container {
                 padding: 0 15px;
             }
-            
+
             .logo h1 {
                 font-size: 1.3rem;
             }
-            
+
             .logo i {
                 font-size: 1.7rem;
             }
-            
+
             .categories-nav {
                 padding: 12px;
             }
-            
+
             .categories-title h2 {
                 font-size: 1.2rem;
             }
-            
+
             .category-tag {
                 padding: 6px 12px;
                 font-size: 0.85rem;
             }
-            
+
             .groups-grid {
                 gap: 15px;
             }
-            
+
             .group-card-img {
                 height: 120px;
             }
-            
+
             .fullscreen-control-btn {
                 width: 40px;
                 height: 40px;
                 font-size: 1.2rem;
             }
-            
+
             .fullscreen-nav-btn {
                 width: 50px;
                 height: 50px;
                 font-size: 1.5rem;
             }
-            
+
             .images-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
-        
+
         @media (max-width: 480px) {
             .groups-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            
+
             .group-card-img {
                 height: 100px;
             }
-            
+
             .group-card-info {
                 padding: 10px;
             }
-            
+
             .group-card-title {
                 font-size: 0.9rem;
             }
         }
-        
+
         /* 加载动画 */
         .loading-spinner {
             border: 4px solid rgba(0, 0, 0, 0.1);
@@ -979,54 +979,62 @@
             animation: spin 1s linear infinite;
             margin: 20px auto;
         }
-        
+
         @keyframes spin {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
-        
+
         /* 动画 */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
+
         .fade-in {
             animation: fadeIn 0.5s ease forwards;
         }
-        
+
         /* 隐藏类 */
         .hidden {
             display: none !important;
         }
-        
+
         /* 添加的样式：分类路径显示 */
         .category-path {
             font-size: 1.3rem;
             color: var(--dark-color);
             margin-bottom: 20px;
         }
-        
+
         .category-path .category-name {
             font-size: 0.9em;
             color: var(--primary-color);
             cursor: pointer;
             transition: color 0.3s ease;
         }
-        
+
         .category-path .category-name:hover {
             color: var(--secondary-color);
             text-decoration: underline;
         }
-        
+
         .category-path .separator {
             margin: 0 8px;
             color: #636e72;
         }
-        
+
         .category-path .group-name {
             font-size: 1em;
         }
-        
+
         /* 新增：初始化加载状态 */
         .init-loading {
             position: fixed;
@@ -1041,11 +1049,11 @@
             align-items: center;
             z-index: 9999;
         }
-        
+
         .init-loading.hidden {
             display: none;
         }
-        
+
         .init-error {
             text-align: center;
             max-width: 500px;
@@ -1055,7 +1063,7 @@
             box-shadow: var(--box-shadow);
             margin: 100px auto;
         }
-        
+
         .init-error i {
             color: var(--danger-color);
             font-size: 3rem;
@@ -1064,243 +1072,243 @@
     </style>
 </head>
 <body>
-    <!-- 初始化加载状态 -->
-    <div class="init-loading" id="initLoading">
-        <div class="loading-spinner"></div>
-        <p style="margin-top: 20px; color: var(--primary-color); font-weight: 600;">正在初始化应用...</p>
-    </div>
+<!-- 初始化加载状态 -->
+<div class="init-loading" id="initLoading">
+    <div class="loading-spinner"></div>
+    <p style="margin-top: 20px; color: var(--primary-color); font-weight: 600;">正在初始化应用...</p>
+</div>
 
-    <!-- 登录模态框 -->
-    <div class="login-modal" id="loginModal">
-        <div class="login-content">
-            <button class="login-close" id="loginClose">
-                <i class="fas fa-times"></i>
-            </button>
-            <h2 class="login-title">登录作品集管理</h2>
-            
-            <form class="login-form" id="loginForm">
-                <input type="text" class="login-input" id="usernameInput" placeholder="请输入账号" required>
-                <input type="password" class="login-input" id="passwordInput" placeholder="请输入密码" required>
-                <button type="submit" class="login-btn">登录</button>
+<!-- 登录模态框 -->
+<div class="login-modal" id="loginModal">
+    <div class="login-content">
+        <button class="login-close" id="loginClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <h2 class="login-title">登录作品集管理</h2>
+
+        <form class="login-form" id="loginForm">
+            <input type="text" class="login-input" id="usernameInput" placeholder="请输入账号" required>
+            <input type="password" class="login-input" id="passwordInput" placeholder="请输入密码" required>
+            <button type="submit" class="login-btn">登录</button>
+        </form>
+
+        <p class="login-error" id="loginError">账号或密码错误，请重新输入</p>
+    </div>
+</div>
+
+<!-- 设置模态框 -->
+<div class="settings-modal" id="settingsModal">
+    <div class="settings-content">
+        <button class="settings-close" id="settingsClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <h2 class="settings-title">系统设置</h2>
+
+        <div class="settings-section">
+            <h3>修改密码</h3>
+            <form class="manage-form" id="passwordForm">
+                <div class="form-group">
+                    <label for="oldPassword">原密码</label>
+                    <input type="password" id="oldPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="newPassword">新密码</label>
+                    <input type="password" id="newPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">确认新密码</label>
+                    <input type="password" id="confirmPassword" required>
+                </div>
+                <div class="manage-actions">
+                    <button type="submit" class="btn btn-primary">修改密码</button>
+                </div>
             </form>
-            
-            <p class="login-error" id="loginError">账号或密码错误，请重新输入</p>
+        </div>
+
+        <div class="settings-section">
+            <h3>管理员管理</h3>
+            <div style="text-align: right; margin-bottom: 15px;">
+                <button class="btn btn-primary btn-small" id="addAdminBtn">
+                    <i class="fas fa-plus"></i> 添加管理员
+                </button>
+            </div>
+
+            <div class="admin-list" id="adminList">
+                <div class="loading-spinner"></div>
+            </div>
         </div>
     </div>
+</div>
 
-    <!-- 设置模态框 -->
-    <div class="settings-modal" id="settingsModal">
-        <div class="settings-content">
-            <button class="settings-close" id="settingsClose">
-                <i class="fas fa-times"></i>
-            </button>
-            <h2 class="settings-title">系统设置</h2>
-            
-            <div class="settings-section">
-                <h3>修改密码</h3>
-                <form class="manage-form" id="passwordForm">
-                    <div class="form-group">
-                        <label for="oldPassword">原密码</label>
-                        <input type="password" id="oldPassword" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="newPassword">新密码</label>
-                        <input type="password" id="newPassword" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="confirmPassword">确认新密码</label>
-                        <input type="password" id="confirmPassword" required>
-                    </div>
-                    <div class="manage-actions">
-                        <button type="submit" class="btn btn-primary">修改密码</button>
-                    </div>
-                </form>
+<!-- 头部 -->
+<header>
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-images"></i>
+                <h1>作品集<span>展示平台</span></h1>
             </div>
-            
-            <div class="settings-section">
-                <h3>管理员管理</h3>
-                <div style="text-align: right; margin-bottom: 15px;">
-                    <button class="btn btn-primary btn-small" id="addAdminBtn">
-                        <i class="fas fa-plus"></i> 添加管理员
+            <div class="header-actions">
+                <!-- 登录前显示登录按钮 -->
+                <div id="beforeLogin">
+                    <button class="btn btn-primary" id="loginBtn">
+                        <i class="fas fa-sign-in-alt"></i> 登录管理
                     </button>
                 </div>
-                
-                <div class="admin-list" id="adminList">
-                    <div class="loading-spinner"></div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- 头部 -->
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <i class="fas fa-images"></i>
-                    <h1>作品集<span>展示平台</span></h1>
-                </div>
-                <div class="header-actions">
-                    <!-- 登录前显示登录按钮 -->
-                    <div id="beforeLogin">
-                        <button class="btn btn-primary" id="loginBtn">
-                            <i class="fas fa-sign-in-alt"></i> 登录管理
+                <!-- 登录后显示用户信息和操作按钮 -->
+                <div class="hidden" id="afterLogin">
+                    <div class="user-info-container">
+                        <div class="user-info">
+                            <div class="user-avatar" id="userAvatar">管</div>
+                            <div class="user-name" id="userName">管理员</div>
+                        </div>
+                        <button class="settings-btn" id="settingsBtn">
+                            <i class="fas fa-cog"></i> 设置
+                        </button>
+                        <button class="logout-btn" id="logoutBtn">
+                            <i class="fas fa-sign-out-alt"></i> 退出
                         </button>
                     </div>
-                    
-                    <!-- 登录后显示用户信息和操作按钮 -->
-                    <div class="hidden" id="afterLogin">
-                        <div class="user-info-container">
-                            <div class="user-info">
-                                <div class="user-avatar" id="userAvatar">管</div>
-                                <div class="user-name" id="userName">管理员</div>
-                            </div>
-                            <button class="settings-btn" id="settingsBtn">
-                                <i class="fas fa-cog"></i> 设置
-                            </button>
-                            <button class="logout-btn" id="logoutBtn">
-                                <i class="fas fa-sign-out-alt"></i> 退出
-                            </button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
-    </header>
-
-    <!-- 主内容区域 -->
-    <main class="container">
-        <!-- 分类导航 -->
-        <section class="categories-nav">
-            <div class="categories-title">
-                <h2><i class="fas fa-tags"></i> 作品分类</h2>
-                <button class="btn btn-small btn-primary hidden" id="addCategoryBtn">
-                    <i class="fas fa-plus"></i> 添加分类
-                </button>
-            </div>
-            <div class="categories-list" id="categoriesList">
-                <div class="loading-spinner"></div>
-            </div>
-        </section>
-
-        <!-- 组展示区域 -->
-        <section id="groupsSection">
-            <div class="groups-grid" id="groupsGrid">
-                <div class="loading-spinner"></div>
-            </div>
-            
-            <!-- 空状态 -->
-            <div class="empty-state hidden" id="emptyGroupsState">
-                <i class="fas fa-folder-open"></i>
-                <h3>暂无作品组</h3>
-                <p>请先选择一个分类，然后添加作品组</p>
-            </div>
-            
-            <!-- 添加组按钮（登录后显示） -->
-            <div class="hidden" id="addGroupBtnContainer" style="text-align: center; margin-top: 30px;">
-                <button class="btn btn-primary" id="addGroupBtn">
-                    <i class="fas fa-plus"></i> 添加作品组
-                </button>
-            </div>
-        </section>
-
-        <!-- 图片展示区域（点击组后显示） -->
-        <section id="imagesSection" class="hidden">
-            <div class="category-path" id="categoryPath">
-                <!-- 分类路径将通过JavaScript动态生成 -->
-            </div>
-            
-            <div class="categories-title" style="margin-bottom: 20px;">
-                <h2 id="currentGroupTitle"></h2>
-                <button class="btn btn-small btn-primary hidden" id="addImageBtn">
-                    <i class="fas fa-plus"></i> 添加图片
-                </button>
-                <button class="btn btn-small btn-secondary" id="backToGroupsBtn">
-                    <i class="fas fa-arrow-left"></i> 返回
-                </button>
-            </div>
-            
-            <div class="images-grid" id="imagesGrid">
-                <div class="loading-spinner"></div>
-            </div>
-            
-            <!-- 空状态 -->
-            <div class="empty-state hidden" id="emptyImagesState">
-                <i class="fas fa-image"></i>
-                <h3>暂无图片</h3>
-                <p>请添加图片到该作品组</p>
-            </div>
-        </section>
-    </main>
-
-    <!-- 全屏图片预览 -->
-    <div class="fullscreen-modal" id="fullscreenModal">
-        <div class="fullscreen-container" id="fullscreenContainer">
-            <div class="fullscreen-image-wrapper" id="fullscreenImageWrapper">
-                <img class="fullscreen-image" id="fullscreenImage" src="" alt="">
-            </div>
-            
-            <div class="fullscreen-controls">
-                <button class="fullscreen-control-btn" id="fullscreenZoomIn">
-                    <i class="fas fa-search-plus"></i>
-                </button>
-                <button class="fullscreen-control-btn" id="fullscreenZoomOut">
-                    <i class="fas fa-search-minus"></i>
-                </button>
-                <button class="fullscreen-control-btn" id="fullscreenReset">
-                    <i class="fas fa-sync-alt"></i>
-                </button>
-                <button class="fullscreen-control-btn" id="fullscreenClose">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            
-            <div class="fullscreen-nav">
-                <button class="fullscreen-nav-btn" id="fullscreenPrev">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="fullscreen-nav-btn" id="fullscreenNext">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-            
-            <div class="zoom-info" id="zoomInfo">
-                <i class="fas fa-search"></i>
-                <span id="zoomPercent">100%</span>
-            </div>
-            
-            <div class="fullscreen-info">
-                <h3 class="fullscreen-title" id="fullscreenTitle"></h3>
-                <p class="fullscreen-desc" id="fullscreenDesc"></p>
-            </div>
-        </div>
     </div>
+</header>
 
-    <!-- 管理模态框（用于添加/编辑分类/组/图片/管理员） -->
-    <div class="manage-modal" id="manageModal">
-        <div class="manage-content">
-            <button class="manage-close" id="manageClose">
+<!-- 主内容区域 -->
+<main class="container">
+    <!-- 分类导航 -->
+    <section class="categories-nav">
+        <div class="categories-title">
+            <h2><i class="fas fa-tags"></i> 作品分类</h2>
+            <button class="btn btn-small btn-primary hidden" id="addCategoryBtn">
+                <i class="fas fa-plus"></i> 添加分类
+            </button>
+        </div>
+        <div class="categories-list" id="categoriesList">
+            <div class="loading-spinner"></div>
+        </div>
+    </section>
+
+    <!-- 组展示区域 -->
+    <section id="groupsSection">
+        <div class="groups-grid" id="groupsGrid">
+            <div class="loading-spinner"></div>
+        </div>
+
+        <!-- 空状态 -->
+        <div class="empty-state hidden" id="emptyGroupsState">
+            <i class="fas fa-folder-open"></i>
+            <h3>暂无作品组</h3>
+            <p>请先选择一个分类，然后添加作品组</p>
+        </div>
+
+        <!-- 添加组按钮（登录后显示） -->
+        <div class="hidden" id="addGroupBtnContainer" style="text-align: center; margin-top: 30px;">
+            <button class="btn btn-primary" id="addGroupBtn">
+                <i class="fas fa-plus"></i> 添加作品组
+            </button>
+        </div>
+    </section>
+
+    <!-- 图片展示区域（点击组后显示） -->
+    <section id="imagesSection" class="hidden">
+        <div class="category-path" id="categoryPath">
+            <!-- 分类路径将通过JavaScript动态生成 -->
+        </div>
+
+        <div class="categories-title" style="margin-bottom: 20px;">
+            <h2 id="currentGroupTitle"></h2>
+            <button class="btn btn-small btn-primary hidden" id="addImageBtn">
+                <i class="fas fa-plus"></i> 添加图片
+            </button>
+            <button class="btn btn-small btn-secondary" id="backToGroupsBtn">
+                <i class="fas fa-arrow-left"></i> 返回
+            </button>
+        </div>
+
+        <div class="images-grid" id="imagesGrid">
+            <div class="loading-spinner"></div>
+        </div>
+
+        <!-- 空状态 -->
+        <div class="empty-state hidden" id="emptyImagesState">
+            <i class="fas fa-image"></i>
+            <h3>暂无图片</h3>
+            <p>请添加图片到该作品组</p>
+        </div>
+    </section>
+</main>
+
+<!-- 全屏图片预览 -->
+<div class="fullscreen-modal" id="fullscreenModal">
+    <div class="fullscreen-container" id="fullscreenContainer">
+        <div class="fullscreen-image-wrapper" id="fullscreenImageWrapper">
+            <img class="fullscreen-image" id="fullscreenImage" src="" alt="">
+        </div>
+
+        <div class="fullscreen-controls">
+            <button class="fullscreen-control-btn" id="fullscreenZoomIn">
+                <i class="fas fa-search-plus"></i>
+            </button>
+            <button class="fullscreen-control-btn" id="fullscreenZoomOut">
+                <i class="fas fa-search-minus"></i>
+            </button>
+            <button class="fullscreen-control-btn" id="fullscreenReset">
+                <i class="fas fa-sync-alt"></i>
+            </button>
+            <button class="fullscreen-control-btn" id="fullscreenClose">
                 <i class="fas fa-times"></i>
             </button>
-            <h2 class="manage-title" id="manageTitle"></h2>
-            
-            <form class="manage-form" id="manageForm">
-                <!-- 表单内容将根据管理类型动态生成 -->
-            </form>
-            
-            <div class="manage-actions" id="manageActions">
-                <!-- 操作按钮将根据管理类型动态生成 -->
-            </div>
+        </div>
+
+        <div class="fullscreen-nav">
+            <button class="fullscreen-nav-btn" id="fullscreenPrev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="fullscreen-nav-btn" id="fullscreenNext">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <div class="zoom-info" id="zoomInfo">
+            <i class="fas fa-search"></i>
+            <span id="zoomPercent">100%</span>
+        </div>
+
+        <div class="fullscreen-info">
+            <h3 class="fullscreen-title" id="fullscreenTitle"></h3>
+            <p class="fullscreen-desc" id="fullscreenDesc"></p>
         </div>
     </div>
+</div>
 
-    <script>
-        // 添加Supabase库加载检查
-        function checkSupabaseLoaded() {
-            if (typeof supabase === 'undefined') {
-                console.error('Supabase库未加载，请检查网络连接或CDN链接');
-                // 隐藏初始化加载
-                document.getElementById('initLoading').innerHTML = `
+<!-- 管理模态框（用于添加/编辑分类/组/图片/管理员） -->
+<div class="manage-modal" id="manageModal">
+    <div class="manage-content">
+        <button class="manage-close" id="manageClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <h2 class="manage-title" id="manageTitle"></h2>
+
+        <form class="manage-form" id="manageForm">
+            <!-- 表单内容将根据管理类型动态生成 -->
+        </form>
+
+        <div class="manage-actions" id="manageActions">
+            <!-- 操作按钮将根据管理类型动态生成 -->
+        </div>
+    </div>
+</div>
+
+<script>
+    // 添加Supabase库加载检查
+    function checkSupabaseLoaded() {
+        if (typeof supabase === 'undefined') {
+            console.error('Supabase库未加载，请检查网络连接或CDN链接');
+            // 隐藏初始化加载
+            document.getElementById('initLoading').innerHTML = `
                     <div class="init-error">
                         <i class="fas fa-exclamation-triangle"></i>
                         <h3>无法加载数据库连接库</h3>
@@ -1310,37 +1318,37 @@
                         </button>
                     </div>
                 `;
-                return false;
-            }
-            return true;
+            return false;
         }
-        
-        // 初始化Supabase客户端
-        const SUPABASE_URL = 'https://ehfknkwirdqpsruljlxe.supabase.co';
-        const SUPABASE_ANON_KEY = 'sb_publishable_IUOb_PugfMc6ehB_FToz5w_IgxJCviV';
-        
-        let supabaseClient;
-        
-        // 初始化应用
-        function initApp() {
-            // 检查Supabase是否加载
-            if (!checkSupabaseLoaded()) {
-                return;
-            }
-            
-            try {
-                // 创建Supabase客户端
-                supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-                console.log('Supabase客户端创建成功');
-                
-                // 隐藏初始化加载
-                document.getElementById('initLoading').classList.add('hidden');
-                
-                // 初始化其他代码
-                initialize();
-            } catch (error) {
-                console.error('创建Supabase客户端失败:', error);
-                document.getElementById('initLoading').innerHTML = `
+        return true;
+    }
+
+    // 初始化Supabase客户端
+    const SUPABASE_URL = 'https://ehfknkwirdqpsruljlxe.supabase.co';
+    const SUPABASE_ANON_KEY = 'sb_publishable_IUOb_PugfMc6ehB_FToz5w_IgxJCviV';
+
+    let supabaseClient;
+
+    // 初始化应用
+    async function initApp() {
+        // 检查Supabase是否加载
+        if (!checkSupabaseLoaded()) {
+            return;
+        }
+
+        try {
+            // 创建Supabase客户端
+            supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            console.log('Supabase客户端创建成功');
+
+            // 隐藏初始化加载
+            document.getElementById('initLoading').classList.add('hidden');
+
+            // 初始化其他代码
+            await initialize();
+        } catch (error) {
+            console.error('创建Supabase客户端失败:', error);
+            document.getElementById('initLoading').innerHTML = `
                     <div class="init-error">
                         <i class="fas fa-exclamation-triangle"></i>
                         <h3>初始化失败</h3>
@@ -1351,728 +1359,733 @@
                         </button>
                     </div>
                 `;
+        }
+    }
+
+    // 在页面加载完成后初始化
+    document.addEventListener('DOMContentLoaded', async () => {
+        await initApp();
+    });
+
+    // 主初始化函数
+    async function initialize() {
+        // 初始化变量
+        let currentUser = null;
+        let currentUserRole = null;
+        let categories = [];
+        let groups = [];
+        let images = [];
+        let admins = [];
+
+        let currentCategoryId = null;
+        let currentGroupId = null;
+        let currentImageIndex = 0;
+        let currentImages = [];
+        let manageType = '';
+        let manageId = null;
+        let uploadFiles = [];
+
+        // 图片预览变量
+        let zoomLevel = 1;
+        let isDragging = false;
+        let startX, startY;
+        let translateX = 0, translateY = 0;
+        let minZoom = 0.5;
+        let maxZoom = 5;
+        let zoomStep = 0.25;
+
+        // DOM元素
+        const loginModal = document.getElementById('loginModal');
+        const loginClose = document.getElementById('loginClose');
+        const loginForm = document.getElementById('loginForm');
+        const usernameInput = document.getElementById('usernameInput');
+        const passwordInput = document.getElementById('passwordInput');
+        const loginError = document.getElementById('loginError');
+        const loginBtn = document.getElementById('loginBtn');
+        const beforeLogin = document.getElementById('beforeLogin');
+        const afterLogin = document.getElementById('afterLogin');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const settingsBtn = document.getElementById('settingsBtn');
+        const userAvatar = document.getElementById('userAvatar');
+        const userName = document.getElementById('userName');
+
+        const settingsModal = document.getElementById('settingsModal');
+        const settingsClose = document.getElementById('settingsClose');
+        const passwordForm = document.getElementById('passwordForm');
+        const adminList = document.getElementById('adminList');
+        const addAdminBtn = document.getElementById('addAdminBtn');
+
+        const categoriesList = document.getElementById('categoriesList');
+        const addCategoryBtn = document.getElementById('addCategoryBtn');
+        const groupsGrid = document.getElementById('groupsGrid');
+        const emptyGroupsState = document.getElementById('emptyGroupsState');
+        const addGroupBtnContainer = document.getElementById('addGroupBtnContainer');
+        const addGroupBtn = document.getElementById('addGroupBtn');
+
+        const imagesSection = document.getElementById('imagesSection');
+        const imagesGrid = document.getElementById('imagesGrid');
+        const categoryPath = document.getElementById('categoryPath');
+        const currentGroupTitle = document.getElementById('currentGroupTitle');
+        const addImageBtn = document.getElementById('addImageBtn');
+        const backToGroupsBtn = document.getElementById('backToGroupsBtn');
+        const emptyImagesState = document.getElementById('emptyImagesState');
+        const groupsSection = document.getElementById('groupsSection');
+
+        const fullscreenModal = document.getElementById('fullscreenModal');
+        const fullscreenContainer = document.getElementById('fullscreenContainer');
+        const fullscreenImageWrapper = document.getElementById('fullscreenImageWrapper');
+        const fullscreenImage = document.getElementById('fullscreenImage');
+        const fullscreenTitle = document.getElementById('fullscreenTitle');
+        const fullscreenDesc = document.getElementById('fullscreenDesc');
+        const fullscreenClose = document.getElementById('fullscreenClose');
+        const fullscreenPrev = document.getElementById('fullscreenPrev');
+        const fullscreenNext = document.getElementById('fullscreenNext');
+        const fullscreenZoomIn = document.getElementById('fullscreenZoomIn');
+        const fullscreenZoomOut = document.getElementById('fullscreenZoomOut');
+        const fullscreenReset = document.getElementById('fullscreenReset');
+        const zoomInfo = document.getElementById('zoomInfo');
+        const zoomPercent = document.getElementById('zoomPercent');
+
+        const manageModal = document.getElementById('manageModal');
+        const manageClose = document.getElementById('manageClose');
+        const manageTitle = document.getElementById('manageTitle');
+        const manageForm = document.getElementById('manageForm');
+        const manageActions = document.getElementById('manageActions');
+
+        // 检查登录状态
+        function checkLoginStatus() {
+            const savedUser = localStorage.getItem('portfolioCurrentUser');
+            const savedRole = localStorage.getItem('portfolioCurrentUserRole');
+
+            if (savedUser && savedRole) {
+                currentUser = savedUser;
+                currentUserRole = savedRole;
+
+                beforeLogin.classList.add('hidden');
+                afterLogin.classList.remove('hidden');
+
+                // 显示管理按钮
+                addCategoryBtn.classList.remove('hidden');
+                addGroupBtnContainer.classList.remove('hidden');
+                addImageBtn.classList.remove('hidden');
+
+                // 设置按钮始终显示
+                settingsBtn.style.display = 'flex';
+
+                return true;
+            } else {
+                beforeLogin.classList.remove('hidden');
+                afterLogin.classList.add('hidden');
+                addCategoryBtn.classList.add('hidden');
+                addGroupBtnContainer.classList.add('hidden');
+                addImageBtn.classList.add('hidden');
+                settingsBtn.style.display = 'none';
+
+                return false;
             }
         }
-        
-        // 在页面加载完成后初始化
-        document.addEventListener('DOMContentLoaded', initApp);
-        
-        // 主初始化函数
-        function initialize() {
-            // 初始化变量
-            let currentUser = null;
-            let currentUserRole = null;
-            let categories = [];
-            let groups = [];
-            let images = [];
-            let admins = [];
-            
-            let currentCategoryId = null;
-            let currentGroupId = null;
-            let currentImageIndex = 0;
-            let currentImages = [];
-            let manageType = '';
-            let manageId = null;
-            let uploadFiles = [];
-            
-            // 图片预览变量
-            let zoomLevel = 1;
-            let isDragging = false;
-            let startX, startY;
-            let translateX = 0, translateY = 0;
-            let minZoom = 0.5;
-            let maxZoom = 5;
-            let zoomStep = 0.25;
-            
-            // DOM元素
-            const loginModal = document.getElementById('loginModal');
-            const loginClose = document.getElementById('loginClose');
-            const loginForm = document.getElementById('loginForm');
-            const usernameInput = document.getElementById('usernameInput');
-            const passwordInput = document.getElementById('passwordInput');
-            const loginError = document.getElementById('loginError');
-            const loginBtn = document.getElementById('loginBtn');
-            const beforeLogin = document.getElementById('beforeLogin');
-            const afterLogin = document.getElementById('afterLogin');
-            const logoutBtn = document.getElementById('logoutBtn');
-            const settingsBtn = document.getElementById('settingsBtn');
-            const userAvatar = document.getElementById('userAvatar');
-            const userName = document.getElementById('userName');
-            
-            const settingsModal = document.getElementById('settingsModal');
-            const settingsClose = document.getElementById('settingsClose');
-            const passwordForm = document.getElementById('passwordForm');
-            const adminList = document.getElementById('adminList');
-            const addAdminBtn = document.getElementById('addAdminBtn');
-            
-            const categoriesList = document.getElementById('categoriesList');
-            const addCategoryBtn = document.getElementById('addCategoryBtn');
-            const groupsGrid = document.getElementById('groupsGrid');
-            const emptyGroupsState = document.getElementById('emptyGroupsState');
-            const addGroupBtnContainer = document.getElementById('addGroupBtnContainer');
-            const addGroupBtn = document.getElementById('addGroupBtn');
-            
-            const imagesSection = document.getElementById('imagesSection');
-            const imagesGrid = document.getElementById('imagesGrid');
-            const categoryPath = document.getElementById('categoryPath');
-            const currentGroupTitle = document.getElementById('currentGroupTitle');
-            const addImageBtn = document.getElementById('addImageBtn');
-            const backToGroupsBtn = document.getElementById('backToGroupsBtn');
-            const emptyImagesState = document.getElementById('emptyImagesState');
-            const groupsSection = document.getElementById('groupsSection');
-            
-            const fullscreenModal = document.getElementById('fullscreenModal');
-            const fullscreenContainer = document.getElementById('fullscreenContainer');
-            const fullscreenImageWrapper = document.getElementById('fullscreenImageWrapper');
-            const fullscreenImage = document.getElementById('fullscreenImage');
-            const fullscreenTitle = document.getElementById('fullscreenTitle');
-            const fullscreenDesc = document.getElementById('fullscreenDesc');
-            const fullscreenClose = document.getElementById('fullscreenClose');
-            const fullscreenPrev = document.getElementById('fullscreenPrev');
-            const fullscreenNext = document.getElementById('fullscreenNext');
-            const fullscreenZoomIn = document.getElementById('fullscreenZoomIn');
-            const fullscreenZoomOut = document.getElementById('fullscreenZoomOut');
-            const fullscreenReset = document.getElementById('fullscreenReset');
-            const zoomInfo = document.getElementById('zoomInfo');
-            const zoomPercent = document.getElementById('zoomPercent');
-            
-            const manageModal = document.getElementById('manageModal');
-            const manageClose = document.getElementById('manageClose');
-            const manageTitle = document.getElementById('manageTitle');
-            const manageForm = document.getElementById('manageForm');
-            const manageActions = document.getElementById('manageActions');
-            
-            // 检查登录状态
-            function checkLoginStatus() {
-                const savedUser = localStorage.getItem('portfolioCurrentUser');
-                const savedRole = localStorage.getItem('portfolioCurrentUserRole');
-                
-                if (savedUser && savedRole) {
-                    currentUser = savedUser;
-                    currentUserRole = savedRole;
-                    
-                    beforeLogin.classList.add('hidden');
-                    afterLogin.classList.remove('hidden');
-                    
-                    // 显示管理按钮
-                    addCategoryBtn.classList.remove('hidden');
-                    addGroupBtnContainer.classList.remove('hidden');
-                    addImageBtn.classList.remove('hidden');
-                    
-                    // 设置按钮始终显示
-                    settingsBtn.style.display = 'flex';
-                    
-                    return true;
-                } else {
-                    beforeLogin.classList.remove('hidden');
-                    afterLogin.classList.add('hidden');
-                    addCategoryBtn.classList.add('hidden');
-                    addGroupBtnContainer.classList.add('hidden');
-                    addImageBtn.classList.add('hidden');
-                    settingsBtn.style.display = 'none';
-                    
-                    return false;
-                }
-            }
-            
-            // 初始化
-            async function init() {
-                checkLoginStatus();
-                
-                // 加载初始数据
-                try {
-                    await Promise.all([
-                        loadCategories(),
-                        loadAdmins()
-                    ]);
-                    
-                    // 如果当前有选中的分类，显示对应的组
-                    if (currentCategoryId) {
-                        await loadGroupsByCategory(currentCategoryId);
-                    } else {
-                        await loadAllGroups();
-                    }
-                    
-                    // 设置事件监听器
-                    setupEventListeners();
-                } catch (error) {
-                    console.error('初始化失败:', error);
-                    showNotification('初始化失败，请刷新页面重试');
-                }
-            }
-            
-            // 加载分类
-            async function loadCategories() {
-                try {
-                    const { data, error } = await supabaseClient
-                        .from('categories')
-                        .select('*')
-                        .order('created_at', { ascending: false });
-                    
-                    if (error) throw error;
-                    
-                    categories = data || [];
-                    renderCategories();
-                } catch (error) {
-                    console.error('加载分类失败:', error);
-                    showNotification('加载分类失败，请刷新页面重试');
-                }
-            }
-            
-            // 加载所有组
-            async function loadAllGroups() {
-                try {
-                    const { data, error } = await supabaseClient
-                        .from('groups')
-                        .select('*')
-                        .order('created_at', { ascending: false });
-                    
-                    if (error) throw error;
-                    
-                    groups = data || [];
-                    renderGroups(groups);
-                } catch (error) {
-                    console.error('加载作品组失败:', error);
-                    showNotification('加载作品组失败');
-                }
-            }
-            
-            // 按分类加载组
-            async function loadGroupsByCategory(categoryId) {
-                try {
-                    const { data, error } = await supabaseClient
-                        .from('groups')
-                        .select('*')
-                        .eq('category_id', categoryId)
-                        .order('created_at', { ascending: false });
-                    
-                    if (error) throw error;
-                    
-                    groups = data || [];
-                    renderGroups(groups);
-                } catch (error) {
-                    console.error('加载作品组失败:', error);
-                    showNotification('加载作品组失败');
-                }
-            }
-            
-            // 加载图片
-            async function loadImagesByGroup(groupId) {
-                try {
-                    const { data, error } = await supabaseClient
-                        .from('images')
-                        .select('*')
-                        .eq('group_id', groupId)
-                        .order('created_at', { ascending: false });
-                    
-                    if (error) throw error;
-                    
-                    images = data || [];
-                    renderImages(images);
-                } catch (error) {
-                    console.error('加载图片失败:', error);
-                    showNotification('加载图片失败');
-                }
-            }
-            
-            // 加载管理员
-            async function loadAdmins() {
-                try {
-                    const { data, error } = await supabaseClient
-                        .from('admins')
-                        .select('*')
-                        .order('created_at', { ascending: true });
-                    
-                    if (error) throw error;
-                    
-                    admins = data || [];
-                    renderAdmins();
-                } catch (error) {
-                    console.error('加载管理员失败:', error);
-                    showNotification('加载管理员失败');
-                }
-            }
-            
-            // 上传图片到Supabase Storage
-            async function uploadImageToStorage(file, fileName) {
-                try {
-                    // 生成唯一文件名
-                    const fileExt = fileName.split('.').pop();
-                    const uniqueFileName = `${Date.now()}_${Math.random().toString(36).substring(2)}.${fileExt}`;
-                    
-                    const { data, error } = await supabaseClient.storage
-                        .from('portfolio-images')
-                        .upload(uniqueFileName, file);
-                    
-                    if (error) throw error;
-                    
-                    // 获取公开URL
-                    const { data: urlData } = supabaseClient.storage
-                        .from('portfolio-images')
-                        .getPublicUrl(uniqueFileName);
-                    
-                    return urlData.publicUrl;
-                } catch (error) {
-                    console.error('图片上传失败:', error);
-                    throw error;
-                }
-            }
-            
-            // 设置事件监听器
-            function setupEventListeners() {
-                // 登录相关
-                loginBtn.addEventListener('click', () => {
-                    loginModal.classList.add('active');
-                    usernameInput.focus();
-                });
-                
-                loginClose.addEventListener('click', () => {
-                    loginModal.classList.remove('active');
-                    loginError.style.display = 'none';
-                });
-                
-                loginForm.addEventListener('submit', handleLogin);
-                
-                logoutBtn.addEventListener('click', handleLogout);
-                
-                // 设置相关
-                settingsBtn.addEventListener('click', () => {
-                    settingsModal.classList.add('active');
-                });
-                
-                settingsClose.addEventListener('click', () => {
-                    settingsModal.classList.remove('active');
-                });
-                
-                // 密码修改
-                passwordForm.addEventListener('submit', handlePasswordChange);
-                
-                // 添加管理员
-                addAdminBtn.addEventListener('click', () => {
-                    openManageModal('admin', 'add');
-                });
-                
-                // 分类管理
-                addCategoryBtn.addEventListener('click', () => {
-                    openManageModal('category', 'add');
-                });
-                
-                // 组管理
-                addGroupBtn.addEventListener('click', () => {
-                    if (!currentCategoryId) {
-                        alert('请先选择一个分类');
-                        return;
-                    }
-                    openManageModal('group', 'add');
-                });
-                
-                // 图片管理
-                addImageBtn.addEventListener('click', () => {
-                    if (!currentGroupId) return;
-                    openManageModal('image', 'add');
-                });
-                
-                // 返回组列表
-                backToGroupsBtn.addEventListener('click', () => {
-                    imagesSection.classList.add('hidden');
-                    groupsSection.classList.remove('hidden');
-                    currentGroupId = null;
-                });
-                
-                // 全屏预览相关
-                fullscreenClose.addEventListener('click', () => {
-                    resetImageTransform();
-                    fullscreenModal.classList.remove('active');
-                });
-                
-                fullscreenPrev.addEventListener('click', showPrevImage);
-                fullscreenNext.addEventListener('click', showNextImage);
-                fullscreenZoomIn.addEventListener('click', () => zoomImage(zoomStep));
-                fullscreenZoomOut.addEventListener('click', () => zoomImage(-zoomStep));
-                fullscreenReset.addEventListener('click', resetImageTransform);
-                
-                // 图片拖拽和缩放事件
-                setupImageInteraction();
-                
-                // 管理模态框相关
-                manageClose.addEventListener('click', () => {
-                    manageModal.classList.remove('active');
-                });
-                
-                // 键盘事件
-                document.addEventListener('keydown', (e) => {
-                    if (fullscreenModal.classList.contains('active')) {
-                        if (e.key === 'Escape') {
-                            resetImageTransform();
-                            fullscreenModal.classList.remove('active');
-                        } else if (e.key === 'ArrowLeft') {
-                            showPrevImage();
-                        } else if (e.key === 'ArrowRight') {
-                            showNextImage();
-                        } else if (e.key === '+' || e.key === '=') {
-                            e.preventDefault();
-                            zoomImage(zoomStep);
-                        } else if (e.key === '-' || e.key === '_') {
-                            e.preventDefault();
-                            zoomImage(-zoomStep);
-                        } else if (e.key === '0' || e.key === ' ') {
-                            e.preventDefault();
-                            resetImageTransform();
-                        }
-                    }
-                    
-                    if (manageModal.classList.contains('active') && e.key === 'Escape') {
-                        manageModal.classList.remove('active');
-                    }
-                    
-                    if (settingsModal.classList.contains('active') && e.key === 'Escape') {
-                        settingsModal.classList.remove('active');
-                    }
-                });
-            }
-            
-            // 设置图片交互事件
-            function setupImageInteraction() {
-                // 鼠标滚轮缩放
-                fullscreenContainer.addEventListener('wheel', (e) => {
-                    if (fullscreenModal.classList.contains('active')) {
-                        e.preventDefault();
-                        if (e.deltaY < 0) {
-                            zoomImage(zoomStep);
-                        } else {
-                            zoomImage(-zoomStep);
-                        }
-                    }
-                }, { passive: false });
-                
-                // 鼠标拖拽
-                fullscreenImageWrapper.addEventListener('mousedown', startDrag);
-                fullscreenImageWrapper.addEventListener('touchstart', startDragTouch);
-                
-                // 防止图片被拖拽
-                fullscreenImage.addEventListener('dragstart', (e) => {
-                    e.preventDefault();
-                    return false;
-                });
-            }
-            
-            // 开始拖拽（鼠标）
-            function startDrag(e) {
-                if (zoomLevel <= 1) return;
-                
-                isDragging = true;
-                startX = e.clientX - translateX;
-                startY = e.clientY - translateY;
-                fullscreenImageWrapper.classList.add('grabbing');
-                
-                document.addEventListener('mousemove', drag);
-                document.addEventListener('mouseup', stopDrag);
-            }
-            
-            // 开始拖拽（触摸）
-            function startDragTouch(e) {
-                if (zoomLevel <= 1 || !e.touches || e.touches.length !== 1) return;
-                
-                isDragging = true;
-                startX = e.touches[0].clientX - translateX;
-                startY = e.touches[0].clientY - translateY;
-                fullscreenImageWrapper.classList.add('grabbing');
-                
-                document.addEventListener('touchmove', dragTouch);
-                document.addEventListener('touchend', stopDrag);
-            }
-            
-            // 拖拽（鼠标）
-            function drag(e) {
-                if (!isDragging) return;
-                e.preventDefault();
-                
-                translateX = e.clientX - startX;
-                translateY = e.clientY - startY;
-                updateImageTransform();
-            }
-            
-            // 拖拽（触摸）
-            function dragTouch(e) {
-                if (!isDragging || !e.touches || e.touches.length !== 1) return;
-                e.preventDefault();
-                
-                translateX = e.touches[0].clientX - startX;
-                translateY = e.touches[0].clientY - startY;
-                updateImageTransform();
-            }
-            
-            // 停止拖拽
-            function stopDrag() {
-                isDragging = false;
-                fullscreenImageWrapper.classList.remove('grabbing');
-                
-                document.removeEventListener('mousemove', drag);
-                document.removeEventListener('touchmove', dragTouch);
-                document.removeEventListener('mouseup', stopDrag);
-                document.removeEventListener('touchend', stopDrag);
-            }
-            
-            // 缩放图片
-            function zoomImage(delta) {
-                const newZoom = zoomLevel + delta;
-                
-                if (newZoom < minZoom || newZoom > maxZoom) return;
-                
-                const containerRect = fullscreenContainer.getBoundingClientRect();
-                const centerX = containerRect.width / 2;
-                const centerY = containerRect.height / 2;
-                
-                const mouseX = centerX - translateX;
-                const mouseY = centerY - translateY;
-                
-                const scaleFactor = newZoom / zoomLevel;
-                translateX = mouseX - (mouseX - translateX) * scaleFactor;
-                translateY = mouseY - (mouseY - translateY) * scaleFactor;
-                
-                zoomLevel = newZoom;
-                updateImageTransform();
-            }
-            
-            // 更新图片变换
-            function updateImageTransform() {
-                fullscreenImageWrapper.style.transform = `translate(${translateX}px, ${translateY}px) scale(${zoomLevel})`;
-                zoomPercent.textContent = `${Math.round(zoomLevel * 100)}%`;
-                
-                const containerRect = fullscreenContainer.getBoundingClientRect();
-                const wrapperRect = fullscreenImageWrapper.getBoundingClientRect();
-                
-                const maxX = Math.max(0, (wrapperRect.width * zoomLevel - containerRect.width) / 2);
-                const maxY = Math.max(0, (wrapperRect.height * zoomLevel - containerRect.height) / 2);
-                
-                translateX = Math.max(-maxX, Math.min(maxX, translateX));
-                translateY = Math.max(-maxY, Math.min(maxY, translateY));
-                
-                fullscreenImageWrapper.style.transform = `translate(${translateX}px, ${translateY}px) scale(${zoomLevel})`;
-            }
-            
-            // 重置图片变换
-            function resetImageTransform() {
-                zoomLevel = 1;
-                translateX = 0;
-                translateY = 0;
-                updateImageTransform();
-            }
-            
-            // 登录处理
-            async function handleLogin(e) {
-                e.preventDefault();
-                const username = usernameInput.value.trim();
-                const password = passwordInput.value;
-                
-                try {
-                    // 查询管理员
-                    const { data, error } = await supabaseClient
-                        .from('admins')
-                        .select('*')
-                        .eq('username', username)
-                        .single();
-                    
-                    if (error) {
-                        if (error.code === 'PGRST116') {
-                            // 用户不存在
-                            loginError.style.display = 'block';
-                            return;
-                        }
-                        throw error;
-                    }
-                    
-                    // 简单密码验证（实际生产环境应该使用哈希验证）
-                    if (data.password_hash === password) {
-                        currentUser = username;
-                        currentUserRole = data.role;
-                        
-                        // 保存登录状态
-                        localStorage.setItem('portfolioCurrentUser', currentUser);
-                        localStorage.setItem('portfolioCurrentUserRole', currentUserRole);
-                        
-                        // 更新用户信息显示
-                        userAvatar.textContent = data.name ? data.name.substring(0, 1) : '管';
-                        userName.textContent = data.name || '管理员';
-                        
-                        loginModal.classList.remove('active');
-                        loginError.style.display = 'none';
-                        checkLoginStatus();
-                        showNotification('登录成功！');
-                        
-                        // 清空表单
-                        usernameInput.value = '';
-                        passwordInput.value = '';
-                    } else {
-                        loginError.style.display = 'block';
-                    }
-                } catch (error) {
-                    console.error('登录失败:', error);
-                    loginError.style.display = 'block';
-                }
-            }
-            
-            // 退出登录
-            function handleLogout() {
-                localStorage.removeItem('portfolioCurrentUser');
-                localStorage.removeItem('portfolioCurrentUserRole');
-                currentUser = null;
-                currentUserRole = null;
-                checkLoginStatus();
-                showNotification('已退出登录');
-            }
-            
-            // 修改密码
-            async function handlePasswordChange(e) {
-                e.preventDefault();
-                
-                const oldPassword = document.getElementById('oldPassword').value;
-                const newPassword = document.getElementById('newPassword').value;
-                const confirmPassword = document.getElementById('confirmPassword').value;
-                
-                if (!oldPassword || !newPassword || !confirmPassword) {
-                    alert('请填写所有字段');
-                    return;
-                }
-                
-                if (newPassword !== confirmPassword) {
-                    alert('两次输入的新密码不一致');
-                    return;
-                }
-                
-                if (newPassword.length < 6) {
-                    alert('新密码长度不能少于6位');
-                    return;
-                }
-                
-                try {
-                    // 验证原密码
-                    const { data: adminData, error: adminError } = await supabaseClient
-                        .from('admins')
-                        .select('*')
-                        .eq('username', currentUser)
-                        .single();
-                    
-                    if (adminError) throw adminError;
-                    
-                    if (adminData.password_hash !== oldPassword) {
-                        alert('原密码错误');
-                        return;
-                    }
-                    
-                    // 更新密码
-                    const { error: updateError } = await supabaseClient
-                        .from('admins')
-                        .update({ password_hash: newPassword })
-                        .eq('username', currentUser);
-                    
-                    if (updateError) throw updateError;
-                    
-                    // 清空表单
-                    document.getElementById('oldPassword').value = '';
-                    document.getElementById('newPassword').value = '';
-                    document.getElementById('confirmPassword').value = '';
-                    
-                    showNotification('密码修改成功！');
-                } catch (error) {
-                    console.error('修改密码失败:', error);
-                    alert('修改密码失败，请重试');
-                }
-            }
-            
-            // 渲染分类
-            function renderCategories() {
-                categoriesList.innerHTML = '';
-                
-                // 添加"全部"分类
-                const allTag = document.createElement('div');
-                allTag.className = `category-tag ${!currentCategoryId ? 'active' : ''}`;
-                allTag.innerHTML = '<i class="fas fa-th-large"></i> 全部';
-                allTag.addEventListener('click', () => {
-                    switchCategory(null);
-                });
-                categoriesList.appendChild(allTag);
-                
-                // 添加各个分类
-                categories.forEach(category => {
-                    const tag = document.createElement('div');
-                    tag.className = `category-tag ${currentCategoryId === category.id ? 'active' : ''}`;
-                    tag.innerHTML = `<i class="fas fa-tag"></i> ${category.name}`;
-                    tag.style.backgroundColor = (category.color || '#6c5ce7') + '20';
-                    tag.style.color = category.color || '#6c5ce7';
-                    tag.style.border = `1px solid ${category.color || '#6c5ce7'}30`;
-                    
-                    if (currentCategoryId === category.id) {
-                        tag.style.backgroundColor = category.color || '#6c5ce7';
-                        tag.style.color = 'white';
-                    }
-                    
-                    tag.addEventListener('click', () => {
-                        switchCategory(category.id);
-                    });
-                    
-                    // 登录后显示管理按钮
-                    if (currentUser) {
-                        const manageBtn = document.createElement('button');
-                        manageBtn.className = 'manage-btn';
-                        manageBtn.innerHTML = '<i class="fas fa-ellipsis-h"></i>';
-                        manageBtn.style.marginLeft = '5px';
-                        manageBtn.addEventListener('click', (e) => {
-                            e.stopPropagation();
-                            openManageModal('category', 'edit', category.id);
-                        });
-                        
-                        tag.appendChild(manageBtn);
-                    }
-                    
-                    categoriesList.appendChild(tag);
-                });
-            }
-            
-            // 切换分类
-            async function switchCategory(categoryId) {
-                currentCategoryId = categoryId;
-                
-                // 更新分类标签激活状态
-                renderCategories();
-                
-                // 如果当前在图片列表页面，则返回组列表页面
-                if (!imagesSection.classList.contains('hidden')) {
-                    imagesSection.classList.add('hidden');
-                    groupsSection.classList.remove('hidden');
-                    currentGroupId = null;
-                }
-                
-                // 加载对应分类的组
-                if (categoryId) {
-                    await loadGroupsByCategory(categoryId);
+
+        // 初始化
+        async function init() {
+            // 清理本地删除记录
+            cleanupLocalDeletionRecords();
+
+            checkLoginStatus();
+
+            // 加载初始数据
+            try {
+                await Promise.all([
+                    loadCategories(),
+                    loadAdmins()
+                ]);
+
+                // 如果当前有选中的分类，显示对应的组
+                if (currentCategoryId) {
+                    await loadGroupsByCategory(currentCategoryId);
                 } else {
                     await loadAllGroups();
                 }
+
+                // 设置事件监听器
+                setupEventListeners();
+            } catch (error) {
+                console.error('初始化失败:', error);
+                showNotification('初始化失败，请刷新页面重试');
             }
-            
-            // 渲染组
-            function renderGroups(groupList = groups) {
-                groupsGrid.innerHTML = '';
-                
-                if (groupList.length === 0) {
-                    emptyGroupsState.classList.remove('hidden');
-                    groupsGrid.appendChild(emptyGroupsState);
+        }
+
+        // 加载分类
+        async function loadCategories() {
+            try {
+                const {data, error} = await supabaseClient
+                    .from('categories')
+                    .select('*')
+                    .order('created_at', {ascending: false});
+
+                if (error) throw error;
+
+                categories = data || [];
+                renderCategories();
+            } catch (error) {
+                console.error('加载分类失败:', error);
+                showNotification('加载分类失败，请刷新页面重试');
+            }
+        }
+
+        // 加载所有组
+        async function loadAllGroups() {
+            try {
+                const {data, error} = await supabaseClient
+                    .from('groups')
+                    .select('*')
+                    .order('created_at', {ascending: false});
+
+                if (error) throw error;
+
+                groups = data || [];
+                renderGroups(groups);
+            } catch (error) {
+                console.error('加载作品组失败:', error);
+                showNotification('加载作品组失败');
+            }
+        }
+
+        // 按分类加载组
+        async function loadGroupsByCategory(categoryId) {
+            try {
+                const {data, error} = await supabaseClient
+                    .from('groups')
+                    .select('*')
+                    .eq('category_id', categoryId)
+                    .order('created_at', {ascending: false});
+
+                if (error) throw error;
+
+                groups = data || [];
+                renderGroups(groups);
+            } catch (error) {
+                console.error('加载作品组失败:', error);
+                showNotification('加载作品组失败');
+            }
+        }
+
+        // 加载图片
+        async function loadImagesByGroup(groupId) {
+            try {
+                const {data, error} = await supabaseClient
+                    .from('images')
+                    .select('*')
+                    .eq('group_id', groupId)
+                    .order('created_at', {ascending: false});
+
+                if (error) throw error;
+
+                images = data || [];
+                renderImages(images);
+            } catch (error) {
+                console.error('加载图片失败:', error);
+                showNotification('加载图片失败');
+            }
+        }
+
+        // 加载管理员
+        async function loadAdmins() {
+            try {
+                const {data, error} = await supabaseClient
+                    .from('admins')
+                    .select('*')
+                    .order('created_at', {ascending: true});
+
+                if (error) throw error;
+
+                admins = data || [];
+                renderAdmins();
+            } catch (error) {
+                console.error('加载管理员失败:', error);
+                showNotification('加载管理员失败');
+            }
+        }
+
+        // 上传图片到Supabase Storage
+        async function uploadImageToStorage(file, fileName) {
+            try {
+                // 生成唯一文件名
+                const fileExt = fileName.split('.').pop();
+                const uniqueFileName = `${Date.now()}_${Math.random().toString(36).substring(2)}.${fileExt}`;
+
+                const {data, error} = await supabaseClient.storage
+                    .from('portfolio-images')
+                    .upload(uniqueFileName, file);
+
+                if (error) throw error;
+
+                // 获取公开URL
+                const {data: urlData} = supabaseClient.storage
+                    .from('portfolio-images')
+                    .getPublicUrl(uniqueFileName);
+
+                return urlData.publicUrl;
+            } catch (error) {
+                console.error('图片上传失败:', error);
+                throw error;
+            }
+        }
+
+        // 设置事件监听器
+        function setupEventListeners() {
+            // 登录相关
+            loginBtn.addEventListener('click', () => {
+                loginModal.classList.add('active');
+                usernameInput.focus();
+            });
+
+            loginClose.addEventListener('click', () => {
+                loginModal.classList.remove('active');
+                loginError.style.display = 'none';
+            });
+
+            loginForm.addEventListener('submit', handleLogin);
+
+            logoutBtn.addEventListener('click', handleLogout);
+
+            // 设置相关
+            settingsBtn.addEventListener('click', () => {
+                settingsModal.classList.add('active');
+            });
+
+            settingsClose.addEventListener('click', () => {
+                settingsModal.classList.remove('active');
+            });
+
+            // 密码修改
+            passwordForm.addEventListener('submit', handlePasswordChange);
+
+            // 添加管理员
+            addAdminBtn.addEventListener('click', () => {
+                openManageModal('admin', 'add');
+            });
+
+            // 分类管理
+            addCategoryBtn.addEventListener('click', () => {
+                openManageModal('category', 'add');
+            });
+
+            // 组管理
+            addGroupBtn.addEventListener('click', () => {
+                if (!currentCategoryId) {
+                    alert('请先选择一个分类');
                     return;
-                } else {
-                    emptyGroupsState.classList.add('hidden');
                 }
-                
-                groupList.forEach(group => {
-                    const category = categories.find(c => c.id === group.category_id);
-                    
-                    const groupCard = document.createElement('div');
-                    groupCard.className = 'group-card fade-in';
-                    
-                    // 使用默认封面
-                    let coverImage = group.cover_image || 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDgwMCA2MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNjAwIiBmaWxsPSIjZjBmMGYwIi8+Cjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWtkZGxlIiB0ZXh0LWFuY2hvcj0ibWtkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiNjY2MiPk5vIEltYWdlPC90ZXh0Pgo8L3N2Zz4=';
-                    
-                    groupCard.innerHTML = `
+                openManageModal('group', 'add');
+            });
+
+            // 图片管理
+            addImageBtn.addEventListener('click', () => {
+                if (!currentGroupId) return;
+                openManageModal('image', 'add');
+            });
+
+            // 返回组列表
+            backToGroupsBtn.addEventListener('click', () => {
+                imagesSection.classList.add('hidden');
+                groupsSection.classList.remove('hidden');
+                currentGroupId = null;
+            });
+
+            // 全屏预览相关
+            fullscreenClose.addEventListener('click', () => {
+                resetImageTransform();
+                fullscreenModal.classList.remove('active');
+            });
+
+            fullscreenPrev.addEventListener('click', showPrevImage);
+            fullscreenNext.addEventListener('click', showNextImage);
+            fullscreenZoomIn.addEventListener('click', () => zoomImage(zoomStep));
+            fullscreenZoomOut.addEventListener('click', () => zoomImage(-zoomStep));
+            fullscreenReset.addEventListener('click', resetImageTransform);
+
+            // 图片拖拽和缩放事件
+            setupImageInteraction();
+
+            // 管理模态框相关
+            manageClose.addEventListener('click', () => {
+                manageModal.classList.remove('active');
+            });
+
+            // 键盘事件
+            document.addEventListener('keydown', (e) => {
+                if (fullscreenModal.classList.contains('active')) {
+                    if (e.key === 'Escape') {
+                        resetImageTransform();
+                        fullscreenModal.classList.remove('active');
+                    } else if (e.key === 'ArrowLeft') {
+                        showPrevImage();
+                    } else if (e.key === 'ArrowRight') {
+                        showNextImage();
+                    } else if (e.key === '+' || e.key === '=') {
+                        e.preventDefault();
+                        zoomImage(zoomStep);
+                    } else if (e.key === '-' || e.key === '_') {
+                        e.preventDefault();
+                        zoomImage(-zoomStep);
+                    } else if (e.key === '0' || e.key === ' ') {
+                        e.preventDefault();
+                        resetImageTransform();
+                    }
+                }
+
+                if (manageModal.classList.contains('active') && e.key === 'Escape') {
+                    manageModal.classList.remove('active');
+                }
+
+                if (settingsModal.classList.contains('active') && e.key === 'Escape') {
+                    settingsModal.classList.remove('active');
+                }
+            });
+        }
+
+        // 设置图片交互事件
+        function setupImageInteraction() {
+            // 鼠标滚轮缩放
+            fullscreenContainer.addEventListener('wheel', (e) => {
+                if (fullscreenModal.classList.contains('active')) {
+                    e.preventDefault();
+                    if (e.deltaY < 0) {
+                        zoomImage(zoomStep);
+                    } else {
+                        zoomImage(-zoomStep);
+                    }
+                }
+            }, {passive: false});
+
+            // 鼠标拖拽
+            fullscreenImageWrapper.addEventListener('mousedown', startDrag);
+            fullscreenImageWrapper.addEventListener('touchstart', startDragTouch);
+
+            // 防止图片被拖拽
+            fullscreenImage.addEventListener('dragstart', (e) => {
+                e.preventDefault();
+                return false;
+            });
+        }
+
+        // 开始拖拽（鼠标）
+        function startDrag(e) {
+            if (zoomLevel <= 1) return;
+
+            isDragging = true;
+            startX = e.clientX - translateX;
+            startY = e.clientY - translateY;
+            fullscreenImageWrapper.classList.add('grabbing');
+
+            document.addEventListener('mousemove', drag);
+            document.addEventListener('mouseup', stopDrag);
+        }
+
+        // 开始拖拽（触摸）
+        function startDragTouch(e) {
+            if (zoomLevel <= 1 || !e.touches || e.touches.length !== 1) return;
+
+            isDragging = true;
+            startX = e.touches[0].clientX - translateX;
+            startY = e.touches[0].clientY - translateY;
+            fullscreenImageWrapper.classList.add('grabbing');
+
+            document.addEventListener('touchmove', dragTouch);
+            document.addEventListener('touchend', stopDrag);
+        }
+
+        // 拖拽（鼠标）
+        function drag(e) {
+            if (!isDragging) return;
+            e.preventDefault();
+
+            translateX = e.clientX - startX;
+            translateY = e.clientY - startY;
+            updateImageTransform();
+        }
+
+        // 拖拽（触摸）
+        function dragTouch(e) {
+            if (!isDragging || !e.touches || e.touches.length !== 1) return;
+            e.preventDefault();
+
+            translateX = e.touches[0].clientX - startX;
+            translateY = e.touches[0].clientY - startY;
+            updateImageTransform();
+        }
+
+        // 停止拖拽
+        function stopDrag() {
+            isDragging = false;
+            fullscreenImageWrapper.classList.remove('grabbing');
+
+            document.removeEventListener('mousemove', drag);
+            document.removeEventListener('touchmove', dragTouch);
+            document.removeEventListener('mouseup', stopDrag);
+            document.removeEventListener('touchend', stopDrag);
+        }
+
+        // 缩放图片
+        function zoomImage(delta) {
+            const newZoom = zoomLevel + delta;
+
+            if (newZoom < minZoom || newZoom > maxZoom) return;
+
+            const containerRect = fullscreenContainer.getBoundingClientRect();
+            const centerX = containerRect.width / 2;
+            const centerY = containerRect.height / 2;
+
+            const mouseX = centerX - translateX;
+            const mouseY = centerY - translateY;
+
+            const scaleFactor = newZoom / zoomLevel;
+            translateX = mouseX - (mouseX - translateX) * scaleFactor;
+            translateY = mouseY - (mouseY - translateY) * scaleFactor;
+
+            zoomLevel = newZoom;
+            updateImageTransform();
+        }
+
+        // 更新图片变换
+        function updateImageTransform() {
+            fullscreenImageWrapper.style.transform = `translate(${translateX}px, ${translateY}px) scale(${zoomLevel})`;
+            zoomPercent.textContent = `${Math.round(zoomLevel * 100)}%`;
+
+            const containerRect = fullscreenContainer.getBoundingClientRect();
+            const wrapperRect = fullscreenImageWrapper.getBoundingClientRect();
+
+            const maxX = Math.max(0, (wrapperRect.width * zoomLevel - containerRect.width) / 2);
+            const maxY = Math.max(0, (wrapperRect.height * zoomLevel - containerRect.height) / 2);
+
+            translateX = Math.max(-maxX, Math.min(maxX, translateX));
+            translateY = Math.max(-maxY, Math.min(maxY, translateY));
+
+            fullscreenImageWrapper.style.transform = `translate(${translateX}px, ${translateY}px) scale(${zoomLevel})`;
+        }
+
+        // 重置图片变换
+        function resetImageTransform() {
+            zoomLevel = 1;
+            translateX = 0;
+            translateY = 0;
+            updateImageTransform();
+        }
+
+        // 登录处理
+        async function handleLogin(e) {
+            e.preventDefault();
+            const username = usernameInput.value.trim();
+            const password = passwordInput.value;
+
+            try {
+                // 查询管理员
+                const {data, error} = await supabaseClient
+                    .from('admins')
+                    .select('*')
+                    .eq('username', username)
+                    .single();
+
+                if (error) {
+                    if (error.code === 'PGRST116') {
+                        // 用户不存在
+                        loginError.style.display = 'block';
+                        return;
+                    }
+                    throw error;
+                }
+
+                // 简单密码验证（实际生产环境应该使用哈希验证）
+                if (data.password_hash === password) {
+                    currentUser = username;
+                    currentUserRole = data.role;
+
+                    // 保存登录状态
+                    localStorage.setItem('portfolioCurrentUser', currentUser);
+                    localStorage.setItem('portfolioCurrentUserRole', currentUserRole);
+
+                    // 更新用户信息显示
+                    userAvatar.textContent = data.name ? data.name.substring(0, 1) : '管';
+                    userName.textContent = data.name || '管理员';
+
+                    loginModal.classList.remove('active');
+                    loginError.style.display = 'none';
+                    checkLoginStatus();
+                    showNotification('登录成功！');
+
+                    // 清空表单
+                    usernameInput.value = '';
+                    passwordInput.value = '';
+                } else {
+                    loginError.style.display = 'block';
+                }
+            } catch (error) {
+                console.error('登录失败:', error);
+                loginError.style.display = 'block';
+            }
+        }
+
+        // 退出登录
+        function handleLogout() {
+            localStorage.removeItem('portfolioCurrentUser');
+            localStorage.removeItem('portfolioCurrentUserRole');
+            currentUser = null;
+            currentUserRole = null;
+            checkLoginStatus();
+            showNotification('已退出登录');
+        }
+
+        // 修改密码
+        async function handlePasswordChange(e) {
+            e.preventDefault();
+
+            const oldPassword = document.getElementById('oldPassword').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (!oldPassword || !newPassword || !confirmPassword) {
+                alert('请填写所有字段');
+                return;
+            }
+
+            if (newPassword !== confirmPassword) {
+                alert('两次输入的新密码不一致');
+                return;
+            }
+
+            if (newPassword.length < 6) {
+                alert('新密码长度不能少于6位');
+                return;
+            }
+
+            try {
+                // 验证原密码
+                const {data: adminData, error: adminError} = await supabaseClient
+                    .from('admins')
+                    .select('*')
+                    .eq('username', currentUser)
+                    .single();
+
+                if (adminError) throw adminError;
+
+                if (adminData.password_hash !== oldPassword) {
+                    alert('原密码错误');
+                    return;
+                }
+
+                // 更新密码
+                const {error: updateError} = await supabaseClient
+                    .from('admins')
+                    .update({password_hash: newPassword})
+                    .eq('username', currentUser);
+
+                if (updateError) throw updateError;
+
+                // 清空表单
+                document.getElementById('oldPassword').value = '';
+                document.getElementById('newPassword').value = '';
+                document.getElementById('confirmPassword').value = '';
+
+                showNotification('密码修改成功！');
+            } catch (error) {
+                console.error('修改密码失败:', error);
+                alert('修改密码失败，请重试');
+            }
+        }
+
+        // 渲染分类
+        function renderCategories() {
+            categoriesList.innerHTML = '';
+
+            // 添加"全部"分类
+            const allTag = document.createElement('div');
+            allTag.className = `category-tag ${!currentCategoryId ? 'active' : ''}`;
+            allTag.innerHTML = '<i class="fas fa-th-large"></i> 全部';
+            allTag.addEventListener('click', () => {
+                switchCategory(null);
+            });
+            categoriesList.appendChild(allTag);
+
+            // 添加各个分类
+            categories.forEach(category => {
+                const tag = document.createElement('div');
+                tag.className = `category-tag ${currentCategoryId === category.id ? 'active' : ''}`;
+                tag.innerHTML = `<i class="fas fa-tag"></i> ${category.name}`;
+                tag.style.backgroundColor = (category.color || '#6c5ce7') + '20';
+                tag.style.color = category.color || '#6c5ce7';
+                tag.style.border = `1px solid ${category.color || '#6c5ce7'}30`;
+
+                if (currentCategoryId === category.id) {
+                    tag.style.backgroundColor = category.color || '#6c5ce7';
+                    tag.style.color = 'white';
+                }
+
+                tag.addEventListener('click', () => {
+                    switchCategory(category.id);
+                });
+
+                // 登录后显示管理按钮
+                if (currentUser) {
+                    const manageBtn = document.createElement('button');
+                    manageBtn.className = 'manage-btn';
+                    manageBtn.innerHTML = '<i class="fas fa-ellipsis-h"></i>';
+                    manageBtn.style.marginLeft = '5px';
+                    manageBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        openManageModal('category', 'edit', category.id);
+                    });
+
+                    tag.appendChild(manageBtn);
+                }
+
+                categoriesList.appendChild(tag);
+            });
+        }
+
+        // 切换分类
+        async function switchCategory(categoryId) {
+            currentCategoryId = categoryId;
+
+            // 更新分类标签激活状态
+            renderCategories();
+
+            // 如果当前在图片列表页面，则返回组列表页面
+            if (!imagesSection.classList.contains('hidden')) {
+                imagesSection.classList.add('hidden');
+                groupsSection.classList.remove('hidden');
+                currentGroupId = null;
+            }
+
+            // 加载对应分类的组
+            if (categoryId) {
+                await loadGroupsByCategory(categoryId);
+            } else {
+                await loadAllGroups();
+            }
+        }
+
+        // 渲染组
+        function renderGroups(groupList = groups) {
+            groupsGrid.innerHTML = '';
+
+            if (groupList.length === 0) {
+                emptyGroupsState.classList.remove('hidden');
+                groupsGrid.appendChild(emptyGroupsState);
+                return;
+            } else {
+                emptyGroupsState.classList.add('hidden');
+            }
+
+            groupList.forEach(group => {
+                const category = categories.find(c => c.id === group.category_id);
+
+                const groupCard = document.createElement('div');
+                groupCard.className = 'group-card fade-in';
+
+                // 使用默认封面
+                let coverImage = group.cover_image || 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDgwMCA2MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNjAwIiBmaWxsPSIjZjBmMGYwIi8+Cjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWtkZGxlIiB0ZXh0LWFuY2hvcj0ibWtkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiNjY2MiPk5vIEltYWdlPC90ZXh0Pgo8L3N2Zz4=';
+
+                groupCard.innerHTML = `
                         <img src="${coverImage}" alt="${group.name}" class="group-card-img">
                         <div class="group-card-info">
                             <span class="group-card-category" style="background-color: ${category ? (category.color || '#6c5ce7') + '20' : '#f1f2f6'}; color: ${category ? category.color || '#6c5ce7' : '#636e72'}">${category ? category.name : '未分类'}</span>
@@ -2090,297 +2103,297 @@
                             </div>
                         </div>
                     `;
-                    
-                    // 点击查看组内图片
-                    groupCard.addEventListener('click', () => {
-                        openGroup(group.id);
-                    });
-                    
-                    // 登录后显示管理按钮
-                    if (currentUser) {
-                        const manageBtn = document.createElement('button');
-                        manageBtn.className = 'manage-btn';
-                        manageBtn.innerHTML = '<i class="fas fa-ellipsis-h"></i>';
-                        manageBtn.style.position = 'absolute';
-                        manageBtn.style.top = '10px';
-                        manageBtn.style.right = '10px';
-                        manageBtn.style.background = 'rgba(255, 255, 255, 0.9)';
-                        manageBtn.style.borderRadius = '50%';
-                        manageBtn.style.width = '30px';
-                        manageBtn.style.height = '30px';
-                        manageBtn.addEventListener('click', (e) => {
-                            e.stopPropagation();
-                            openManageModal('group', 'edit', group.id);
-                        });
-                        
-                        groupCard.appendChild(manageBtn);
-                    }
-                    
-                    groupsGrid.appendChild(groupCard);
+
+                // 点击查看组内图片
+                groupCard.addEventListener('click', () => {
+                    openGroup(group.id);
                 });
-            }
-            
-            // 打开组（显示组内图片）
-            async function openGroup(groupId) {
-                const group = groups.find(g => g.id === groupId);
-                if (!group) return;
-                
-                currentGroupId = groupId;
-                
-                // 更新分类路径显示
-                renderCategoryPath(group);
-                
-                // 显示图片区域，隐藏组区域
-                groupsSection.classList.add('hidden');
-                imagesSection.classList.remove('hidden');
-                
-                // 渲染组内图片
-                await loadImagesByGroup(groupId);
-            }
-            
-            // 渲染分类路径
-            function renderCategoryPath(group) {
-                const category = categories.find(c => c.id === group.category_id);
-                
-                categoryPath.innerHTML = '';
-                currentGroupTitle.textContent = group.name;
-                
-                if (category) {
-                    const pathElement = document.createElement('div');
-                    pathElement.className = 'category-path';
-                    pathElement.innerHTML = `
+
+                // 登录后显示管理按钮
+                if (currentUser) {
+                    const manageBtn = document.createElement('button');
+                    manageBtn.className = 'manage-btn';
+                    manageBtn.innerHTML = '<i class="fas fa-ellipsis-h"></i>';
+                    manageBtn.style.position = 'absolute';
+                    manageBtn.style.top = '10px';
+                    manageBtn.style.right = '10px';
+                    manageBtn.style.background = 'rgba(255, 255, 255, 0.9)';
+                    manageBtn.style.borderRadius = '50%';
+                    manageBtn.style.width = '30px';
+                    manageBtn.style.height = '30px';
+                    manageBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        openManageModal('group', 'edit', group.id);
+                    });
+
+                    groupCard.appendChild(manageBtn);
+                }
+
+                groupsGrid.appendChild(groupCard);
+            });
+        }
+
+        // 打开组（显示组内图片）
+        async function openGroup(groupId) {
+            const group = groups.find(g => g.id === groupId);
+            if (!group) return;
+
+            currentGroupId = groupId;
+
+            // 更新分类路径显示
+            renderCategoryPath(group);
+
+            // 显示图片区域，隐藏组区域
+            groupsSection.classList.add('hidden');
+            imagesSection.classList.remove('hidden');
+
+            // 渲染组内图片
+            await loadImagesByGroup(groupId);
+        }
+
+        // 渲染分类路径
+        function renderCategoryPath(group) {
+            const category = categories.find(c => c.id === group.category_id);
+
+            categoryPath.innerHTML = '';
+            currentGroupTitle.textContent = group.name;
+
+            if (category) {
+                const pathElement = document.createElement('div');
+                pathElement.className = 'category-path';
+                pathElement.innerHTML = `
                         <span class="category-name" data-category-id="${category.id}">${category.name}</span>
                         <span class="separator">></span>
                         <span class="group-name">${group.name}</span>
                     `;
-                    
-                    const categoryNameElement = pathElement.querySelector('.category-name');
-                    categoryNameElement.addEventListener('click', () => {
-                        switchCategory(category.id);
-                    });
-                    
-                    categoryPath.appendChild(pathElement);
-                } else {
-                    categoryPath.innerHTML = `<div class="category-path"><span class="group-name">${group.name}</span></div>`;
-                }
+
+                const categoryNameElement = pathElement.querySelector('.category-name');
+                categoryNameElement.addEventListener('click', () => {
+                    switchCategory(category.id);
+                });
+
+                categoryPath.appendChild(pathElement);
+            } else {
+                categoryPath.innerHTML = `<div class="category-path"><span class="group-name">${group.name}</span></div>`;
             }
-            
-            // 渲染图片
-            function renderImages(imageList = images) {
-                imagesGrid.innerHTML = '';
-                currentImages = imageList;
-                
-                if (imageList.length === 0) {
-                    emptyImagesState.classList.remove('hidden');
-                    imagesGrid.appendChild(emptyImagesState);
-                    return;
-                } else {
-                    emptyImagesState.classList.add('hidden');
-                }
-                
-                imageList.forEach((image, index) => {
-                    const imageItem = document.createElement('div');
-                    imageItem.className = 'image-item fade-in';
-                    
-                    imageItem.innerHTML = `
+        }
+
+        // 渲染图片
+        function renderImages(imageList = images) {
+            imagesGrid.innerHTML = '';
+            currentImages = imageList;
+
+            if (imageList.length === 0) {
+                emptyImagesState.classList.remove('hidden');
+                imagesGrid.appendChild(emptyImagesState);
+                return;
+            } else {
+                emptyImagesState.classList.add('hidden');
+            }
+
+            imageList.forEach((image, index) => {
+                const imageItem = document.createElement('div');
+                imageItem.className = 'image-item fade-in';
+
+                imageItem.innerHTML = `
                         <img src="${image.image_url}" alt="${image.title}" class="image-item-img">
                         <div class="image-item-info">
                             <h3 class="image-item-title">${image.title}</h3>
                         </div>
                     `;
-                    
-                    // 点击查看大图
-                    imageItem.addEventListener('click', () => {
-                        openFullscreenImage(index);
-                    });
-                    
-                    // 登录后显示管理按钮
-                    if (currentUser) {
-                        const manageBtn = document.createElement('button');
-                        manageBtn.className = 'manage-btn';
-                        manageBtn.innerHTML = '<i class="fas fa-ellipsis-h"></i>';
-                        manageBtn.style.position = 'absolute';
-                        manageBtn.style.top = '10px';
-                        manageBtn.style.right = '10px';
-                        manageBtn.style.background = 'rgba(255, 255, 255, 0.9)';
-                        manageBtn.style.borderRadius = '50%';
-                        manageBtn.style.width = '30px';
-                        manageBtn.style.height = '30px';
-                        manageBtn.addEventListener('click', (e) => {
-                            e.stopPropagation();
-                            openManageModal('image', 'edit', image.id);
-                        });
-                        
-                        imageItem.appendChild(manageBtn);
-                    }
-                    
-                    imagesGrid.appendChild(imageItem);
+
+                // 点击查看大图
+                imageItem.addEventListener('click', () => {
+                    openFullscreenImage(index);
                 });
-            }
-            
-            // 渲染管理员列表
-            function renderAdmins() {
-                adminList.innerHTML = '';
-                
-                admins.forEach(admin => {
-                    const adminItem = document.createElement('div');
-                    adminItem.className = 'admin-item';
-                    
-                    adminItem.innerHTML = `
+
+                // 登录后显示管理按钮
+                if (currentUser) {
+                    const manageBtn = document.createElement('button');
+                    manageBtn.className = 'manage-btn';
+                    manageBtn.innerHTML = '<i class="fas fa-ellipsis-h"></i>';
+                    manageBtn.style.position = 'absolute';
+                    manageBtn.style.top = '10px';
+                    manageBtn.style.right = '10px';
+                    manageBtn.style.background = 'rgba(255, 255, 255, 0.9)';
+                    manageBtn.style.borderRadius = '50%';
+                    manageBtn.style.width = '30px';
+                    manageBtn.style.height = '30px';
+                    manageBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        openManageModal('image', 'edit', image.id);
+                    });
+
+                    imageItem.appendChild(manageBtn);
+                }
+
+                imagesGrid.appendChild(imageItem);
+            });
+        }
+
+        // 渲染管理员列表
+        function renderAdmins() {
+            adminList.innerHTML = '';
+
+            admins.forEach(admin => {
+                const adminItem = document.createElement('div');
+                adminItem.className = 'admin-item';
+
+                adminItem.innerHTML = `
                         <div class="admin-info">
                             <div class="admin-name">${admin.name} (${admin.username})</div>
                             <div class="admin-role">${admin.role === 'master' ? '主管理员' : '子管理员'}</div>
                         </div>
                     `;
-                    
-                    // 只有主管理员可以删除子管理员，不能删除自己
-                    if (currentUserRole === 'master' && admin.username !== currentUser) {
-                        const deleteBtn = document.createElement('button');
-                        deleteBtn.className = 'btn btn-small';
-                        deleteBtn.style.background = '#ff7675';
-                        deleteBtn.style.color = 'white';
-                        deleteBtn.innerHTML = '<i class="fas fa-trash"></i> 删除';
-                        deleteBtn.addEventListener('click', () => {
-                            if (confirm(`确定要删除管理员"${admin.name}"吗？`)) {
-                                deleteAdmin(admin.id);
-                            }
-                        });
-                        
-                        adminItem.querySelector('.admin-info').appendChild(deleteBtn);
-                    }
-                    
-                    adminList.appendChild(adminItem);
-                });
-            }
-            
-            // 打开全屏图片预览
-            function openFullscreenImage(index) {
-                if (currentImages.length === 0) return;
-                
-                currentImageIndex = index;
-                const image = currentImages[currentImageIndex];
-                
-                fullscreenImage.src = image.image_url;
-                fullscreenTitle.textContent = image.title;
-                fullscreenDesc.textContent = image.description || '';
-                
-                // 重置变换
-                resetImageTransform();
-                
-                // 显示全屏预览
-                fullscreenModal.classList.add('active');
-            }
-            
-            // 显示上一张图片
-            function showPrevImage() {
-                if (currentImages.length === 0) return;
-                
-                currentImageIndex--;
-                if (currentImageIndex < 0) {
-                    currentImageIndex = currentImages.length - 1;
+
+                // 只有主管理员可以删除子管理员，不能删除自己
+                if (currentUserRole === 'master' && admin.username !== currentUser) {
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.className = 'btn btn-small';
+                    deleteBtn.style.background = '#ff7675';
+                    deleteBtn.style.color = 'white';
+                    deleteBtn.innerHTML = '<i class="fas fa-trash"></i> 删除';
+                    deleteBtn.addEventListener('click', () => {
+                        if (confirm(`确定要删除管理员"${admin.name}"吗？`)) {
+                            deleteAdmin(admin.id);
+                        }
+                    });
+
+                    adminItem.querySelector('.admin-info').appendChild(deleteBtn);
                 }
-                
-                const image = currentImages[currentImageIndex];
-                fullscreenImage.src = image.image_url;
-                fullscreenTitle.textContent = image.title;
-                fullscreenDesc.textContent = image.description || '';
-                
-                // 重置变换
-                resetImageTransform();
+
+                adminList.appendChild(adminItem);
+            });
+        }
+
+        // 打开全屏图片预览
+        function openFullscreenImage(index) {
+            if (currentImages.length === 0) return;
+
+            currentImageIndex = index;
+            const image = currentImages[currentImageIndex];
+
+            fullscreenImage.src = image.image_url;
+            fullscreenTitle.textContent = image.title;
+            fullscreenDesc.textContent = image.description || '';
+
+            // 重置变换
+            resetImageTransform();
+
+            // 显示全屏预览
+            fullscreenModal.classList.add('active');
+        }
+
+        // 显示上一张图片
+        function showPrevImage() {
+            if (currentImages.length === 0) return;
+
+            currentImageIndex--;
+            if (currentImageIndex < 0) {
+                currentImageIndex = currentImages.length - 1;
             }
-            
-            // 显示下一张图片
-            function showNextImage() {
-                if (currentImages.length === 0) return;
-                
-                currentImageIndex++;
-                if (currentImageIndex >= currentImages.length) {
-                    currentImageIndex = 0;
-                }
-                
-                const image = currentImages[currentImageIndex];
-                fullscreenImage.src = image.image_url;
-                fullscreenTitle.textContent = image.title;
-                fullscreenDesc.textContent = image.description || '';
-                
-                // 重置变换
-                resetImageTransform();
+
+            const image = currentImages[currentImageIndex];
+            fullscreenImage.src = image.image_url;
+            fullscreenTitle.textContent = image.title;
+            fullscreenDesc.textContent = image.description || '';
+
+            // 重置变换
+            resetImageTransform();
+        }
+
+        // 显示下一张图片
+        function showNextImage() {
+            if (currentImages.length === 0) return;
+
+            currentImageIndex++;
+            if (currentImageIndex >= currentImages.length) {
+                currentImageIndex = 0;
             }
-            
-            // 打开管理模态框
-            function openManageModal(type, action, id = null) {
-                manageType = type;
-                manageId = id;
-                
-                // 设置标题
-                let title = '';
-                if (action === 'add') {
-                    title = `添加${getTypeName(type)}`;
-                } else {
-                    title = `编辑${getTypeName(type)}`;
+
+            const image = currentImages[currentImageIndex];
+            fullscreenImage.src = image.image_url;
+            fullscreenTitle.textContent = image.title;
+            fullscreenDesc.textContent = image.description || '';
+
+            // 重置变换
+            resetImageTransform();
+        }
+
+        // 打开管理模态框
+        function openManageModal(type, action, id = null) {
+            manageType = type;
+            manageId = id;
+
+            // 设置标题
+            let title = '';
+            if (action === 'add') {
+                title = `添加${getTypeName(type)}`;
+            } else {
+                title = `编辑${getTypeName(type)}`;
+            }
+            manageTitle.textContent = title;
+
+            // 清空表单
+            manageForm.innerHTML = '';
+
+            // 根据类型生成表单
+            if (type === 'category') {
+                generateCategoryForm(action, id);
+            } else if (type === 'group') {
+                generateGroupForm(action, id);
+            } else if (type === 'image') {
+                generateImageForm(action, id);
+            } else if (type === 'admin') {
+                if (currentUserRole !== 'master') {
+                    alert('只有主管理员可以添加管理员');
+                    return;
                 }
-                manageTitle.textContent = title;
-                
-                // 清空表单
-                manageForm.innerHTML = '';
-                
-                // 根据类型生成表单
-                if (type === 'category') {
-                    generateCategoryForm(action, id);
-                } else if (type === 'group') {
-                    generateGroupForm(action, id);
-                } else if (type === 'image') {
-                    generateImageForm(action, id);
-                } else if (type === 'admin') {
-                    if (currentUserRole !== 'master') {
-                        alert('只有主管理员可以添加管理员');
-                        return;
-                    }
-                    generateAdminForm(action, id);
-                }
-                
-                // 设置操作按钮
-                manageActions.innerHTML = '';
-                
-                if (action === 'add') {
-                    manageActions.innerHTML = `
+                generateAdminForm(action, id);
+            }
+
+            // 设置操作按钮
+            manageActions.innerHTML = '';
+
+            if (action === 'add') {
+                manageActions.innerHTML = `
                         <button type="button" class="btn btn-primary" id="saveBtn">保存</button>
                         <button type="button" class="btn btn-secondary" id="cancelBtn">取消</button>
                     `;
-                } else {
-                    manageActions.innerHTML = `
+            } else {
+                manageActions.innerHTML = `
                         <button type="button" class="btn btn-primary" id="updateBtn">更新</button>
                         <button type="button" class="btn btn-danger" id="deleteBtn" style="background: #ff7675; color: white;">删除</button>
                         <button type="button" class="btn btn-secondary" id="cancelBtn">取消</button>
                     `;
-                }
-                
-                // 显示模态框
-                manageModal.classList.add('active');
-                
-                // 设置按钮事件
-                setTimeout(() => {
-                    if (action === 'add') {
-                        document.getElementById('saveBtn').addEventListener('click', handleSave);
-                    } else {
-                        document.getElementById('updateBtn').addEventListener('click', handleUpdate);
-                        document.getElementById('deleteBtn').addEventListener('click', handleDelete);
-                    }
-                    document.getElementById('cancelBtn').addEventListener('click', () => {
-                        manageModal.classList.remove('active');
-                        uploadFiles = [];
-                    });
-                }, 100);
             }
-            
-            // 生成分类表单
-            function generateCategoryForm(action, id) {
-                let category = null;
-                if (action === 'edit' && id) {
-                    category = categories.find(c => c.id === id);
+
+            // 显示模态框
+            manageModal.classList.add('active');
+
+            // 设置按钮事件
+            setTimeout(() => {
+                if (action === 'add') {
+                    document.getElementById('saveBtn').addEventListener('click', handleSave);
+                } else {
+                    document.getElementById('updateBtn').addEventListener('click', handleUpdate);
+                    document.getElementById('deleteBtn').addEventListener('click', handleDelete);
                 }
-                
-                manageForm.innerHTML = `
+                document.getElementById('cancelBtn').addEventListener('click', () => {
+                    manageModal.classList.remove('active');
+                    uploadFiles = [];
+                });
+            }, 100);
+        }
+
+        // 生成分类表单
+        function generateCategoryForm(action, id) {
+            let category = null;
+            if (action === 'edit' && id) {
+                category = categories.find(c => c.id === id);
+            }
+
+            manageForm.innerHTML = `
                     <div class="form-group">
                         <label for="categoryName">分类名称</label>
                         <input type="text" id="categoryName" value="${category ? category.name : ''}" required>
@@ -2390,23 +2403,23 @@
                         <input type="color" id="categoryColor" value="${category ? category.color : '#6c5ce7'}" required>
                     </div>
                 `;
+        }
+
+        // 生成组表单
+        function generateGroupForm(action, id) {
+            let group = null;
+            if (action === 'edit' && id) {
+                group = groups.find(g => g.id === id);
             }
-            
-            // 生成组表单
-            function generateGroupForm(action, id) {
-                let group = null;
-                if (action === 'edit' && id) {
-                    group = groups.find(g => g.id === id);
-                }
-                
-                // 生成分类选项
-                let categoryOptions = '';
-                categories.forEach(category => {
-                    const selected = (group && group.category_id === category.id) ? 'selected' : '';
-                    categoryOptions += `<option value="${category.id}" ${selected}>${category.name}</option>`;
-                });
-                
-                manageForm.innerHTML = `
+
+            // 生成分类选项
+            let categoryOptions = '';
+            categories.forEach(category => {
+                const selected = (group && group.category_id === category.id) ? 'selected' : '';
+                categoryOptions += `<option value="${category.id}" ${selected}>${category.name}</option>`;
+            });
+
+            manageForm.innerHTML = `
                     <div class="form-group">
                         <label for="groupName">组名称</label>
                         <input type="text" id="groupName" value="${group ? group.name : ''}" required>
@@ -2423,18 +2436,18 @@
                         <textarea id="groupDescription">${group ? group.description : ''}</textarea>
                     </div>
                 `;
+        }
+
+        // 生成图片表单
+        function generateImageForm(action, id) {
+            let image = null;
+            if (action === 'edit' && id) {
+                image = images.find(img => img.id === id);
             }
-            
-            // 生成图片表单
-            function generateImageForm(action, id) {
-                let image = null;
-                if (action === 'edit' && id) {
-                    image = images.find(img => img.id === id);
-                }
-                
-                uploadFiles = [];
-                
-                manageForm.innerHTML = `
+
+            uploadFiles = [];
+
+            manageForm.innerHTML = `
                     <div class="form-group">
                         <label for="imageTitle">图片标题</label>
                         <input type="text" id="imageTitle" value="${image ? image.title : ''}" required>
@@ -2460,46 +2473,46 @@
                         </div>
                     </div>
                 `;
-                
-                // 添加文件上传相关事件
-                setTimeout(() => {
-                    const uploadArea = document.getElementById('uploadArea');
-                    const fileInput = document.getElementById('fileInput');
-                    
-                    uploadArea.addEventListener('click', () => {
-                        fileInput.click();
-                    });
-                    
-                    fileInput.addEventListener('change', handleFileSelect);
-                    
-                    uploadArea.addEventListener('dragover', (e) => {
-                        e.preventDefault();
-                        uploadArea.classList.add('dragover');
-                    });
-                    
-                    uploadArea.addEventListener('dragleave', () => {
-                        uploadArea.classList.remove('dragover');
-                    });
-                    
-                    uploadArea.addEventListener('drop', (e) => {
-                        e.preventDefault();
-                        uploadArea.classList.remove('dragover');
-                        
-                        if (e.dataTransfer.files.length) {
-                            handleFiles(e.dataTransfer.files);
-                        }
-                    });
-                }, 100);
+
+            // 添加文件上传相关事件
+            setTimeout(() => {
+                const uploadArea = document.getElementById('uploadArea');
+                const fileInput = document.getElementById('fileInput');
+
+                uploadArea.addEventListener('click', () => {
+                    fileInput.click();
+                });
+
+                fileInput.addEventListener('change', handleFileSelect);
+
+                uploadArea.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    uploadArea.classList.add('dragover');
+                });
+
+                uploadArea.addEventListener('dragleave', () => {
+                    uploadArea.classList.remove('dragover');
+                });
+
+                uploadArea.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    uploadArea.classList.remove('dragover');
+
+                    if (e.dataTransfer.files.length) {
+                        handleFiles(e.dataTransfer.files);
+                    }
+                });
+            }, 100);
+        }
+
+        // 生成管理员表单
+        function generateAdminForm(action, id) {
+            let admin = null;
+            if (action === 'edit' && id) {
+                admin = admins.find(a => a.id === id);
             }
-            
-            // 生成管理员表单
-            function generateAdminForm(action, id) {
-                let admin = null;
-                if (action === 'edit' && id) {
-                    admin = admins.find(a => a.id === id);
-                }
-                
-                manageForm.innerHTML = `
+
+            manageForm.innerHTML = `
                     <div class="form-group">
                         <label for="adminUsername">账号</label>
                         <input type="text" id="adminUsername" value="${admin ? admin.username : ''}" required ${admin ? 'readonly' : ''}>
@@ -2520,547 +2533,551 @@
                         </select>
                     </div>
                 `;
-            }
-            
-            // 获取类型名称
-            function getTypeName(type) {
-                const names = {
-                    'category': '分类',
-                    'group': '作品组',
-                    'image': '图片',
-                    'admin': '管理员'
+        }
+
+        // 获取类型名称
+        function getTypeName(type) {
+            const names = {
+                'category': '分类',
+                'group': '作品组',
+                'image': '图片',
+                'admin': '管理员'
+            };
+            return names[type] || '';
+        }
+
+        // 处理文件选择
+        function handleFileSelect(e) {
+            handleFiles(e.target.files);
+            e.target.value = '';
+        }
+
+        // 处理文件
+        function handleFiles(files) {
+            const uploadPreview = document.getElementById('uploadPreview');
+
+            uploadPreview.innerHTML = '';
+            uploadFiles = [];
+
+            for (let file of files) {
+                if (!file.type.match('image.*')) {
+                    alert('只能上传图片文件！');
+                    continue;
+                }
+
+                if (file.size > 20 * 1024 * 1024) {
+                    alert(`文件 ${file.name} 大小超过20MB限制！`);
+                    continue;
+                }
+
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const imgData = e.target.result;
+
+                    const previewItem = document.createElement('div');
+                    previewItem.className = 'preview-item fade-in';
+
+                    const img = document.createElement('img');
+                    img.src = imgData;
+
+                    const removeBtn = document.createElement('div');
+                    removeBtn.className = 'preview-item-remove';
+                    removeBtn.innerHTML = '<i class="fas fa-times"></i>';
+                    removeBtn.addEventListener('click', () => {
+                        previewItem.remove();
+                        const index = uploadFiles.findIndex(item => item.data === imgData);
+                        if (index !== -1) uploadFiles.splice(index, 1);
+                    });
+
+                    previewItem.appendChild(img);
+                    previewItem.appendChild(removeBtn);
+                    uploadPreview.appendChild(previewItem);
+
+                    uploadFiles.push({
+                        file: file,
+                        name: file.name,
+                        data: imgData,
+                        type: file.type,
+                        size: file.size
+                    });
                 };
-                return names[type] || '';
+
+                reader.readAsDataURL(file);
             }
-            
-            // 处理文件选择
-            function handleFileSelect(e) {
-                handleFiles(e.target.files);
-                e.target.value = '';
-            }
-            
-            // 处理文件
-            function handleFiles(files) {
-                const uploadPreview = document.getElementById('uploadPreview');
-                
-                uploadPreview.innerHTML = '';
-                uploadFiles = [];
-                
-                for (let file of files) {
-                    if (!file.type.match('image.*')) {
-                        alert('只能上传图片文件！');
-                        continue;
-                    }
-                    
-                    if (file.size > 20 * 1024 * 1024) {
-                        alert(`文件 ${file.name} 大小超过20MB限制！`);
-                        continue;
-                    }
-                    
-                    const reader = new FileReader();
-                    reader.onload = (e) => {
-                        const imgData = e.target.result;
-                        
-                        const previewItem = document.createElement('div');
-                        previewItem.className = 'preview-item fade-in';
-                        
-                        const img = document.createElement('img');
-                        img.src = imgData;
-                        
-                        const removeBtn = document.createElement('div');
-                        removeBtn.className = 'preview-item-remove';
-                        removeBtn.innerHTML = '<i class="fas fa-times"></i>';
-                        removeBtn.addEventListener('click', () => {
-                            previewItem.remove();
-                            const index = uploadFiles.findIndex(item => item.data === imgData);
-                            if (index !== -1) uploadFiles.splice(index, 1);
-                        });
-                        
-                        previewItem.appendChild(img);
-                        previewItem.appendChild(removeBtn);
-                        uploadPreview.appendChild(previewItem);
-                        
-                        uploadFiles.push({
-                            file: file,
-                            name: file.name,
-                            data: imgData,
-                            type: file.type,
-                            size: file.size
-                        });
-                    };
-                    
-                    reader.readAsDataURL(file);
+        }
+
+        // 处理保存（添加）
+        async function handleSave() {
+            if (manageType === 'category') {
+                const name = document.getElementById('categoryName').value.trim();
+                const color = document.getElementById('categoryColor').value;
+
+                if (!name) {
+                    alert('请输入分类名称');
+                    return;
                 }
-            }
-            
-            // 处理保存（添加）
-            async function handleSave() {
-                if (manageType === 'category') {
-                    const name = document.getElementById('categoryName').value.trim();
-                    const color = document.getElementById('categoryColor').value;
-                    
-                    if (!name) {
-                        alert('请输入分类名称');
-                        return;
-                    }
-                    
-                    try {
-                        const { data, error } = await supabaseClient
-                            .from('categories')
-                            .insert([
-                                { name, color }
-                            ])
-                            .select()
-                            .single();
-                        
-                        if (error) throw error;
-                        
-                        categories.push(data);
-                        renderCategories();
-                        manageModal.classList.remove('active');
-                        showNotification('分类添加成功！');
-                    } catch (error) {
-                        console.error('添加分类失败:', error);
-                        alert('添加分类失败，请重试');
-                    }
-                    
-                } else if (manageType === 'group') {
-                    const name = document.getElementById('groupName').value.trim();
-                    const categoryId = parseInt(document.getElementById('groupCategory').value);
-                    const description = document.getElementById('groupDescription').value.trim();
-                    
-                    if (!name) {
-                        alert('请输入组名称');
-                        return;
-                    }
-                    
-                    if (!categoryId) {
-                        alert('请选择分类');
-                        return;
-                    }
-                    
-                    try {
-                        const { data, error } = await supabaseClient
-                            .from('groups')
-                            .insert([
-                                { 
-                                    name, 
-                                    category_id: categoryId, 
-                                    description 
-                                }
-                            ])
-                            .select()
-                            .single();
-                        
-                        if (error) throw error;
-                        
-                        groups.push(data);
-                        if (currentCategoryId === categoryId || !currentCategoryId) {
-                            renderGroups(groups);
-                        }
-                        manageModal.classList.remove('active');
-                        showNotification('作品组添加成功！');
-                    } catch (error) {
-                        console.error('添加作品组失败:', error);
-                        alert('添加作品组失败，请重试');
-                    }
-                    
-                } else if (manageType === 'image') {
-                    const title = document.getElementById('imageTitle').value.trim();
-                    const description = document.getElementById('imageDescription').value.trim();
-                    
-                    if (!title) {
-                        alert('请输入图片标题');
-                        return;
-                    }
-                    
-                    if (uploadFiles.length === 0) {
-                        alert('请选择要上传的图片！');
-                        return;
-                    }
-                    
-                    if (!currentGroupId) {
-                        alert('请先选择作品组');
-                        return;
-                    }
-                    
-                    try {
-                        // 上传所有图片
-                        for (let i = 0; i < uploadFiles.length; i++) {
-                            const file = uploadFiles[i];
-                            const imageUrl = await uploadImageToStorage(file.file, file.name);
-                            
-                            const { data, error } = await supabaseClient
-                                .from('images')
-                                .insert([
-                                    { 
-                                        group_id: currentGroupId,
-                                        title: title + (uploadFiles.length > 1 ? ` (${i + 1})` : ''),
-                                        description,
-                                        image_url: imageUrl
-                                    }
-                                ]);
-                            
-                            if (error) throw error;
-                        }
-                        
-                        // 重新加载图片
-                        await loadImagesByGroup(currentGroupId);
-                        manageModal.classList.remove('active');
-                        showNotification('图片添加成功！');
-                        
-                        uploadFiles = [];
-                    } catch (error) {
-                        console.error('添加图片失败:', error);
-                        alert('添加图片失败，请重试');
-                    }
-                    
-                } else if (manageType === 'admin') {
-                    const username = document.getElementById('adminUsername').value.trim();
-                    const password = document.getElementById('adminPassword').value;
-                    const name = document.getElementById('adminName').value.trim();
-                    const role = document.getElementById('adminRole').value;
-                    
-                    if (!username) {
-                        alert('请输入账号');
-                        return;
-                    }
-                    
-                    if (!name) {
-                        alert('请输入姓名');
-                        return;
-                    }
-                    
-                    if (!password && !manageId) {
-                        alert('请输入密码');
-                        return;
-                    }
-                    
-                    try {
-                        // 检查账号是否已存在
-                        const { data: existingAdmin, error: checkError } = await supabaseClient
-                            .from('admins')
-                            .select('*')
-                            .eq('username', username)
-                            .single();
-                        
-                        if (existingAdmin && !checkError) {
-                            alert('该账号已存在');
-                            return;
-                        }
-                        
-                        const { data, error } = await supabaseClient
-                            .from('admins')
-                            .insert([
-                                { 
-                                    username, 
-                                    password_hash: password || '123456',
-                                    name,
-                                    role
-                                }
-                            ])
-                            .select()
-                            .single();
-                        
-                        if (error) throw error;
-                        
-                        admins.push(data);
-                        renderAdmins();
-                        manageModal.classList.remove('active');
-                        showNotification('管理员添加成功！');
-                    } catch (error) {
-                        console.error('添加管理员失败:', error);
-                        alert('添加管理员失败，请重试');
-                    }
+
+                try {
+                    const {data, error} = await supabaseClient
+                        .from('categories')
+                        .insert([
+                            {name, color}
+                        ])
+                        .select()
+                        .single();
+
+                    if (error) throw error;
+
+                    categories.push(data);
+                    renderCategories();
+                    manageModal.classList.remove('active');
+                    showNotification('分类添加成功！');
+                } catch (error) {
+                    console.error('添加分类失败:', error);
+                    alert('添加分类失败，请重试');
                 }
-            }
-            
-            // 处理更新
-            async function handleUpdate() {
-                if (manageType === 'category' && manageId) {
-                    const name = document.getElementById('categoryName').value.trim();
-                    const color = document.getElementById('categoryColor').value;
-                    
-                    if (!name) {
-                        alert('请输入分类名称');
-                        return;
-                    }
-                    
-                    try {
-                        const { error } = await supabaseClient
-                            .from('categories')
-                            .update({ name, color })
-                            .eq('id', manageId);
-                        
-                        if (error) throw error;
-                        
-                        // 更新本地数据
-                        const index = categories.findIndex(c => c.id === manageId);
-                        if (index !== -1) {
-                            categories[index].name = name;
-                            categories[index].color = color;
-                        }
-                        
-                        renderCategories();
-                        manageModal.classList.remove('active');
-                        showNotification('分类更新成功！');
-                    } catch (error) {
-                        console.error('更新分类失败:', error);
-                        alert('更新分类失败，请重试');
-                    }
-                    
-                } else if (manageType === 'group' && manageId) {
-                    const name = document.getElementById('groupName').value.trim();
-                    const categoryId = parseInt(document.getElementById('groupCategory').value);
-                    const description = document.getElementById('groupDescription').value.trim();
-                    
-                    if (!name) {
-                        alert('请输入组名称');
-                        return;
-                    }
-                    
-                    if (!categoryId) {
-                        alert('请选择分类');
-                        return;
-                    }
-                    
-                    try {
-                        const { error } = await supabaseClient
-                            .from('groups')
-                            .update({ 
-                                name, 
-                                category_id: categoryId, 
-                                description 
-                            })
-                            .eq('id', manageId);
-                        
-                        if (error) throw error;
-                        
-                        // 更新本地数据
-                        const index = groups.findIndex(g => g.id === manageId);
-                        if (index !== -1) {
-                            groups[index].name = name;
-                            groups[index].category_id = categoryId;
-                            groups[index].description = description;
-                        }
-                        
+
+            } else if (manageType === 'group') {
+                const name = document.getElementById('groupName').value.trim();
+                const categoryId = parseInt(document.getElementById('groupCategory').value);
+                const description = document.getElementById('groupDescription').value.trim();
+
+                if (!name) {
+                    alert('请输入组名称');
+                    return;
+                }
+
+                if (!categoryId) {
+                    alert('请选择分类');
+                    return;
+                }
+
+                try {
+                    const {data, error} = await supabaseClient
+                        .from('groups')
+                        .insert([
+                            {
+                                name,
+                                category_id: categoryId,
+                                description
+                            }
+                        ])
+                        .select()
+                        .single();
+
+                    if (error) throw error;
+
+                    groups.push(data);
+                    if (currentCategoryId === categoryId || !currentCategoryId) {
                         renderGroups(groups);
-                        manageModal.classList.remove('active');
-                        showNotification('作品组更新成功！');
-                    } catch (error) {
-                        console.error('更新作品组失败:', error);
-                        alert('更新作品组失败，请重试');
                     }
-                    
-                } else if (manageType === 'image' && manageId) {
-                    const title = document.getElementById('imageTitle').value.trim();
-                    const description = document.getElementById('imageDescription').value.trim();
-                    
-                    if (!title) {
-                        alert('请输入图片标题');
-                        return;
-                    }
-                    
-                    try {
-                        let updateData = { title, description };
-                        
-                        // 如果有新上传的图片，先上传
-                        if (uploadFiles.length > 0) {
-                            const file = uploadFiles[0];
-                            const imageUrl = await uploadImageToStorage(file.file, file.name);
-                            updateData.image_url = imageUrl;
-                        }
-                        
-                        const { error } = await supabaseClient
+                    manageModal.classList.remove('active');
+                    showNotification('作品组添加成功！');
+                } catch (error) {
+                    console.error('添加作品组失败:', error);
+                    alert('添加作品组失败，请重试');
+                }
+
+            } else if (manageType === 'image') {
+                const title = document.getElementById('imageTitle').value.trim();
+                const description = document.getElementById('imageDescription').value.trim();
+
+                if (!title) {
+                    alert('请输入图片标题');
+                    return;
+                }
+
+                if (uploadFiles.length === 0) {
+                    alert('请选择要上传的图片！');
+                    return;
+                }
+
+                if (!currentGroupId) {
+                    alert('请先选择作品组');
+                    return;
+                }
+
+                try {
+                    // 上传所有图片
+                    for (let i = 0; i < uploadFiles.length; i++) {
+                        const file = uploadFiles[i];
+                        const imageUrl = await uploadImageToStorage(file.file, file.name);
+
+                        const {data, error} = await supabaseClient
                             .from('images')
-                            .update(updateData)
-                            .eq('id', manageId);
-                        
+                            .insert([
+                                {
+                                    group_id: currentGroupId,
+                                    title: title + (uploadFiles.length > 1 ? ` (${i + 1})` : ''),
+                                    description,
+                                    image_url: imageUrl
+                                }
+                            ]);
+
                         if (error) throw error;
-                        
-                        // 重新加载图片
-                        await loadImagesByGroup(currentGroupId);
-                        manageModal.classList.remove('active');
-                        showNotification('图片更新成功！');
-                        
-                        uploadFiles = [];
-                    } catch (error) {
-                        console.error('更新图片失败:', error);
-                        alert('更新图片失败，请重试');
                     }
-                    
-                } else if (manageType === 'admin' && manageId) {
-                    const username = document.getElementById('adminUsername').value.trim();
-                    const password = document.getElementById('adminPassword').value;
-                    const name = document.getElementById('adminName').value.trim();
-                    const role = document.getElementById('adminRole').value;
-                    
-                    if (!name) {
-                        alert('请输入姓名');
+
+                    // 重新加载图片
+                    await loadImagesByGroup(currentGroupId);
+                    manageModal.classList.remove('active');
+                    showNotification('图片添加成功！');
+
+                    uploadFiles = [];
+                } catch (error) {
+                    console.error('添加图片失败:', error);
+                    alert('添加图片失败，请重试');
+                }
+
+            } else if (manageType === 'admin') {
+                const username = document.getElementById('adminUsername').value.trim();
+                const password = document.getElementById('adminPassword').value;
+                const name = document.getElementById('adminName').value.trim();
+                const role = document.getElementById('adminRole').value;
+
+                if (!username) {
+                    alert('请输入账号');
+                    return;
+                }
+
+                if (!name) {
+                    alert('请输入姓名');
+                    return;
+                }
+
+                if (!password && !manageId) {
+                    alert('请输入密码');
+                    return;
+                }
+
+                try {
+                    // 检查账号是否已存在
+                    const {data: existingAdmin, error: checkError} = await supabaseClient
+                        .from('admins')
+                        .select('*')
+                        .eq('username', username)
+                        .single();
+
+                    if (existingAdmin && !checkError) {
+                        alert('该账号已存在');
                         return;
                     }
-                    
-                    try {
-                        let updateData = { name };
-                        
-                        // 更新密码（如果提供了新密码）
-                        if (password) {
-                            updateData.password_hash = password;
-                        }
-                        
-                        // 更新角色（如果不是主管理员）
-                        const admin = admins.find(a => a.id === manageId);
-                        if (admin && admin.role !== 'master') {
-                            updateData.role = role;
-                        }
-                        
-                        const { error } = await supabaseClient
-                            .from('admins')
-                            .update(updateData)
-                            .eq('id', manageId);
-                        
-                        if (error) throw error;
-                        
-                        // 重新加载管理员
-                        await loadAdmins();
-                        manageModal.classList.remove('active');
-                        showNotification('管理员更新成功！');
-                        
-                        // 如果更新的是当前登录用户，更新显示
-                        if (admin && admin.username === currentUser) {
-                            userAvatar.textContent = name.substring(0, 1);
-                            userName.textContent = name;
-                        }
-                    } catch (error) {
-                        console.error('更新管理员失败:', error);
-                        alert('更新管理员失败，请重试');
-                    }
+
+                    const {data, error} = await supabaseClient
+                        .from('admins')
+                        .insert([
+                            {
+                                username,
+                                password_hash: password || '123456',
+                                name,
+                                role
+                            }
+                        ])
+                        .select()
+                        .single();
+
+                    if (error) throw error;
+
+                    admins.push(data);
+                    renderAdmins();
+                    manageModal.classList.remove('active');
+                    showNotification('管理员添加成功！');
+                } catch (error) {
+                    console.error('添加管理员失败:', error);
+                    alert('添加管理员失败，请重试');
                 }
             }
-            
-        
+        }
+
+        // 处理更新
+        async function handleUpdate() {
+            if (manageType === 'category' && manageId) {
+                const name = document.getElementById('categoryName').value.trim();
+                const color = document.getElementById('categoryColor').value;
+
+                if (!name) {
+                    alert('请输入分类名称');
+                    return;
+                }
+
+                try {
+                    const {error} = await supabaseClient
+                        .from('categories')
+                        .update({name, color})
+                        .eq('id', manageId);
+
+                    if (error) throw error;
+
+                    // 更新本地数据
+                    const index = categories.findIndex(c => c.id === manageId);
+                    if (index !== -1) {
+                        categories[index].name = name;
+                        categories[index].color = color;
+                    }
+
+                    renderCategories();
+                    manageModal.classList.remove('active');
+                    showNotification('分类更新成功！');
+                } catch (error) {
+                    console.error('更新分类失败:', error);
+                    alert('更新分类失败，请重试');
+                }
+
+            } else if (manageType === 'group' && manageId) {
+                const name = document.getElementById('groupName').value.trim();
+                const categoryId = parseInt(document.getElementById('groupCategory').value);
+                const description = document.getElementById('groupDescription').value.trim();
+
+                if (!name) {
+                    alert('请输入组名称');
+                    return;
+                }
+
+                if (!categoryId) {
+                    alert('请选择分类');
+                    return;
+                }
+
+                try {
+                    const {error} = await supabaseClient
+                        .from('groups')
+                        .update({
+                            name,
+                            category_id: categoryId,
+                            description
+                        })
+                        .eq('id', manageId);
+
+                    if (error) throw error;
+
+                    // 更新本地数据
+                    const index = groups.findIndex(g => g.id === manageId);
+                    if (index !== -1) {
+                        groups[index].name = name;
+                        groups[index].category_id = categoryId;
+                        groups[index].description = description;
+                    }
+
+                    renderGroups(groups);
+                    manageModal.classList.remove('active');
+                    showNotification('作品组更新成功！');
+                } catch (error) {
+                    console.error('更新作品组失败:', error);
+                    alert('更新作品组失败，请重试');
+                }
+
+            } else if (manageType === 'image' && manageId) {
+                const title = document.getElementById('imageTitle').value.trim();
+                const description = document.getElementById('imageDescription').value.trim();
+
+                if (!title) {
+                    alert('请输入图片标题');
+                    return;
+                }
+
+                try {
+                    let updateData = {title, description};
+
+                    // 如果有新上传的图片，先上传
+                    if (uploadFiles.length > 0) {
+                        const file = uploadFiles[0];
+                        const imageUrl = await uploadImageToStorage(file.file, file.name);
+                        updateData.image_url = imageUrl;
+                    }
+
+                    const {error} = await supabaseClient
+                        .from('images')
+                        .update(updateData)
+                        .eq('id', manageId);
+
+                    if (error) throw error;
+
+                    // 重新加载图片
+                    await loadImagesByGroup(currentGroupId);
+                    manageModal.classList.remove('active');
+                    showNotification('图片更新成功！');
+
+                    uploadFiles = [];
+                } catch (error) {
+                    console.error('更新图片失败:', error);
+                    alert('更新图片失败，请重试');
+                }
+
+            } else if (manageType === 'admin' && manageId) {
+                const username = document.getElementById('adminUsername').value.trim();
+                const password = document.getElementById('adminPassword').value;
+                const name = document.getElementById('adminName').value.trim();
+                const role = document.getElementById('adminRole').value;
+
+                if (!name) {
+                    alert('请输入姓名');
+                    return;
+                }
+
+                try {
+                    let updateData = {name};
+
+                    // 更新密码（如果提供了新密码）
+                    if (password) {
+                        updateData.password_hash = password;
+                    }
+
+                    // 更新角色（如果不是主管理员）
+                    const admin = admins.find(a => a.id === manageId);
+                    if (admin && admin.role !== 'master') {
+                        updateData.role = role;
+                    }
+
+                    const {error} = await supabaseClient
+                        .from('admins')
+                        .update(updateData)
+                        .eq('id', manageId);
+
+                    if (error) throw error;
+
+                    // 重新加载管理员
+                    await loadAdmins();
+                    manageModal.classList.remove('active');
+                    showNotification('管理员更新成功！');
+
+                    // 如果更新的是当前登录用户，更新显示
+                    if (admin && admin.username === currentUser) {
+                        userAvatar.textContent = name.substring(0, 1);
+                        userName.textContent = name;
+                    }
+                } catch (error) {
+                    console.error('更新管理员失败:', error);
+                    alert('更新管理员失败，请重试');
+                }
+            }
+        }
+
+
         // 处理删除
+// 更新handleDelete函数中的图片删除部分
         async function handleDelete() {
             if (!confirm('确定要删除吗？此操作不可撤销！')) {
                 return;
             }
-            
-            if (manageType === 'category' && manageId) {
-                // ... 分类删除代码保持不变 ...
-                
-            } else if (manageType === 'group' && manageId) {
-                // ... 组删除代码保持不变 ...
-                
-            } else if (manageType === 'image' && manageId) {
-                // ========== 这是修复的核心部分 ==========
+
+            if (manageType === 'image' && manageId) {
                 console.log('开始删除图片，ID:', manageId);
-                
+
                 try {
-                    // 1. 先从本地数据中移除，给用户即时反馈
-                    const originalLength = images.length;
-                    images = images.filter(img => img.id !== manageId);
-                    
-                    if (images.length === originalLength) {
-                        // 如果没找到，可能是页面状态不同步
-                        console.warn('本地未找到图片，重新加载数据...');
-                        await loadImagesByGroup(currentGroupId);
-                        alert('请重新选择要删除的图片');
+                    // 1. 获取图片信息用于可能的回滚
+                    const imageToDelete = images.find(img => img.id === manageId);
+                    if (!imageToDelete) {
+                        alert('找不到要删除的图片');
                         return;
                     }
-                    
-                    // 立即更新UI
+
+                    // 2. 立即从本地移除（给用户即时反馈）
+                    images = images.filter(img => img.id !== manageId);
                     renderImages(images);
                     manageModal.classList.remove('active');
-                    
-                    // 2. 使用更可靠的方法删除数据库记录
-                    console.log('调用删除API...');
-                    
-                    // 方法1：使用Supabase REST API直接删除
-                    const deleteUrl = `${SUPABASE_URL}/rest/v1/images?id=eq.${manageId}`;
-                    const deleteOptions = {
-                        method: 'DELETE',
-                        headers: {
-                            'apikey': SUPABASE_ANON_KEY,
-                            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                            'Content-Type': 'application/json',
-                            'Prefer': 'return=minimal'
+
+                    // 3. 尝试多种删除方法
+                    let deleteSuccess = false;
+
+                    // 方法1：使用Supabase客户端删除
+                    try {
+                        console.log('尝试方法1：使用Supabase客户端删除...');
+                        const {error} = await supabaseClient
+                            .from('images')
+                            .delete()
+                            .eq('id', manageId);
+
+                        if (!error) {
+                            console.log('✅ 方法1成功');
+                            deleteSuccess = true;
+                        } else {
+                            console.warn('方法1失败:', error.message);
                         }
-                    };
-                    
-                    const deleteResponse = await fetch(deleteUrl, deleteOptions);
-                    console.log('删除响应状态:', deleteResponse.status, deleteResponse.statusText);
-                    
-                    if (deleteResponse.status === 204 || deleteResponse.status === 200) {
-                        // 删除成功
-                        console.log('✅ 数据库删除成功');
-                        
-                        // 3. 验证删除是否真的成功
-                        setTimeout(async () => {
-                            console.log('验证删除结果...');
-                            await verifyAndHandleDeletion(manageId);
-                        }, 500);
-                        
-                        showNotification('图片删除成功！');
-                        
-                    } else {
-                        // 删除失败
-                        const errorText = await deleteResponse.text();
-                        console.error('删除失败:', deleteResponse.status, errorText);
-                        
-                        // 回滚本地更改
-                        await loadImagesByGroup(currentGroupId);
-                        alert(`删除失败 (${deleteResponse.status}): 图片可能受保护或无权删除`);
+                    } catch (method1Error) {
+                        console.warn('方法1异常:', method1Error.message);
                     }
-                    
+
+                    // 如果方法1失败，尝试方法2：使用fetch API
+                    if (!deleteSuccess) {
+                        try {
+                            console.log('尝试方法2：使用REST API删除...');
+                            const response = await fetch(
+                                `${SUPABASE_URL}/rest/v1/images?id=eq.${manageId}`,
+                                {
+                                    method: 'DELETE',
+                                    headers: {
+                                        'apikey': SUPABASE_ANON_KEY,
+                                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                                        'Content-Type': 'application/json',
+                                        'Prefer': 'return=minimal'
+                                    }
+                                }
+                            );
+
+                            if (response.ok) {
+                                console.log('✅ 方法2成功');
+                                deleteSuccess = true;
+                            } else {
+                                console.warn('方法2失败:', response.status);
+                            }
+                        } catch (method2Error) {
+                            console.warn('方法2异常:', method2Error.message);
+                        }
+                    }
+
+                    if (deleteSuccess) {
+                        showNotification('图片删除成功！');
+
+                        // 添加到本地删除记录（用于后续验证）
+                        addToLocalDeletionRecord(manageId);
+
+                        // 可选：从存储中删除文件（如果需要）
+                        // await deleteImageFromStorage(imageToDelete.image_url);
+
+                    } else {
+                        // 删除失败，恢复本地数据
+                        await loadImagesByGroup(currentGroupId);
+                        alert('删除失败，请刷新页面重试');
+                    }
+
                 } catch (error) {
                     console.error('删除过程中出错:', error);
-                    
-                    // 回滚本地更改
-                    try {
-                        await loadImagesByGroup(currentGroupId);
-                    } catch (reloadError) {
-                        console.error('重新加载失败:', reloadError);
-                    }
-                    
+                    await loadImagesByGroup(currentGroupId);
                     alert('删除失败: ' + error.message);
                 }
-                // ========== 修复部分结束 ==========
-                
-            } else if (manageType === 'admin' && manageId) {
-                // ... 管理员删除代码保持不变 ...
             }
+            // ... 其他类型的删除逻辑保持不变
         }
-        
+
         // 新增：验证删除并处理
         async function verifyAndHandleDeletion(imageId) {
             try {
                 // 等待一小段时间让数据库同步
                 await new Promise(resolve => setTimeout(resolve, 300));
-                
+
                 // 尝试查询已删除的图片
-                const { data, error } = await supabaseClient
+                const {data, error} = await supabaseClient
                     .from('images')
                     .select('id')
                     .eq('id', imageId)
                     .maybeSingle();
-                
+
                 if (error) {
                     console.error('验证查询出错:', error);
                     return;
                 }
-                
+
                 if (data) {
                     // 图片仍然存在！尝试更彻底的删除
                     console.warn('⚠️ 图片仍然存在，尝试强制删除...');
-                    
+
                     // 尝试使用不同的方法删除
                     await forceDeleteImage(imageId);
-                    
+
                     // 重新加载数据
                     setTimeout(async () => {
                         await loadImagesByGroup(currentGroupId);
                     }, 800);
-                    
+
                 } else {
                     console.log('✅ 验证通过：图片已删除');
                     // 重新加载确保数据同步
@@ -3068,17 +3085,17 @@
                         await loadImagesByGroup(currentGroupId);
                     }, 300);
                 }
-                
+
             } catch (verifyError) {
                 console.error('验证过程出错:', verifyError);
             }
         }
-        
+
         // 新增：强制删除图片
         async function forceDeleteImage(imageId) {
             try {
                 console.log('执行强制删除，ID:', imageId);
-                
+
                 // 尝试多次删除
                 const methods = [
                     // 方法1：再次使用REST API
@@ -3095,23 +3112,23 @@
                         });
                         return response.status;
                     },
-                    
+
                     // 方法2：使用Supabase客户端（另一种方式）
                     async () => {
-                        const { error } = await supabaseClient
+                        const {error} = await supabaseClient
                             .from('images')
                             .delete()
                             .eq('id', imageId);
-                        
+
                         if (error) throw error;
                         return 204;
                     },
-                    
+
                     // 方法3：使用原始SQL（通过Supabase的rpc）
                     async () => {
                         try {
-                            const { error } = await supabaseClient.rpc('delete_image_by_id', { 
-                                image_id: imageId 
+                            const {error} = await supabaseClient.rpc('delete_image_by_id', {
+                                image_id: imageId
                             });
                             if (error) throw error;
                             return 200;
@@ -3120,24 +3137,24 @@
                         }
                     }
                 ];
-                
+
                 // 按顺序尝试每种方法
                 for (let i = 0; i < methods.length; i++) {
                     try {
                         console.log(`尝试强制删除方法 ${i + 1}...`);
                         const status = await methods[i]();
-                        
+
                         if (status === 204 || status === 200) {
                             console.log(`✅ 方法 ${i + 1} 成功`);
-                            
+
                             // 验证是否真的删除了
                             await new Promise(resolve => setTimeout(resolve, 300));
-                            const { data } = await supabaseClient
+                            const {data} = await supabaseClient
                                 .from('images')
                                 .select('id')
                                 .eq('id', imageId)
                                 .maybeSingle();
-                            
+
                             if (!data) {
                                 console.log('✅ 强制删除成功验证通过');
                                 return true;
@@ -3148,42 +3165,42 @@
                     } catch (methodError) {
                         console.warn(`方法 ${i + 1} 失败:`, methodError.message);
                     }
-                    
+
                     // 等待一下再试下一个方法
                     await new Promise(resolve => setTimeout(resolve, 200));
                 }
-                
+
                 console.error('所有强制删除方法都失败了');
                 return false;
-                
+
             } catch (error) {
                 console.error('强制删除过程中出错:', error);
                 return false;
             }
         }
-        
+
         // 如果以上方法都不行，使用这个"软删除"方案
         // 在loadImagesByGroup函数开头添加这个检查
         async function loadImagesByGroup(groupId) {
             try {
                 console.log('加载组图片，组ID:', groupId);
-                
+
                 // 先检查是否有应该被删除的图片（本地记录）
                 const locallyDeleted = JSON.parse(localStorage.getItem('deletedImages') || '[]');
-                
-                const { data, error } = await supabaseClient
+
+                const {data, error} = await supabaseClient
                     .from('images')
                     .select('*')
                     .eq('group_id', groupId)
-                    .order('created_at', { ascending: false });
-                
+                    .order('created_at', {ascending: false});
+
                 if (error) {
                     console.error('加载图片失败:', error);
                     throw error;
                 }
-                
+
                 console.log('从数据库加载到:', data?.length || 0, '张图片');
-                
+
                 // 过滤掉本地标记为已删除的图片
                 let filteredData = data || [];
                 if (locallyDeleted.length > 0) {
@@ -3191,16 +3208,16 @@
                     filteredData = filteredData.filter(img => !locallyDeleted.includes(img.id));
                     console.log(`过滤掉 ${beforeFilter - filteredData.length} 张本地标记删除的图片`);
                 }
-                
+
                 images = filteredData;
                 renderImages(images);
-                
+
                 // 如果有本地标记删除但数据库仍然存在的图片，尝试删除它们
                 if (locallyDeleted.length > 0 && data) {
                     const stillExist = data.filter(img => locallyDeleted.includes(img.id));
                     if (stillExist.length > 0) {
                         console.warn('发现数据库仍存在的已删除图片:', stillExist.length);
-                        
+
                         // 异步尝试删除它们
                         setTimeout(() => {
                             stillExist.forEach(img => {
@@ -3220,35 +3237,13 @@
                         }, 1000);
                     }
                 }
-                
+
             } catch (error) {
                 console.error('加载图片失败:', error);
                 showNotification('加载图片失败，请刷新页面重试');
             }
         }
-        
-        // 修改删除图片的部分，添加本地标记
-        // 在handleDelete函数中，删除图片的部分添加：
-        async function handleDelete() {
-            // ... 前面的代码 ...
-            
-            } else if (manageType === 'image' && manageId) {
-                try {
-                    // 添加到本地删除列表
-                    let deletedImages = JSON.parse(localStorage.getItem('deletedImages') || '[]');
-                    if (!deletedImages.includes(manageId)) {
-                        deletedImages.push(manageId);
-                        localStorage.setItem('deletedImages', JSON.stringify(deletedImages));
-                    }
-                    
-                    // ... 其余的删除逻辑 ...
-                    
-                } catch (error) {
-                    // ... 错误处理 ...
-                }
-            }
-        }
-        
+
         // 页面加载时清理过期的本地删除记录
         function cleanupLocalDeletionRecords() {
             try {
@@ -3262,19 +3257,12 @@
                 console.warn('清理本地删除记录失败:', error);
             }
         }
-        
-        // 在init函数中调用
-        async function init() {
-            // ... 其他初始化代码 ...
-            cleanupLocalDeletionRecords();
-            // ... 其他初始化代码 ...
-        }
-        
-           // 显示通知
-            function showNotification(message) {
-                const notification = document.createElement('div');
-                notification.textContent = message;
-                notification.style.cssText = `
+
+        // 显示通知
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.textContent = message;
+            notification.style.cssText = `
                     position: fixed;
                     top: 20px;
                     right: 20px;
@@ -3287,22 +3275,75 @@
                     animation: fadeIn 0.3s ease;
                     font-weight: 600;
                 `;
-                
-                document.body.appendChild(notification);
-                
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'fadeIn 0.3s ease reverse';
                 setTimeout(() => {
-                    notification.style.animation = 'fadeIn 0.3s ease reverse';
-                    setTimeout(() => {
-                        if (notification.parentNode) {
-                            notification.parentNode.removeChild(notification);
-                        }
-                    }, 300);
-                }, 3000);
-            }
-            
-            // 初始化应用
-            init();
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
         }
-    </script>
+
+        // 初始化应用
+        await init();
+    }
+
+    // 在初始化变量区域（约第70行）添加以下函数定义
+    let localDeletionRecords = [];
+
+    // 添加本地删除记录
+    function addToLocalDeletionRecord(imageId) {
+        try {
+            // 获取现有的删除记录
+            const deletedImages = JSON.parse(localStorage.getItem('deletedImages') || '[]');
+
+            // 添加新的删除记录
+            if (!deletedImages.includes(imageId)) {
+                deletedImages.push(imageId);
+
+                // 限制记录数量，避免过大
+                if (deletedImages.length > 100) {
+                    deletedImages.splice(0, 50); // 保留最近的50条
+                }
+
+                localStorage.setItem('deletedImages', JSON.stringify(deletedImages));
+                localDeletionRecords = deletedImages;
+            }
+
+            console.log('添加到本地删除记录:', imageId);
+        } catch (error) {
+            console.warn('添加本地删除记录失败:', error);
+        }
+    }
+
+    // 检查图片是否在本地删除记录中
+    function isLocallyDeleted(imageId) {
+        return localDeletionRecords.includes(imageId);
+    }
+
+    // 清理本地删除记录
+    function cleanupLocalDeletionRecords() {
+        try {
+            const deletedImages = JSON.parse(localStorage.getItem('deletedImages') || '[]');
+
+            // 如果记录太多，清理一半
+            if (deletedImages.length > 100) {
+                const half = Math.floor(deletedImages.length / 2);
+                const kept = deletedImages.slice(half);
+                localStorage.setItem('deletedImages', JSON.stringify(kept));
+                localDeletionRecords = kept;
+                console.log('清理本地删除记录，保留最近', kept.length, '条');
+            } else {
+                localDeletionRecords = deletedImages;
+            }
+        } catch (error) {
+            console.warn('清理本地删除记录失败:', error);
+        }
+    }
+</script>
 </body>
 </html>
