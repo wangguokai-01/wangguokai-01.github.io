@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>作品集展示平台 - 专业版</title>
+    <title>作品集展示平台 - 专业版（含简历功能）</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- 使用更可靠的Supabase库版本 -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.7/dist/umd/supabase.min.js"></script>
@@ -324,7 +324,316 @@
             padding: 30px 0;
         }
 
-        /* 分类导航 - 手机端优化 */
+        /* 简历概览区域样式 - 紧凑版 */
+        .resume-overview {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--box-shadow);
+            animation: fadeIn 0.6s ease;
+            position: relative;
+        }
+
+        /* 卡片编辑按钮 - 放在右上角 */
+        .resume-edit-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1rem;
+            border: none;
+            box-shadow: 0 3px 10px rgba(108, 92, 231, 0.3);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .resume-edit-btn:hover {
+            background: #5a4bd1;
+            transform: scale(1.1);
+        }
+
+        .resume-header {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 2px solid #f1f2f6;
+        }
+
+        @media (max-width: 768px) {
+            .resume-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+        }
+
+        .resume-avatar {
+            position: relative;
+        }
+
+        .resume-avatar img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .online-status {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            width: 18px;
+            height: 18px;
+            background-color: var(--success-color);
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+
+        .resume-basic {
+            flex: 1;
+        }
+
+        .resume-basic h1 {
+            font-size: 2rem;
+            color: var(--dark-color);
+            margin-bottom: 5px;
+        }
+
+        .resume-title {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .resume-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .resume-tag {
+            background: rgba(108, 92, 231, 0.1);
+            color: var(--primary-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .resume-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .resume-actions {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .resume-actions .btn {
+                flex: 1;
+                max-width: 150px;
+            }
+        }
+
+        /* 折叠内容区域 */
+        .resume-collapsed {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+
+        .resume-collapsed.expanded {
+            max-height: 1500px;
+        }
+
+        .resume-details {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            padding-top: 20px;
+        }
+
+        @media (max-width: 992px) {
+            .resume-details {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .resume-details {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .detail-column h3 {
+            font-size: 1.1rem;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .detail-column h3 i {
+            color: var(--primary-color);
+        }
+
+        .detail-list {
+            list-style: none;
+        }
+
+        .detail-list li {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+        }
+
+        .detail-list li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .detail-list li strong {
+            min-width: 70px;
+            color: #636e72;
+            font-size: 0.9rem;
+        }
+
+        .detail-list li span {
+            font-size: 0.9rem;
+        }
+
+        .experience-item, .education-item {
+            margin-bottom: 15px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .experience-item h4, .education-item h4 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+            color: var(--dark-color);
+        }
+
+        .experience-period, .education-period {
+            font-size: 0.8rem;
+            color: #636e72;
+            margin-bottom: 6px;
+        }
+
+        .experience-position, .education-major {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .experience-desc {
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .skill-item {
+            margin-bottom: 12px;
+        }
+
+        .skill-name {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .skill-bar {
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-level {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 4px;
+        }
+
+        /* 展开/收起按钮 - 修复：移除上方的线 */
+        .expand-btn-container {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 0; /* 移除padding-top，去掉上方的线 */
+        }
+
+        .expand-btn {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .expand-btn:hover {
+            color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* 手机端收起按钮悬浮 - 修复逻辑：展开后立即出现，卡片结束后消失 */
+        .mobile-collapse-btn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-collapse-btn {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            
+            .mobile-collapse-btn.hidden {
+                display: none;
+            }
+        }
+
+        /* 分类导航 */
         .categories-nav {
             background: white;
             border-radius: var(--border-radius);
@@ -375,7 +684,377 @@
             margin-right: 6px;
         }
 
-        /* 组展示网格 - 手机端一行两个 */
+        /* 联系模态框 - 优化版：信息与按钮左右布局 */
+        .contact-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .contact-modal.active {
+            display: flex;
+        }
+
+        .contact-content {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            width: 90%;
+            max-width: 450px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .contact-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: #636e72;
+            cursor: pointer;
+        }
+
+        .contact-info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        /* 修复：信息与按钮左右布局，不占太高高度 */
+        .contact-info-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-info-item:hover {
+            background: #f1f2f6;
+        }
+
+        .contact-info-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .contact-info-left i {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+        }
+
+        .contact-info-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-info-text strong {
+            font-size: 0.95rem;
+            color: var(--dark-color);
+            margin-bottom: 3px;
+        }
+
+        .contact-info-text p {
+            margin: 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .contact-action-btns {
+            display: flex;
+            gap: 8px;
+        }
+
+        .contact-action-btns .btn {
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+
+        .qr-code-container {
+            margin-top: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #eee;
+            display: none;
+            text-align: center;
+        }
+
+        .qr-code-container.active {
+            display: block;
+        }
+
+        .qr-code-img {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 10px;
+            display: block;
+        }
+
+        /* 编辑模态框 */
+        .edit-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .edit-modal.active {
+            display: flex;
+        }
+
+        .edit-content {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .edit-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: #636e72;
+            cursor: pointer;
+        }
+
+        .edit-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .edit-section {
+            margin-bottom: 25px;
+        }
+
+        .edit-section h3 {
+            font-size: 1.2rem;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f1f2f6;
+        }
+
+        .edit-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .edit-item:hover {
+            background: #f1f2f6;
+            transform: translateX(5px);
+        }
+
+        .edit-item-name {
+            font-weight: 600;
+        }
+
+        .edit-item-desc {
+            font-size: 0.85rem;
+            color: #636e72;
+        }
+
+        .edit-item-arrow {
+            color: var(--primary-color);
+        }
+
+        /* 表单样式 */
+        .edit-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            padding: 12px 15px;
+            border: 2px solid var(--gray-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        /* 文件上传区域 */
+        .upload-area {
+            border: 2px dashed var(--gray-color);
+            border-radius: 8px;
+            padding: 30px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+        }
+
+        .upload-area:hover, .upload-area.dragover {
+            border-color: var(--primary-color);
+            background-color: rgba(108, 92, 231, 0.05);
+        }
+
+        .upload-area i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .upload-area h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--dark-color);
+        }
+
+        .upload-area p {
+            color: #636e72;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+        }
+
+        .upload-preview {
+            margin-top: 15px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .upload-preview img {
+            max-width: 200px;
+            max-height: 200px;
+            border-radius: 8px;
+            border: 2px solid var(--gray-color);
+        }
+
+        /* 动画 */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        /* 隐藏类 */
+        .hidden {
+            display: none !important;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .logo h1 {
+                font-size: 1.3rem;
+            }
+
+            .logo i {
+                font-size: 1.7rem;
+            }
+
+            .resume-basic h1 {
+                font-size: 1.6rem;
+            }
+            
+            .resume-header {
+                gap: 15px;
+            }
+            
+            .resume-avatar img {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .contact-content {
+                padding: 20px;
+            }
+            
+            .contact-info-item {
+                padding: 12px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .contact-info-left {
+                width: 100%;
+            }
+            
+            .contact-action-btns {
+                width: 100%;
+                justify-content: flex-end;
+            }
+        }
+
+        /* 组展示区域 */
         .groups-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -685,41 +1364,6 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .form-group label {
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--dark-color);
-        }
-
-        .form-group input, .form-group select, .form-group textarea {
-            padding: 12px 15px;
-            border: 2px solid var(--gray-color);
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-            border-color: var(--primary-color);
-            outline: none;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .manage-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
         }
 
         /* 文件上传区域 */
@@ -1036,27 +1680,6 @@
             }
         }
 
-        /* 动画 */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in {
-            animation: fadeIn 0.5s ease forwards;
-        }
-
-        /* 隐藏类 */
-        .hidden {
-            display: none !important;
-        }
-
         /* 添加的样式：分类路径显示 */
         .category-path {
             font-size: 1.3rem;
@@ -1118,6 +1741,75 @@
             color: var(--danger-color);
             font-size: 3rem;
             margin-bottom: 20px;
+        }
+        
+        /* 简历模态框样式 */
+        .resume-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .resume-modal.active {
+            display: flex;
+        }
+
+        .resume-modal-content {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .resume-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: #636e72;
+            cursor: pointer;
+        }
+
+        /* 子编辑模态框（用于具体编辑项） */
+        .sub-edit-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .sub-edit-modal.active {
+            display: flex;
+        }
+
+        .sub-edit-content {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
         }
     </style>
 </head>
@@ -1228,8 +1920,129 @@
 
 <!-- 主内容区域 -->
 <main class="container">
+    <!-- 简历概览区域 - 始终显示 -->
+    <section class="resume-overview fade-in" id="resumeSection">
+        <!-- 卡片编辑按钮 - 放在右上角（登录后显示） -->
+        <button class="resume-edit-btn hidden" id="resumeEditBtn" title="编辑简历">
+            <i class="fas fa-edit"></i>
+        </button>
+        
+        <div class="resume-header">
+            <div class="resume-avatar">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="张明" id="resumeAvatar">
+                <div class="online-status"></div>
+            </div>
+            <div class="resume-basic">
+                <h1 id="resumeName">张明</h1>
+                <p class="resume-title" id="resumeTitle">高级前端开发工程师</p>
+                <div class="resume-tags" id="resumeTags">
+                    <span class="resume-tag">React</span>
+                    <span class="resume-tag">Vue.js</span>
+                    <span class="resume-tag">TypeScript</span>
+                    <span class="resume-tag">UI/UX设计</span>
+                    <span class="resume-tag">6年经验</span>
+                </div>
+            </div>
+            <div class="resume-actions">
+                <button class="btn btn-primary" id="contactBtn">
+                    <i class="fas fa-envelope"></i> 联系我
+                </button>
+                <button class="btn btn-secondary" id="downloadResumeBtn">
+                    <i class="fas fa-download"></i> 下载简历
+                </button>
+            </div>
+        </div>
+        
+        <!-- 展开按钮 -->
+        <div class="expand-btn-container">
+            <button class="expand-btn" id="expandBtn">
+                <i class="fas fa-chevron-down"></i> 展开详细信息
+            </button>
+        </div>
+        
+        <!-- 折叠内容区域 -->
+        <div class="resume-collapsed" id="resumeCollapsed">
+            <div class="resume-details">
+                <div class="detail-column">
+                    <h3><i class="fas fa-user"></i> 基本信息</h3>
+                    <ul class="detail-list" id="basicInfo">
+                        <li><strong>电话：</strong><span id="phone">138-1234-5678</span></li>
+                        <li><strong>邮箱：</strong><span id="email">zhangming@example.com</span></li>
+                        <li><strong>微信：</strong><span id="wechat">zhangming_tech</span></li>
+                        <li><strong>地点：</strong><span id="location">上海</span></li>
+                        <li><strong>求职状态：</strong><span id="jobStatus">积极寻找机会</span></li>
+                    </ul>
+                </div>
+                
+                <div class="detail-column">
+                    <h3><i class="fas fa-briefcase"></i> 工作经历</h3>
+                    <div class="experience-list" id="experienceList">
+                        <div class="experience-item">
+                            <h4>字节跳动</h4>
+                            <p class="experience-period">2021.06 - 至今</p>
+                            <p class="experience-position">高级前端开发工程师</p>
+                            <p class="experience-desc">负责核心业务前端架构设计，带领3人前端团队完成多个重点项目开发，优化页面性能提升30%</p>
+                        </div>
+                        <div class="experience-item">
+                            <h4>腾讯科技</h4>
+                            <p class="experience-period">2019.03 - 2021.05</p>
+                            <p class="experience-position">前端开发工程师</p>
+                            <p class="experience-desc">参与微信生态产品开发，主导多个小程序项目，用户量超500万，获公司年度创新奖</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="detail-column">
+                    <h3><i class="fas fa-star"></i> 核心技能</h3>
+                    <div class="skills-list" id="skillsList">
+                        <div class="skill-item">
+                            <span class="skill-name">React & Next.js</span>
+                            <div class="skill-bar"><div class="skill-level" style="width: 95%"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Vue.js & Nuxt.js</span>
+                            <div class="skill-bar"><div class="skill-level" style="width: 90%"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">TypeScript</span>
+                            <div class="skill-bar"><div class="skill-level" style="width: 88%"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Node.js</span>
+                            <div class="skill-bar"><div class="skill-level" style="width: 80%"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">UI/UX设计</span>
+                            <div class="skill-bar"><div class="skill-level" style="width: 75%"></div></div>
+                        </div>
+                    </div>
+                    
+                    <h3 style="margin-top: 25px;"><i class="fas fa-graduation-cap"></i> 教育背景</h3>
+                    <div class="education-list" id="educationList">
+                        <div class="education-item">
+                            <h4>上海交通大学</h4>
+                            <p class="education-period">2014 - 2018</p>
+                            <p class="education-major">计算机科学与技术 | 本科</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 收起按钮（桌面端） -->
+            <div class="expand-btn-container">
+                <button class="expand-btn" id="collapseBtn">
+                    <i class="fas fa-chevron-up"></i> 收起详细信息
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 手机端收起按钮（悬浮） -->
+    <button class="mobile-collapse-btn hidden" id="mobileCollapseBtn">
+        <i class="fas fa-chevron-up"></i> 收起
+    </button>
     <!-- 分类导航 -->
-    <section class="categories-nav">
+    <section class="categories-nav fade-in">
         <div class="categories-title">
             <h2><i class="fas fa-tags"></i> 作品分类</h2>
             <button class="btn btn-small btn-primary hidden" id="addCategoryBtn">
@@ -1352,6 +2165,172 @@
     </div>
 </div>
 
+<!-- 联系模态框 - 优化版 -->
+<div class="contact-modal" id="contactModal">
+    <div class="contact-content">
+        <button class="contact-close" id="contactClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <h2 style="font-size: 1.5rem; color: var(--primary-color); margin-bottom: 20px; text-align: center;">联系方式</h2>
+        
+        <div class="contact-info-list">
+            <div class="contact-info-item">
+                <div class="contact-info-left">
+                    <i class="fas fa-phone"></i>
+                    <div class="contact-info-text">
+                        <strong>电话</strong>
+                        <p id="contactPhone">138-1234-5678</p>
+                    </div>
+                </div>
+                <div class="contact-action-btns">
+                    <button class="btn btn-primary btn-small copy-btn" data-text="138-1234-5678">
+                        <i class="fas fa-copy"></i> 复制
+                    </button>
+                </div>
+            </div>
+            
+            <div class="contact-info-item">
+                <div class="contact-info-left">
+                    <i class="fas fa-envelope"></i>
+                    <div class="contact-info-text">
+                        <strong>邮箱</strong>
+                        <p id="contactEmail">zhangming@example.com</p>
+                    </div>
+                </div>
+                <div class="contact-action-btns">
+                    <button class="btn btn-primary btn-small copy-btn" data-text="zhangming@example.com">
+                        <i class="fas fa-copy"></i> 复制
+                    </button>
+                </div>
+            </div>
+            
+            <div class="contact-info-item">
+                <div class="contact-info-left">
+                    <i class="fab fa-weixin"></i>
+                    <div class="contact-info-text">
+                        <strong>微信</strong>
+                        <p id="contactWechat">zhangming_tech</p>
+                    </div>
+                </div>
+                <div class="contact-action-btns">
+                    <button class="btn btn-primary btn-small copy-btn" data-text="zhangming_tech">
+                        <i class="fas fa-copy"></i> 复制
+                    </button>
+                    <button class="btn btn-secondary btn-small" id="showQrBtn">
+                        <i class="fas fa-qrcode"></i> 扫码
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 二维码区域 -->
+        <div class="qr-code-container" id="qrCodeContainer">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://example.com/wechat/zhangming_tech" alt="微信二维码" class="qr-code-img">
+            <p style="font-size: 0.8rem; color: #666; margin-top: 8px;">微信扫描添加好友</p>
+        </div>
+        
+        <div class="contact-actions" style="margin-top: 20px; text-align: center;">
+            <button type="button" class="btn btn-secondary" id="closeContactBtn">关闭</button>
+        </div>
+    </div>
+</div>
+<!-- 简历编辑模态框 -->
+<div class="edit-modal" id="editModal">
+    <div class="edit-content">
+        <button class="edit-close" id="editClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <h2 class="edit-title">编辑简历信息</h2>
+        
+        <div class="edit-section">
+            <h3>个人信息</h3>
+            <div class="edit-item" id="editBasicInfoBtn">
+                <div>
+                    <div class="edit-item-name">基本信息</div>
+                    <div class="edit-item-desc">姓名、职位、联系方式等</div>
+                </div>
+                <i class="fas fa-chevron-right edit-item-arrow"></i>
+            </div>
+            
+            <div class="edit-item" id="editAvatarBtn">
+                <div>
+                    <div class="edit-item-name">头像设置</div>
+                    <div class="edit-item-desc">上传或更换个人头像</div>
+                </div>
+                <i class="fas fa-chevron-right edit-item-arrow"></i>
+            </div>
+            
+            <div class="edit-item" id="editWechatQrBtn">
+                <div>
+                    <div class="edit-item-name">微信二维码</div>
+                    <div class="edit-item-desc">上传微信二维码图片</div>
+                </div>
+                <i class="fas fa-chevron-right edit-item-arrow"></i>
+            </div>
+            
+            <div class="edit-item" id="editResumeFileBtn">
+                <div>
+                    <div class="edit-item-name">简历文件</div>
+                    <div class="edit-item-desc">上传PDF简历文件用于下载</div>
+                </div>
+                <i class="fas fa-chevron-right edit-item-arrow"></i>
+            </div>
+        </div>
+        
+        <div class="edit-section">
+            <h3>工作经历</h3>
+            <div class="edit-item" id="editExperienceBtn">
+                <div>
+                    <div class="edit-item-name">编辑工作经历</div>
+                    <div class="edit-item-desc">添加、修改或删除工作经历</div>
+                </div>
+                <i class="fas fa-chevron-right edit-item-arrow"></i>
+            </div>
+        </div>
+        
+        <div class="edit-section">
+            <h3>技能与教育</h3>
+            <div class="edit-item" id="editSkillsBtn">
+                <div>
+                    <div class="edit-item-name">编辑技能</div>
+                    <div class="edit-item-desc">添加、修改技能及熟练度百分比</div>
+                </div>
+                <i class="fas fa-chevron-right edit-item-arrow"></i>
+            </div>
+            
+            <div class="edit-item" id="editEducationBtn">
+                <div>
+                    <div class="edit-item-name">编辑教育背景</div>
+                    <div class="edit-item-desc">修改教育背景信息</div>
+                </div>
+                <i class="fas fa-chevron-right edit-item-arrow"></i>
+            </div>
+        </div>
+        
+        <div class="form-actions" style="margin-top: 30px; text-align: center;">
+            <button class="btn btn-secondary" id="closeEditBtn">关闭编辑</button>
+        </div>
+    </div>
+</div>
+
+<!-- 子编辑模态框（用于具体编辑项） -->
+<div class="sub-edit-modal" id="subEditModal">
+    <div class="sub-edit-content">
+        <button class="edit-close" id="subEditClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <h2 class="edit-title" id="subEditTitle">编辑信息</h2>
+        
+        <div id="subEditContent">
+            <!-- 动态加载编辑表单 -->
+        </div>
+        
+        <div class="form-actions" style="margin-top: 20px;">
+            <button class="btn btn-primary" id="saveSubEditBtn">保存</button>
+            <button class="btn btn-secondary" id="backToEditListBtn">返回列表</button>
+        </div>
+    </div>
+</div>
 <script>
     // 添加Supabase库加载检查
     function checkSupabaseLoaded() {
@@ -1422,10 +2401,30 @@
         // 初始化变量
         let currentUser = null;
         let currentUserRole = null;
+        let currentUserId = null;
         let categories = [];
         let groups = [];
         let images = [];
         let admins = [];
+
+        // 简历相关变量
+        let resumeData = null;
+        let resumeExperiences = [];
+        let resumeSkills = [];
+        let resumeEducation = null;
+        let currentEditType = "";
+        let isMobileView = false;
+        
+        // 图片上传相关变量
+        let uploadFiles = [];
+        let groupCoverImageFile = null;
+        let groupCoverPreviewUrl = null;
+        let existingGroupCoverUrl = null;
+        
+        // 简历文件上传相关变量
+        let resumeAvatarFile = null;
+        let resumeQrFile = null;
+        let resumePdfFile = null;
 
         let currentCategoryId = null;
         let currentGroupId = null;
@@ -1434,12 +2433,6 @@
         let manageType = '';
         let manageId = null;
         
-        // 组封面图片相关 - 新增变量
-        let groupCoverImageFile = null;
-        let groupCoverPreviewUrl = null;
-        let existingGroupCoverUrl = null;
-        let uploadFiles = []; // 恢复原有的uploadFiles变量
-
         // 图片预览变量
         let zoomLevel = 1;
         let isDragging = false;
@@ -1469,6 +2462,35 @@
         const passwordForm = document.getElementById('passwordForm');
         const adminList = document.getElementById('adminList');
         const addAdminBtn = document.getElementById('addAdminBtn');
+
+        // 简历相关DOM元素
+        const resumeSection = document.getElementById('resumeSection');
+        const resumeEditBtn = document.getElementById('resumeEditBtn');
+        const contactBtn = document.getElementById('contactBtn');
+        const downloadResumeBtn = document.getElementById('downloadResumeBtn');
+        const expandBtn = document.getElementById('expandBtn');
+        const collapseBtn = document.getElementById('collapseBtn');
+        const mobileCollapseBtn = document.getElementById('mobileCollapseBtn');
+        const resumeCollapsed = document.getElementById('resumeCollapsed');
+        
+        const contactModal = document.getElementById('contactModal');
+        const contactClose = document.getElementById('contactClose');
+        const closeContactBtn = document.getElementById('closeContactBtn');
+        const showQrBtn = document.getElementById('showQrBtn');
+        const qrCodeContainer = document.getElementById('qrCodeContainer');
+        const copyBtns = document.querySelectorAll('.copy-btn');
+        
+        const editModal = document.getElementById('editModal');
+        const editClose = document.getElementById('editClose');
+        const closeEditBtn = document.getElementById('closeEditBtn');
+        const editItemBtns = document.querySelectorAll('.edit-item');
+        
+        const subEditModal = document.getElementById('subEditModal');
+        const subEditClose = document.getElementById('subEditClose');
+        const subEditTitle = document.getElementById('subEditTitle');
+        const subEditContent = document.getElementById('subEditContent');
+        const saveSubEditBtn = document.getElementById('saveSubEditBtn');
+        const backToEditListBtn = document.getElementById('backToEditListBtn');
 
         const categoriesList = document.getElementById('categoriesList');
         const addCategoryBtn = document.getElementById('addCategoryBtn');
@@ -1511,10 +2533,12 @@
         function checkLoginStatus() {
             const savedUser = localStorage.getItem('portfolioCurrentUser');
             const savedRole = localStorage.getItem('portfolioCurrentUserRole');
+            const savedUserId = localStorage.getItem('portfolioCurrentUserId');
 
-            if (savedUser && savedRole) {
+            if (savedUser && savedRole && savedUserId) {
                 currentUser = savedUser;
                 currentUserRole = savedRole;
+                currentUserId = parseInt(savedUserId);
 
                 beforeLogin.classList.add('hidden');
                 afterLogin.classList.remove('hidden');
@@ -1523,9 +2547,13 @@
                 addCategoryBtn.classList.remove('hidden');
                 addGroupBtnContainer.classList.remove('hidden');
                 addImageBtn.classList.remove('hidden');
+                resumeEditBtn.classList.remove('hidden');
 
                 // 设置按钮始终显示
                 settingsBtn.style.display = 'flex';
+
+                // 加载简历数据
+                loadResumeData();
 
                 return true;
             } else {
@@ -1534,7 +2562,11 @@
                 addCategoryBtn.classList.add('hidden');
                 addGroupBtnContainer.classList.add('hidden');
                 addImageBtn.classList.add('hidden');
+                resumeEditBtn.classList.add('hidden');
                 settingsBtn.style.display = 'none';
+
+                // 显示默认简历数据（公开视图）
+                loadResumeData();
 
                 return false;
             }
@@ -1566,6 +2598,374 @@
             } catch (error) {
                 console.error('初始化失败:', error);
                 showNotification('初始化失败，请刷新页面重试');
+            }
+        }
+
+        // 加载简历数据
+        async function loadResumeData() {
+            try {
+                let resumeResult;
+                
+                if (currentUserId) {
+                    // 登录用户：加载自己的简历
+                    const { data, error } = await supabaseClient
+                        .from('resumes')
+                        .select('*')
+                        .eq('admin_id', currentUserId)
+                        .maybeSingle(); // 使用maybeSingle，可能没有记录
+                        
+                    if (error && error.code !== 'PGRST116') throw error; // PGRST116表示没有找到记录
+                    
+                    resumeResult = data;
+                } else {
+                    // 非登录用户：加载第一个管理员的简历（公开视图）
+                    const { data, error } = await supabaseClient
+                        .from('resumes')
+                        .select('*')
+                        .limit(1)
+                        .maybeSingle();
+                        
+                    if (error && error.code !== 'PGRST116') throw error;
+                    
+                    resumeResult = data;
+                }
+
+                if (resumeResult) {
+                    resumeData = resumeResult;
+                    
+                    // 加载关联数据
+                    await Promise.all([
+                        loadResumeExperiences(),
+                        loadResumeSkills(),
+                        loadResumeEducation()
+                    ]);
+                    
+                    // 渲染简历
+                    renderResume();
+                } else {
+                    // 没有简历数据，使用默认值
+                    resumeData = {
+                        name: "张明",
+                        title: "高级前端开发工程师",
+                        tags: ["React", "Vue.js", "TypeScript", "UI/UX设计", "6年经验"],
+                        phone: "138-1234-5678",
+                        email: "zhangming@example.com",
+                        wechat: "zhangming_tech",
+                        location: "上海",
+                        job_status: "积极寻找机会",
+                        avatar_url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+                        wechat_qr_url: "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://example.com/wechat/zhangming_tech",
+                        resume_file_url: null
+                    };
+                    
+                    resumeExperiences = [
+                        {
+                            company: "字节跳动",
+                            period: "2021.06 - 至今",
+                            position: "高级前端开发工程师",
+                            description: "负责核心业务前端架构设计，带领3人前端团队完成多个重点项目开发，优化页面性能提升30%"
+                        },
+                        {
+                            company: "腾讯科技",
+                            period: "2019.03 - 2021.05",
+                            position: "前端开发工程师",
+                            description: "参与微信生态产品开发，主导多个小程序项目，用户量超500万，获公司年度创新奖"
+                        }
+                    ];
+                    
+                    resumeSkills = [
+                        { name: "React & Next.js", level: 95 },
+                        { name: "Vue.js & Nuxt.js", level: 90 },
+                        { name: "TypeScript", level: 88 },
+                        { name: "Node.js", level: 80 },
+                        { name: "UI/UX设计", level: 75 }
+                    ];
+                    
+                    resumeEducation = {
+                        school: "上海交通大学",
+                        period: "2014 - 2018",
+                        major: "计算机科学与技术 | 本科"
+                    };
+                    
+                    // 如果是登录用户且没有简历，创建默认简历
+                    if (currentUserId) {
+                        createDefaultResume();
+                    } else {
+                        renderResume();
+                    }
+                }
+            } catch (error) {
+                console.error('加载简历数据失败:', error);
+                // 使用默认数据
+                resumeData = {
+                    name: "张明",
+                    title: "高级前端开发工程师",
+                    tags: ["React", "Vue.js", "TypeScript", "UI/UX设计", "6年经验"],
+                    phone: "138-1234-5678",
+                    email: "zhangming@example.com",
+                    wechat: "zhangming_tech",
+                    location: "上海",
+                    job_status: "积极寻找机会",
+                    avatar_url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+                    wechat_qr_url: "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://example.com/wechat/zhangming_tech",
+                    resume_file_url: null
+                };
+                
+                resumeExperiences = [];
+                resumeSkills = [];
+                resumeEducation = null;
+                
+                renderResume();
+            }
+        }
+
+        // 加载工作经历
+        async function loadResumeExperiences() {
+            if (!resumeData || !resumeData.id) return;
+            
+            try {
+                const { data, error } = await supabaseClient
+                    .from('work_experiences')
+                    .select('*')
+                    .eq('resume_id', resumeData.id)
+                    .order('display_order', { ascending: true })
+                    .order('created_at', { ascending: false });
+                    
+                if (error) throw error;
+                
+                resumeExperiences = data || [];
+            } catch (error) {
+                console.error('加载工作经历失败:', error);
+                resumeExperiences = [];
+            }
+        }
+
+        // 加载技能
+        async function loadResumeSkills() {
+            if (!resumeData || !resumeData.id) return;
+            
+            try {
+                const { data, error } = await supabaseClient
+                    .from('skills')
+                    .select('*')
+                    .eq('resume_id', resumeData.id)
+                    .order('display_order', { ascending: true })
+                    .order('created_at', { ascending: false });
+                    
+                if (error) throw error;
+                
+                resumeSkills = data || [];
+            } catch (error) {
+                console.error('加载技能失败:', error);
+                resumeSkills = [];
+            }
+        }
+
+        // 加载教育背景
+        async function loadResumeEducation() {
+            if (!resumeData || !resumeData.id) return;
+            
+            try {
+                const { data, error } = await supabaseClient
+                    .from('educations')
+                    .select('*')
+                    .eq('resume_id', resumeData.id)
+                    .limit(1)
+                    .maybeSingle();
+                    
+                if (error && error.code !== 'PGRST116') throw error;
+                
+                resumeEducation = data || null;
+            } catch (error) {
+                console.error('加载教育背景失败:', error);
+                resumeEducation = null;
+            }
+        }
+
+        // 创建默认简历
+        async function createDefaultResume() {
+            if (!currentUserId) return;
+            
+            try {
+                const { data, error } = await supabaseClient
+                    .from('resumes')
+                    .insert([
+                        {
+                            admin_id: currentUserId,
+                            name: "张明",
+                            title: "高级前端开发工程师",
+                            phone: "138-1234-5678",
+                            email: "zhangming@example.com",
+                            wechat: "zhangming_tech",
+                            location: "上海",
+                            job_status: "积极寻找机会",
+                            tags: ["React", "Vue.js", "TypeScript", "UI/UX设计", "6年经验"]
+                        }
+                    ])
+                    .select()
+                    .single();
+                    
+                if (error) throw error;
+                
+                resumeData = data;
+                
+                // 创建默认工作经历
+                const defaultExperiences = [
+                    {
+                        company: "字节跳动",
+                        period: "2021.06 - 至今",
+                        position: "高级前端开发工程师",
+                        description: "负责核心业务前端架构设计，带领3人前端团队完成多个重点项目开发，优化页面性能提升30%"
+                    },
+                    {
+                        company: "腾讯科技",
+                        period: "2019.03 - 2021.05",
+                        position: "前端开发工程师",
+                        description: "参与微信生态产品开发，主导多个小程序项目，用户量超500万，获公司年度创新奖"
+                    }
+                ];
+                
+                for (const exp of defaultExperiences) {
+                    await supabaseClient
+                        .from('work_experiences')
+                        .insert({
+                            resume_id: resumeData.id,
+                            ...exp
+                        });
+                }
+                
+                // 创建默认技能
+                const defaultSkills = [
+                    { name: "React & Next.js", level: 95 },
+                    { name: "Vue.js & Nuxt.js", level: 90 },
+                    { name: "TypeScript", level: 88 },
+                    { name: "Node.js", level: 80 },
+                    { name: "UI/UX设计", level: 75 }
+                ];
+                
+                for (const skill of defaultSkills) {
+                    await supabaseClient
+                        .from('skills')
+                        .insert({
+                            resume_id: resumeData.id,
+                            ...skill
+                        });
+                }
+                
+                // 创建默认教育背景
+                await supabaseClient
+                    .from('educations')
+                    .insert({
+                        resume_id: resumeData.id,
+                        school: "上海交通大学",
+                        period: "2014 - 2018",
+                        major: "计算机科学与技术 | 本科"
+                    });
+                
+                // 重新加载简历数据
+                await loadResumeData();
+                
+            } catch (error) {
+                console.error('创建默认简历失败:', error);
+                renderResume();
+            }
+        }
+
+        // 渲染简历
+        function renderResume() {
+            if (!resumeData) return;
+            
+            // 基本信息
+            document.getElementById('resumeName').textContent = resumeData.name || '张明';
+            document.getElementById('resumeTitle').textContent = resumeData.title || '高级前端开发工程师';
+            
+            // 头像
+            const avatarImg = document.getElementById('resumeAvatar');
+            if (resumeData.avatar_url) {
+                avatarImg.src = resumeData.avatar_url;
+            } else {
+                avatarImg.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80";
+            }
+            
+            // 更新标签
+            const tagsContainer = document.getElementById('resumeTags');
+            tagsContainer.innerHTML = '';
+            const tags = resumeData.tags || ["React", "Vue.js", "TypeScript", "UI/UX设计", "6年经验"];
+            tags.forEach(tag => {
+                const tagElement = document.createElement('span');
+                tagElement.className = 'resume-tag';
+                tagElement.textContent = tag;
+                tagsContainer.appendChild(tagElement);
+            });
+            
+            // 联系信息
+            document.getElementById('phone').textContent = resumeData.phone || '138-1234-5678';
+            document.getElementById('email').textContent = resumeData.email || 'zhangming@example.com';
+            document.getElementById('wechat').textContent = resumeData.wechat || 'zhangming_tech';
+            document.getElementById('location').textContent = resumeData.location || '上海';
+            document.getElementById('jobStatus').textContent = resumeData.job_status || '积极寻找机会';
+            
+            // 联系模态框中的信息
+            document.getElementById('contactPhone').textContent = resumeData.phone || '138-1234-5678';
+            document.getElementById('contactEmail').textContent = resumeData.email || 'zhangming@example.com';
+            document.getElementById('contactWechat').textContent = resumeData.wechat || 'zhangming_tech';
+            
+            // 更新复制按钮的data-text属性
+            const copyButtons = document.querySelectorAll('.copy-btn');
+            if (copyButtons.length >= 3) {
+                copyButtons[0].setAttribute('data-text', resumeData.phone || '138-1234-5678');
+                copyButtons[1].setAttribute('data-text', resumeData.email || 'zhangming@example.com');
+                copyButtons[2].setAttribute('data-text', resumeData.wechat || 'zhangming_tech');
+            }
+            
+            // 更新二维码
+            const qrImg = document.querySelector('.qr-code-img');
+            if (resumeData.wechat_qr_url) {
+                qrImg.src = resumeData.wechat_qr_url;
+            } else {
+                qrImg.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://example.com/wechat/zhangming_tech";
+            }
+            
+            // 工作经历
+            const experienceList = document.getElementById('experienceList');
+            experienceList.innerHTML = '';
+            resumeExperiences.forEach(exp => {
+                const expElement = document.createElement('div');
+                expElement.className = 'experience-item';
+                expElement.innerHTML = `
+                    <h4>${exp.company}</h4>
+                    <p class="experience-period">${exp.period}</p>
+                    <p class="experience-position">${exp.position}</p>
+                    <p class="experience-desc">${exp.description || ''}</p>
+                `;
+                experienceList.appendChild(expElement);
+            });
+            
+            // 技能
+            const skillsList = document.getElementById('skillsList');
+            skillsList.innerHTML = '';
+            resumeSkills.forEach(skill => {
+                const skillElement = document.createElement('div');
+                skillElement.className = 'skill-item';
+                skillElement.innerHTML = `
+                    <span class="skill-name">${skill.name}</span>
+                    <div class="skill-bar"><div class="skill-level" style="width: ${skill.level}%"></div></div>
+                `;
+                skillsList.appendChild(skillElement);
+            });
+            
+            // 教育背景
+            const educationList = document.getElementById('educationList');
+            educationList.innerHTML = '';
+            if (resumeEducation) {
+                const eduElement = document.createElement('div');
+                eduElement.className = 'education-item';
+                eduElement.innerHTML = `
+                    <h4>${resumeEducation.school}</h4>
+                    <p class="education-period">${resumeEducation.period}</p>
+                    <p class="education-major">${resumeEducation.major}</p>
+                `;
+                educationList.appendChild(eduElement);
             }
         }
 
@@ -1707,21 +3107,21 @@
         }
 
         // 上传图片到Supabase Storage
-        async function uploadImageToStorage(file, fileName) {
+        async function uploadImageToStorage(file, fileName, folder = 'portfolio-images') {
             try {
                 // 生成唯一文件名
                 const fileExt = fileName.split('.').pop();
                 const uniqueFileName = `${Date.now()}_${Math.random().toString(36).substring(2)}.${fileExt}`;
 
                 const {data, error} = await supabaseClient.storage
-                    .from('portfolio-images')
+                    .from(folder)
                     .upload(uniqueFileName, file);
 
                 if (error) throw error;
 
                 // 获取公开URL
                 const {data: urlData} = supabaseClient.storage
-                    .from('portfolio-images')
+                    .from(folder)
                     .getPublicUrl(uniqueFileName);
 
                 return urlData.publicUrl;
@@ -1733,6 +3133,9 @@
 
         // 设置事件监听器
         function setupEventListeners() {
+            // 检查是否是移动端
+            isMobileView = window.innerWidth <= 768;
+            
             // 登录相关
             loginBtn.addEventListener('click', () => {
                 loginModal.classList.add('active');
@@ -1792,6 +3195,136 @@
                 currentGroupId = null;
             });
 
+            // 简历编辑相关
+            resumeEditBtn.addEventListener('click', () => {
+                editModal.classList.add('active');
+            });
+            
+            // 联系按钮点击事件
+            contactBtn.addEventListener('click', function() {
+                contactModal.classList.add('active');
+            });
+            
+            // 下载简历按钮
+            downloadResumeBtn.addEventListener('click', function() {
+                if (resumeData && resumeData.resume_file_url) {
+                    // 如果有简历文件URL，则下载
+                    window.open(resumeData.resume_file_url, '_blank');
+                } else {
+                    // 否则提示需要上传简历文件
+                    alert('请先上传简历文件（在编辑简历功能中）');
+                }
+            });
+            
+            // 展开/收起功能
+            expandBtn.addEventListener('click', function() {
+                resumeCollapsed.classList.add('expanded');
+                expandBtn.style.display = 'none';
+                
+                // 如果是手机端，立即显示悬浮收起按钮
+                if (isMobileView) {
+                    mobileCollapseBtn.classList.remove('hidden');
+                }
+            });
+            
+            collapseBtn.addEventListener('click', function() {
+                collapseResume();
+            });
+            
+            mobileCollapseBtn.addEventListener('click', function() {
+                collapseResume();
+            });
+            
+            // 手机端滚动时检查是否显示收起按钮 - 修复逻辑
+            window.addEventListener('scroll', function() {
+                if (isMobileView && resumeCollapsed.classList.contains('expanded')) {
+                    const resumeSectionEl = document.querySelector('.resume-overview');
+                    const resumeBottom = resumeSectionEl.getBoundingClientRect().bottom;
+                    const windowHeight = window.innerHeight;
+                    
+                    // 如果简历卡片底部已经滚动出视图（即用户已经划过了简历部分），隐藏悬浮收起按钮
+                    if (resumeBottom < 0) {
+                        mobileCollapseBtn.classList.add('hidden');
+                    } else {
+                        mobileCollapseBtn.classList.remove('hidden');
+                    }
+                }
+            });
+            
+            // 窗口大小变化时更新视图状态
+            window.addEventListener('resize', function() {
+                isMobileView = window.innerWidth <= 768;
+                
+                // 如果从桌面端切换到移动端，且内容已展开，显示悬浮收起按钮
+                if (isMobileView && resumeCollapsed.classList.contains('expanded')) {
+                    mobileCollapseBtn.classList.remove('hidden');
+                } else {
+                    mobileCollapseBtn.classList.add('hidden');
+                }
+            });
+            
+            // 联系模态框关闭
+            contactClose.addEventListener('click', function() {
+                contactModal.classList.remove('active');
+                qrCodeContainer.classList.remove('active');
+            });
+            
+            closeContactBtn.addEventListener('click', function() {
+                contactModal.classList.remove('active');
+                qrCodeContainer.classList.remove('active');
+            });
+            
+            // 显示二维码
+            showQrBtn.addEventListener('click', function() {
+                qrCodeContainer.classList.toggle('active');
+            });
+            
+            // 复制按钮功能
+            copyBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const text = this.getAttribute('data-text');
+                    navigator.clipboard.writeText(text).then(() => {
+                        alert('已复制到剪贴板: ' + text);
+                    });
+                });
+            });
+            
+            // 编辑模态框关闭
+            editClose.addEventListener('click', function() {
+                editModal.classList.remove('active');
+            });
+            
+            closeEditBtn.addEventListener('click', function() {
+                editModal.classList.remove('active');
+            });
+            
+            // 编辑项点击事件
+            editItemBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const editType = this.id.replace('Btn', '');
+                    openSubEditModal(editType);
+                });
+            });
+            
+            // 子编辑模态框关闭
+            subEditClose.addEventListener('click', function() {
+                subEditModal.classList.remove('active');
+                // 返回到编辑列表页面
+                editModal.classList.add('active');
+            });
+            
+            // 返回编辑列表按钮
+            backToEditListBtn.addEventListener('click', function() {
+                subEditModal.classList.remove('active');
+                // 返回到编辑列表页面
+                editModal.classList.add('active');
+            });
+            
+            // 保存子编辑
+            saveSubEditBtn.addEventListener('click', function() {
+                saveSubEditData();
+            });
+
             // 全屏预览相关
             fullscreenClose.addEventListener('click', () => {
                 resetImageTransform();
@@ -1849,7 +3382,73 @@
                 if (settingsModal.classList.contains('active') && e.key === 'Escape') {
                     settingsModal.classList.remove('active');
                 }
+                
+                if (editModal.classList.contains('active') && e.key === 'Escape') {
+                    editModal.classList.remove('active');
+                }
+                
+                if (subEditModal.classList.contains('active') && e.key === 'Escape') {
+                    subEditModal.classList.remove('active');
+                    editModal.classList.add('active');
+                }
+                
+                if (contactModal.classList.contains('active') && e.key === 'Escape') {
+                    contactModal.classList.remove('active');
+                    qrCodeContainer.classList.remove('active');
+                }
             });
+            
+            // 点击模态框外部关闭
+            document.addEventListener('click', function(e) {
+                if (e.target === contactModal) {
+                    contactModal.classList.remove('active');
+                    qrCodeContainer.classList.remove('active');
+                }
+                if (e.target === editModal) {
+                    editModal.classList.remove('active');
+                }
+                if (e.target === subEditModal) {
+                    subEditModal.classList.remove('active');
+                    editModal.classList.add('active');
+                }
+                if (e.target === manageModal) {
+                    manageModal.classList.remove('active');
+                    // 重置组封面相关变量
+                    groupCoverImageFile = null;
+                    groupCoverPreviewUrl = null;
+                    existingGroupCoverUrl = null;
+                }
+                if (e.target === settingsModal) {
+                    settingsModal.classList.remove('active');
+                }
+                if (e.target === loginModal) {
+                    loginModal.classList.remove('active');
+                }
+            });
+            
+            // 分类标签点击事件
+            const categoryTags = document.querySelectorAll('.category-tag');
+            categoryTags.forEach(tag => {
+                tag.addEventListener('click', function() {
+                    categoryTags.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // 作品组卡片点击事件
+            const groupCards = document.querySelectorAll('.group-card');
+            groupCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    alert('作品详情查看功能将在完整版本中提供。');
+                });
+            });
+        }
+        
+        // 收起简历内容函数
+        function collapseResume() {
+            resumeCollapsed.classList.remove('expanded');
+            expandBtn.style.display = 'flex';
+            mobileCollapseBtn.classList.add('hidden');
         }
 
         // 设置图片交互事件
@@ -2007,10 +3606,12 @@
                 if (data.password_hash === password) {
                     currentUser = username;
                     currentUserRole = data.role;
+                    currentUserId = data.id;
 
                     // 保存登录状态
                     localStorage.setItem('portfolioCurrentUser', currentUser);
                     localStorage.setItem('portfolioCurrentUserRole', currentUserRole);
+                    localStorage.setItem('portfolioCurrentUserId', currentUserId);
 
                     // 更新用户信息显示
                     userAvatar.textContent = data.name ? data.name.substring(0, 1) : '管';
@@ -2037,8 +3638,10 @@
         function handleLogout() {
             localStorage.removeItem('portfolioCurrentUser');
             localStorage.removeItem('portfolioCurrentUserRole');
+            localStorage.removeItem('portfolioCurrentUserId');
             currentUser = null;
             currentUserRole = null;
+            currentUserId = null;
             checkLoginStatus();
             showNotification('已退出登录');
         }
@@ -2426,6 +4029,630 @@
 
             // 重置变换
             resetImageTransform();
+        }
+
+        // 打开子编辑模态框（简历编辑）
+        function openSubEditModal(editType) {
+            currentEditType = editType;
+            editModal.classList.remove('active');
+            
+            let title = '';
+            let formHtml = '';
+            
+            switch(editType) {
+                case 'editBasicInfo':
+                    title = '编辑基本信息';
+                    formHtml = `
+                        <div class="edit-form">
+                            <div class="form-group">
+                                <label for="editName">姓名</label>
+                                <input type="text" id="editName" value="${resumeData.name || '张明'}">
+                            </div>
+                            <div class="form-group">
+                                <label for="editTitle">职位/职业方向</label>
+                                <input type="text" id="editTitle" value="${resumeData.title || '高级前端开发工程师'}">
+                            </div>
+                            <div class="form-group">
+                                <label for="editTags">技能标签（用逗号分隔）</label>
+                                <input type="text" id="editTags" value="${(resumeData.tags || ['React', 'Vue.js', 'TypeScript', 'UI/UX设计', '6年经验']).join(', ')}">
+                            </div>
+                            <div class="form-group">
+                                <label for="editPhone">电话</label>
+                                <input type="text" id="editPhone" value="${resumeData.phone || '138-1234-5678'}">
+                            </div>
+                            <div class="form-group">
+                                <label for="editEmail">邮箱</label>
+                                <input type="text" id="editEmail" value="${resumeData.email || 'zhangming@example.com'}">
+                            </div>
+                            <div class="form-group">
+                                <label for="editWechat">微信</label>
+                                <input type="text" id="editWechat" value="${resumeData.wechat || 'zhangming_tech'}">
+                            </div>
+                            <div class="form-group">
+                                <label for="editLocation">地点</label>
+                                <input type="text" id="editLocation" value="${resumeData.location || '上海'}">
+                            </div>
+                            <div class="form-group">
+                                <label for="editJobStatus">求职状态</label>
+                                <input type="text" id="editJobStatus" value="${resumeData.job_status || '积极寻找机会'}">
+                            </div>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'editAvatar':
+                    title = '上传头像';
+                    formHtml = `
+                        <div class="edit-form">
+                            <div class="upload-area" id="avatarUploadArea">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <h3>点击或拖拽上传头像</h3>
+                                <p>建议尺寸 200x200 像素，支持 JPG, PNG 格式</p>
+                                <input type="file" id="avatarFileInput" accept="image/*" style="display: none;">
+                            </div>
+                            <div class="upload-preview">
+                                <img src="${resumeData.avatar_url || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80'}" id="avatarPreview" alt="头像预览">
+                            </div>
+                            <p style="font-size: 0.9rem; color: #666; text-align: center; margin-top: 10px;">当前头像预览</p>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'editWechatQr':
+                    title = '上传微信二维码';
+                    formHtml = `
+                        <div class="edit-form">
+                            <div class="upload-area" id="qrUploadArea">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <h3>点击或拖拽上传二维码</h3>
+                                <p>建议尺寸 150x150 像素，支持 JPG, PNG 格式</p>
+                                <input type="file" id="qrFileInput" accept="image/*" style="display: none;">
+                            </div>
+                            <div class="upload-preview">
+                                <img src="${resumeData.wechat_qr_url || 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://example.com/wechat/zhangming_tech'}" id="qrPreview" alt="二维码预览">
+                            </div>
+                            <p style="font-size: 0.9rem; color: #666; text-align: center; margin-top: 10px;">当前二维码预览</p>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'editResumeFile':
+                    title = '上传简历文件';
+                    formHtml = `
+                        <div class="edit-form">
+                            <div class="upload-area" id="resumeUploadArea">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <h3>点击或拖拽上传简历文件</h3>
+                                <p>支持 PDF 格式，最大 10MB</p>
+                                <input type="file" id="resumeFileInput" accept=".pdf" style="display: none;">
+                            </div>
+                            <p style="font-size: 0.9rem; color: #666; text-align: center; margin-top: 10px;">
+                                ${resumeData.resume_file_url ? '已上传简历文件' : '尚未上传简历文件'}
+                            </p>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'editExperience':
+                    title = '编辑工作经历';
+                    formHtml = `
+                        <div class="edit-form">
+                            <div id="experienceEditList">
+                                ${resumeExperiences.map((exp, index) => `
+                                    <div class="form-group" style="border: 1px solid #eee; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                            <h4 style="margin: 0;">工作经历 ${index + 1}</h4>
+                                            <button type="button" class="btn btn-small" style="background: #ff7675; color: white;" onclick="removeExperience(${index})">删除</button>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editExpCompany${index}">公司名称</label>
+                                            <input type="text" id="editExpCompany${index}" value="${exp.company}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editExpPeriod${index}">工作时间</label>
+                                            <input type="text" id="editExpPeriod${index}" value="${exp.period}" placeholder="例如: 2021.06 - 至今">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editExpPosition${index}">职位</label>
+                                            <input type="text" id="editExpPosition${index}" value="${exp.position}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editExpDesc${index}">工作描述</label>
+                                            <textarea id="editExpDesc${index}">${exp.description || ''}</textarea>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            <button type="button" class="btn btn-primary" id="addExperienceBtn">添加工作经历</button>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'editSkills':
+                    title = '编辑技能';
+                    formHtml = `
+                        <div class="edit-form">
+                            <div id="skillsEditList">
+                                ${resumeSkills.map((skill, index) => `
+                                    <div class="form-group" style="border: 1px solid #eee; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                            <h4 style="margin: 0;">技能 ${index + 1}</h4>
+                                            <button type="button" class="btn btn-small" style="background: #ff7675; color: white;" onclick="removeSkill(${index})">删除</button>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editSkillName${index}">技能名称</label>
+                                            <input type="text" id="editSkillName${index}" value="${skill.name}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="editSkillLevel${index}">熟练度 (0-100)</label>
+                                            <input type="number" id="editSkillLevel${index}" min="0" max="100" value="${skill.level}">
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            <button type="button" class="btn btn-primary" id="addSkillBtn">添加技能</button>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'editEducation':
+                    title = '编辑教育背景';
+                    const edu = resumeEducation || { school: '', period: '', major: '' };
+                    formHtml = `
+                        <div class="edit-form">
+                            <div class="form-group">
+                                <label for="editEduSchool">学校名称</label>
+                                <input type="text" id="editEduSchool" value="${edu.school}">
+                            </div>
+                            <div class="form-group">
+                                <label for="editEduPeriod">学习时间</label>
+                                <input type="text" id="editEduPeriod" value="${edu.period}" placeholder="例如: 2014 - 2018">
+                            </div>
+                            <div class="form-group">
+                                <label for="editEduMajor">专业/学位</label>
+                                <input type="text" id="editEduMajor" value="${edu.major}">
+                            </div>
+                        </div>
+                    `;
+                    break;
+            }
+            
+            subEditTitle.textContent = title;
+            subEditContent.innerHTML = formHtml;
+            subEditModal.classList.add('active');
+            
+            // 添加动态事件监听
+            setTimeout(() => {
+                switch(editType) {
+                    case 'editAvatar':
+                        setupFileUpload('avatarFileInput', 'avatarUploadArea', 'avatarPreview', 'resumeAvatar');
+                        break;
+                    case 'editWechatQr':
+                        setupFileUpload('qrFileInput', 'qrUploadArea', 'qrPreview', 'resumeQr');
+                        break;
+                    case 'editResumeFile':
+                        setupFileUpload('resumeFileInput', 'resumeUploadArea', null, 'resumeFile');
+                        break;
+                    case 'editExperience':
+                        document.getElementById('addExperienceBtn').addEventListener('click', addExperienceField);
+                        break;
+                    case 'editSkills':
+                        document.getElementById('addSkillBtn').addEventListener('click', addSkillField);
+                        break;
+                }
+            }, 100);
+        }
+        
+        // 设置文件上传（简历相关）
+        function setupFileUpload(inputId, areaId, previewId, type) {
+            const fileInput = document.getElementById(inputId);
+            const uploadArea = document.getElementById(areaId);
+            const preview = previewId ? document.getElementById(previewId) : null;
+            
+            uploadArea.addEventListener('click', () => {
+                fileInput.click();
+            });
+            
+            fileInput.addEventListener('change', function(e) {
+                if (e.target.files.length > 0) {
+                    const file = e.target.files[0];
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                        if (preview) {
+                            preview.src = e.target.result;
+                        }
+                        
+                        // 根据类型更新数据
+                        if (type === 'resumeAvatar') {
+                            resumeAvatarFile = file;
+                        } else if (type === 'resumeQr') {
+                            resumeQrFile = file;
+                        } else if (type === 'resumeFile') {
+                            resumePdfFile = file;
+                        }
+                    };
+                    
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.classList.add('dragover');
+            });
+
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.classList.remove('dragover');
+            });
+
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('dragover');
+
+                if (e.dataTransfer.files.length) {
+                    fileInput.files = e.dataTransfer.files;
+                    fileInput.dispatchEvent(new Event('change'));
+                }
+            });
+        }
+        
+        // 添加工作经历字段
+        function addExperienceField() {
+            const experienceList = document.getElementById('experienceEditList');
+            const index = resumeExperiences.length;
+            
+            const newExpField = document.createElement('div');
+            newExpField.className = 'form-group';
+            newExpField.style.border = '1px solid #eee';
+            newExpField.style.padding = '15px';
+            newExpField.style.borderRadius = '8px';
+            newExpField.style.marginBottom = '15px';
+            
+            newExpField.innerHTML = `
+                <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                    <h4 style="margin: 0;">新工作经历</h4>
+                    <button type="button" class="btn btn-small" style="background: #ff7675; color: white;" onclick="removeExperience(${index})">删除</button>
+                </div>
+                <div class="form-group">
+                    <label for="editExpCompany${index}">公司名称</label>
+                    <input type="text" id="editExpCompany${index}" placeholder="输入公司名称">
+                </div>
+                <div class="form-group">
+                    <label for="editExpPeriod${index}">工作时间</label>
+                    <input type="text" id="editExpPeriod${index}" placeholder="例如: 2021.06 - 至今">
+                </div>
+                <div class="form-group">
+                    <label for="editExpPosition${index}">职位</label>
+                    <input type="text" id="editExpPosition${index}" placeholder="输入职位">
+                </div>
+                <div class="form-group">
+                    <label for="editExpDesc${index}">工作描述</label>
+                    <textarea id="editExpDesc${index}" placeholder="输入工作描述"></textarea>
+                </div>
+            `;
+            
+            experienceList.appendChild(newExpField);
+            resumeExperiences.push({
+                company: '',
+                period: '',
+                position: '',
+                description: ''
+            });
+        }
+        
+        // 删除工作经历
+        async function removeExperience(index) {
+            const exp = resumeExperiences[index];
+            
+            // 如果有ID（已保存到数据库），从数据库删除
+            if (exp && exp.id) {
+                try {
+                    await supabaseClient
+                        .from('work_experiences')
+                        .delete()
+                        .eq('id', exp.id);
+                } catch (error) {
+                    console.error('删除工作经历失败:', error);
+                }
+            }
+            
+            // 从本地数组中删除
+            resumeExperiences.splice(index, 1);
+            
+            // 重新打开编辑模态框以刷新列表
+            openSubEditModal('editExperience');
+        }
+        
+        // 添加技能字段
+        function addSkillField() {
+            const skillsList = document.getElementById('skillsEditList');
+            const index = resumeSkills.length;
+            
+            const newSkillField = document.createElement('div');
+            newSkillField.className = 'form-group';
+            newSkillField.style.border = '1px solid #eee';
+            newSkillField.style.padding = '15px';
+            newSkillField.style.borderRadius = '8px';
+            newSkillField.style.marginBottom = '15px';
+            
+            newSkillField.innerHTML = `
+                <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                    <h4 style="margin: 0;">新技能</h4>
+                    <button type="button" class="btn btn-small" style="background: #ff7675; color: white;" onclick="removeSkill(${index})">删除</button>
+                </div>
+                <div class="form-group">
+                    <label for="editSkillName${index}">技能名称</label>
+                    <input type="text" id="editSkillName${index}" placeholder="输入技能名称">
+                </div>
+                <div class="form-group">
+                    <label for="editSkillLevel${index}">熟练度 (0-100)</label>
+                    <input type="number" id="editSkillLevel${index}" min="0" max="100" placeholder="输入熟练度百分比">
+                </div>
+            `;
+            
+            skillsList.appendChild(newSkillField);
+            resumeSkills.push({
+                name: '',
+                level: 50
+            });
+        }
+        
+        // 删除技能
+        async function removeSkill(index) {
+            const skill = resumeSkills[index];
+            
+            // 如果有ID（已保存到数据库），从数据库删除
+            if (skill && skill.id) {
+                try {
+                    await supabaseClient
+                        .from('skills')
+                        .delete()
+                        .eq('id', skill.id);
+                } catch (error) {
+                    console.error('删除技能失败:', error);
+                }
+            }
+            
+            // 从本地数组中删除
+            resumeSkills.splice(index, 1);
+            
+            // 重新打开编辑模态框以刷新列表
+            openSubEditModal('editSkills');
+        }
+        
+        // 保存子编辑数据（简历相关）
+        async function saveSubEditData() {
+            if (!resumeData) return;
+            
+            try {
+                switch(currentEditType) {
+                    case 'editBasicInfo':
+                        const updatedResume = {
+                            name: document.getElementById('editName').value || resumeData.name,
+                            title: document.getElementById('editTitle').value || resumeData.title,
+                            tags: document.getElementById('editTags').value.split(',').map(tag => tag.trim()).filter(tag => tag),
+                            phone: document.getElementById('editPhone').value || resumeData.phone,
+                            email: document.getElementById('editEmail').value || resumeData.email,
+                            wechat: document.getElementById('editWechat').value || resumeData.wechat,
+                            location: document.getElementById('editLocation').value || resumeData.location,
+                            job_status: document.getElementById('editJobStatus').value || resumeData.job_status,
+                            updated_at: new Date().toISOString()
+                        };
+                        
+                        const { error } = await supabaseClient
+                            .from('resumes')
+                            .update(updatedResume)
+                            .eq('id', resumeData.id);
+                            
+                        if (error) throw error;
+                        
+                        // 更新本地数据
+                        Object.assign(resumeData, updatedResume);
+                        break;
+                        
+                    case 'editAvatar':
+                        if (resumeAvatarFile) {
+                            // 上传头像到Storage
+                            const avatarUrl = await uploadImageToStorage(resumeAvatarFile, resumeAvatarFile.name, 'resume-images');
+                            
+                            // 更新数据库
+                            const { error } = await supabaseClient
+                                .from('resumes')
+                                .update({ 
+                                    avatar_url: avatarUrl,
+                                    updated_at: new Date().toISOString()
+                                })
+                                .eq('id', resumeData.id);
+                                
+                            if (error) throw error;
+                            
+                            // 更新本地数据
+                            resumeData.avatar_url = avatarUrl;
+                            resumeAvatarFile = null;
+                        }
+                        break;
+                        
+                    case 'editWechatQr':
+                        if (resumeQrFile) {
+                            // 上传二维码到Storage
+                            const qrUrl = await uploadImageToStorage(resumeQrFile, resumeQrFile.name, 'resume-images');
+                            
+                            // 更新数据库
+                            const { error } = await supabaseClient
+                                .from('resumes')
+                                .update({ 
+                                    wechat_qr_url: qrUrl,
+                                    updated_at: new Date().toISOString()
+                                })
+                                .eq('id', resumeData.id);
+                                
+                            if (error) throw error;
+                            
+                            // 更新本地数据
+                            resumeData.wechat_qr_url = qrUrl;
+                            resumeQrFile = null;
+                        }
+                        break;
+                        
+                    case 'editResumeFile':
+                        if (resumePdfFile) {
+                            // 上传简历文件到Storage
+                            const resumeFileUrl = await uploadImageToStorage(resumePdfFile, resumePdfFile.name, 'resume-files');
+                            
+                            // 更新数据库
+                            const { error } = await supabaseClient
+                                .from('resumes')
+                                .update({ 
+                                    resume_file_url: resumeFileUrl,
+                                    updated_at: new Date().toISOString()
+                                })
+                                .eq('id', resumeData.id);
+                                
+                            if (error) throw error;
+                            
+                            // 更新本地数据
+                            resumeData.resume_file_url = resumeFileUrl;
+                            resumePdfFile = null;
+                        }
+                        break;
+                        
+                    case 'editExperience':
+                        // 保存所有工作经历
+                        const expElements = document.querySelectorAll('#experienceEditList > .form-group');
+                        const experiencesToSave = [];
+                        
+                        for (let i = 0; i < expElements.length; i++) {
+                            const company = document.getElementById(`editExpCompany${i}`)?.value || '';
+                            const period = document.getElementById(`editExpPeriod${i}`)?.value || '';
+                            const position = document.getElementById(`editExpPosition${i}`)?.value || '';
+                            const description = document.getElementById(`editExpDesc${i}`)?.value || '';
+                            
+                            if (company && position) {
+                                experiencesToSave.push({
+                                    id: resumeExperiences[i]?.id,
+                                    company,
+                                    period,
+                                    position,
+                                    description,
+                                    display_order: i
+                                });
+                            }
+                        }
+                        
+                        // 先删除所有现有工作经历
+                        if (resumeData.id) {
+                            await supabaseClient
+                                .from('work_experiences')
+                                .delete()
+                                .eq('resume_id', resumeData.id);
+                        }
+                        
+                        // 保存新的工作经历
+                        if (experiencesToSave.length > 0 && resumeData.id) {
+                            for (const exp of experiencesToSave) {
+                                const { id, ...expData } = exp;
+                                await supabaseClient
+                                    .from('work_experiences')
+                                    .insert({
+                                        resume_id: resumeData.id,
+                                        ...expData
+                                    });
+                            }
+                        }
+                        
+                        // 重新加载工作经历
+                        await loadResumeExperiences();
+                        break;
+                        
+                    case 'editSkills':
+                        // 保存所有技能
+                        const skillElements = document.querySelectorAll('#skillsEditList > .form-group');
+                        const skillsToSave = [];
+                        
+                        for (let i = 0; i < skillElements.length; i++) {
+                            const name = document.getElementById(`editSkillName${i}`)?.value || '';
+                            const level = parseInt(document.getElementById(`editSkillLevel${i}`)?.value || '0');
+                            
+                            if (name) {
+                                skillsToSave.push({
+                                    id: resumeSkills[i]?.id,
+                                    name,
+                                    level: Math.min(100, Math.max(0, level)),
+                                    display_order: i
+                                });
+                            }
+                        }
+                        
+                        // 先删除所有现有技能
+                        if (resumeData.id) {
+                            await supabaseClient
+                                .from('skills')
+                                .delete()
+                                .eq('resume_id', resumeData.id);
+                        }
+                        
+                        // 保存新的技能
+                        if (skillsToSave.length > 0 && resumeData.id) {
+                            for (const skill of skillsToSave) {
+                                const { id, ...skillData } = skill;
+                                await supabaseClient
+                                    .from('skills')
+                                    .insert({
+                                        resume_id: resumeData.id,
+                                        ...skillData
+                                    });
+                            }
+                        }
+                        
+                        // 重新加载技能
+                        await loadResumeSkills();
+                        break;
+                        
+                    case 'editEducation':
+                        const school = document.getElementById('editEduSchool').value || '';
+                        const period = document.getElementById('editEduPeriod').value || '';
+                        const major = document.getElementById('editEduMajor').value || '';
+                        
+                        if (school && period && major) {
+                            if (resumeEducation && resumeEducation.id) {
+                                // 更新现有教育背景
+                                const { error } = await supabaseClient
+                                    .from('educations')
+                                    .update({ school, period, major })
+                                    .eq('id', resumeEducation.id);
+                                    
+                                if (error) throw error;
+                            } else if (resumeData.id) {
+                                // 创建新的教育背景
+                                const { data, error } = await supabaseClient
+                                    .from('educations')
+                                    .insert({
+                                        resume_id: resumeData.id,
+                                        school,
+                                        period,
+                                        major
+                                    })
+                                    .select()
+                                    .single();
+                                    
+                                if (error) throw error;
+                                resumeEducation = data;
+                            }
+                        }
+                        break;
+                }
+                
+                // 更新页面显示
+                renderResume();
+                subEditModal.classList.remove('active');
+                editModal.classList.add('active');
+                showNotification('修改已保存！');
+                
+            } catch (error) {
+                console.error('保存简历数据失败:', error);
+                alert('保存失败，请重试');
+            }
         }
 
         // 打开管理模态框
@@ -3491,6 +5718,10 @@
             console.warn('清理本地删除记录失败:', error);
         }
     }
+    
+    // 全局函数供HTML内联事件调用
+    window.removeExperience = removeExperience;
+    window.removeSkill = removeSkill;
 </script>
 </body>
 </html>
