@@ -4420,6 +4420,9 @@
             // 重新打开编辑模态框以刷新列表
             openSubEditModal('editSkills');
         }
+        // 将函数暴露到全局，供HTML内联事件调用
+        window.removeExperience = removeExperience;
+        window.removeSkill = removeSkill;
         
         // 保存子编辑数据（简历相关）
         async function saveSubEditData() {
