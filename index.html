@@ -1177,8 +1177,9 @@
 
         .fullscreen-image-wrapper {
             position: relative;
-            max-width: 100%;
-            max-height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             transition: transform 0.3s ease;
             cursor: grab;
         }
@@ -1187,10 +1188,13 @@
             cursor: grabbing;
         }
 
+        /* 移除max-width限制，让图片以原始尺寸显示 */
         .fullscreen-image {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
+            width: auto;
+            height: auto;
+            max-width: none;
+            max-height: none;
+            object-fit: none;
             display: block;
             user-select: none;
             -webkit-user-drag: none;
@@ -2441,6 +2445,12 @@
         let minZoom = 0.5;
         let maxZoom = 5;
         let zoomStep = 0.25;
+        // 新增：记录图片自然尺寸和容器尺寸
+        let naturalImgWidth = 1;
+        let naturalImgHeight = 1;
+        let containerWidth = 1;
+        let containerHeight = 1;
+        let initialContainZoom = 1; // 初始 contain 缩放比例
 
         // DOM元素
         const loginModal = document.getElementById('loginModal');
@@ -3478,7 +3488,7 @@
 
         // 开始拖拽（鼠标）
         function startDrag(e) {
-            if (zoomLevel <= 1) return;
+            if (zoomLevel <= initialContainZoom) return; // 只有在放大后才允许拖拽
 
             isDragging = true;
             startX = e.clientX - translateX;
@@ -3491,7 +3501,7 @@
 
         // 开始拖拽（触摸）
         function startDragTouch(e) {
-            if (zoomLevel <= 1 || !e.touches || e.touches.length !== 1) return;
+            if (zoomLevel <= initialContainZoom || !e.touches || e.touches.length !== 1) return;
 
             isDragging = true;
             startX = e.touches[0].clientX - translateX;
@@ -3533,16 +3543,22 @@
             document.removeEventListener('touchend', stopDrag);
         }
 
-        // 缩放图片
+        // 缩放图片（基于初始 contain 比例）
         function zoomImage(delta) {
-            const newZoom = zoomLevel + delta;
+            if (!naturalImgWidth || !naturalImgHeight) return;
+            let newZoom = zoomLevel + delta;
+            // 限制最小为 initialContainZoom，最大为 initialContainZoom * 5
+            const minAllowed = initialContainZoom;
+            const maxAllowed = initialContainZoom * 5;
+            if (newZoom < minAllowed) newZoom = minAllowed;
+            if (newZoom > maxAllowed) newZoom = maxAllowed;
+            if (newZoom === zoomLevel) return;
 
-            if (newZoom < minZoom || newZoom > maxZoom) return;
-
+            // 以图片中心为缩放中心
             const containerRect = fullscreenContainer.getBoundingClientRect();
             const centerX = containerRect.width / 2;
             const centerY = containerRect.height / 2;
-
+            // 当前图片实际显示区域中心点的世界坐标（相对于容器）
             const mouseX = centerX - translateX;
             const mouseY = centerY - translateY;
 
@@ -3554,26 +3570,26 @@
             updateImageTransform();
         }
 
-        // 更新图片变换
+        // 更新图片变换（边界限制基于自然尺寸和容器尺寸）
         function updateImageTransform() {
+            if (!naturalImgWidth || !naturalImgHeight) return;
+
+            const scaledWidth = naturalImgWidth * zoomLevel;
+            const scaledHeight = naturalImgHeight * zoomLevel;
+            const maxX = Math.max(0, (scaledWidth - containerWidth) / 2);
+            const maxY = Math.max(0, (scaledHeight - containerHeight) / 2);
+
+            translateX = Math.min(maxX, Math.max(-maxX, translateX));
+            translateY = Math.min(maxY, Math.max(-maxY, translateY));
+
             fullscreenImageWrapper.style.transform = `translate(${translateX}px, ${translateY}px) scale(${zoomLevel})`;
             zoomPercent.textContent = `${Math.round(zoomLevel * 100)}%`;
-
-            const containerRect = fullscreenContainer.getBoundingClientRect();
-            const wrapperRect = fullscreenImageWrapper.getBoundingClientRect();
-
-            const maxX = Math.max(0, (wrapperRect.width * zoomLevel - containerRect.width) / 2);
-            const maxY = Math.max(0, (wrapperRect.height * zoomLevel - containerRect.height) / 2);
-
-            translateX = Math.max(-maxX, Math.min(maxX, translateX));
-            translateY = Math.max(-maxY, Math.min(maxY, translateY));
-
-            fullscreenImageWrapper.style.transform = `translate(${translateX}px, ${translateY}px) scale(${zoomLevel})`;
         }
 
-        // 重置图片变换
+        // 重置图片变换（回到初始 contain 状态）
         function resetImageTransform() {
-            zoomLevel = 1;
+            if (!naturalImgWidth || !naturalImgHeight) return;
+            zoomLevel = initialContainZoom;
             translateX = 0;
             translateY = 0;
             updateImageTransform();
@@ -3984,15 +4000,43 @@
             currentImageIndex = index;
             const image = currentImages[currentImageIndex];
 
+            // 重置变换
+            zoomLevel = 1;
+            translateX = 0;
+            translateY = 0;
+
+            // 设置图片源
             fullscreenImage.src = image.image_url;
             fullscreenTitle.textContent = image.title;
             fullscreenDesc.textContent = image.description || '';
 
-            // 重置变换
-            resetImageTransform();
+            // 等待图片加载完成后再计算初始缩放
+            fullscreenImage.onload = () => {
+                // 获取自然尺寸
+                naturalImgWidth = fullscreenImage.naturalWidth;
+                naturalImgHeight = fullscreenImage.naturalHeight;
+                // 获取容器尺寸
+                const containerRect = fullscreenContainer.getBoundingClientRect();
+                containerWidth = containerRect.width;
+                containerHeight = containerRect.height;
+                // 计算初始 contain 缩放比例
+                const scaleX = containerWidth / naturalImgWidth;
+                const scaleY = containerHeight / naturalImgHeight;
+                initialContainZoom = Math.min(scaleX, scaleY);
+                zoomLevel = initialContainZoom;
+                // 设置最小/最大缩放倍数基于初始比例
+                minZoom = initialContainZoom * 0.5;
+                maxZoom = initialContainZoom * 5;
+                // 更新变换
+                updateImageTransform();
+                // 显示模态框
+                fullscreenModal.classList.add('active');
+            };
 
-            // 显示全屏预览
-            fullscreenModal.classList.add('active');
+            // 如果图片已缓存，可能不会触发load，手动触发一次
+            if (fullscreenImage.complete) {
+                fullscreenImage.onload();
+            }
         }
 
         // 显示上一张图片
@@ -4009,8 +4053,24 @@
             fullscreenTitle.textContent = image.title;
             fullscreenDesc.textContent = image.description || '';
 
-            // 重置变换
-            resetImageTransform();
+            // 重置变换，等待图片加载
+            fullscreenImage.onload = () => {
+                naturalImgWidth = fullscreenImage.naturalWidth;
+                naturalImgHeight = fullscreenImage.naturalHeight;
+                const containerRect = fullscreenContainer.getBoundingClientRect();
+                containerWidth = containerRect.width;
+                containerHeight = containerRect.height;
+                const scaleX = containerWidth / naturalImgWidth;
+                const scaleY = containerHeight / naturalImgHeight;
+                initialContainZoom = Math.min(scaleX, scaleY);
+                zoomLevel = initialContainZoom;
+                minZoom = initialContainZoom * 0.5;
+                maxZoom = initialContainZoom * 5;
+                translateX = 0;
+                translateY = 0;
+                updateImageTransform();
+            };
+            if (fullscreenImage.complete) fullscreenImage.onload();
         }
 
         // 显示下一张图片
@@ -4027,8 +4087,23 @@
             fullscreenTitle.textContent = image.title;
             fullscreenDesc.textContent = image.description || '';
 
-            // 重置变换
-            resetImageTransform();
+            fullscreenImage.onload = () => {
+                naturalImgWidth = fullscreenImage.naturalWidth;
+                naturalImgHeight = fullscreenImage.naturalHeight;
+                const containerRect = fullscreenContainer.getBoundingClientRect();
+                containerWidth = containerRect.width;
+                containerHeight = containerRect.height;
+                const scaleX = containerWidth / naturalImgWidth;
+                const scaleY = containerHeight / naturalImgHeight;
+                initialContainZoom = Math.min(scaleX, scaleY);
+                zoomLevel = initialContainZoom;
+                minZoom = initialContainZoom * 0.5;
+                maxZoom = initialContainZoom * 5;
+                translateX = 0;
+                translateY = 0;
+                updateImageTransform();
+            };
+            if (fullscreenImage.complete) fullscreenImage.onload();
         }
 
         // 打开子编辑模态框（简历编辑）
