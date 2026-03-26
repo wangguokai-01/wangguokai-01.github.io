@@ -3000,40 +3000,69 @@
 
         // 加载所有组
         async function loadAllGroups() {
-            try {
-                const {data, error} = await supabaseClient
-                    .from('groups')
-                    .select('*')
-                    .order('created_at', {ascending: false});
+    try {
+        const {data, error} = await supabaseClient
+            .from('groups')
+            .select('*')
+            .order('created_at', {ascending: false});
 
-                if (error) throw error;
+        if (error) throw error;
 
-                groups = data || [];
-                renderGroups(groups);
-            } catch (error) {
-                console.error('加载作品组失败:', error);
-                showNotification('加载作品组失败');
+        groups = data || [];
+        
+        // 获取每个组的图片数量
+        for (let i = 0; i < groups.length; i++) {
+            const {count, error: countError} = await supabaseClient
+                .from('images')
+                .select('*', {count: 'exact', head: true})
+                .eq('group_id', groups[i].id);
+                
+            if (!countError) {
+                groups[i].image_count = count;
+            } else {
+                groups[i].image_count = 0;
             }
         }
-
+        
+        renderGroups(groups);
+    } catch (error) {
+        console.error('加载作品组失败:', error);
+        showNotification('加载作品组失败');
+    }
+}
         // 按分类加载组
         async function loadGroupsByCategory(categoryId) {
-            try {
-                const {data, error} = await supabaseClient
-                    .from('groups')
-                    .select('*')
-                    .eq('category_id', categoryId)
-                    .order('created_at', {ascending: false});
+    try {
+        const {data, error} = await supabaseClient
+            .from('groups')
+            .select('*')
+            .eq('category_id', categoryId)
+            .order('created_at', {ascending: false});
 
-                if (error) throw error;
+        if (error) throw error;
 
-                groups = data || [];
-                renderGroups(groups);
-            } catch (error) {
-                console.error('加载作品组失败:', error);
-                showNotification('加载作品组失败');
+        groups = data || [];
+        
+        // 获取每个组的图片数量
+        for (let i = 0; i < groups.length; i++) {
+            const {count, error: countError} = await supabaseClient
+                .from('images')
+                .select('*', {count: 'exact', head: true})
+                .eq('group_id', groups[i].id);
+                
+            if (!countError) {
+                groups[i].image_count = count;
+            } else {
+                groups[i].image_count = 0;
             }
         }
+        
+        renderGroups(groups);
+    } catch (error) {
+        console.error('加载作品组失败:', error);
+        showNotification('加载作品组失败');
+    }
+}
 
         // 加载图片
         async function loadImagesByGroup(groupId) {
